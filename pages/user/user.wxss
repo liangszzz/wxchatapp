@@ -77,6 +77,7 @@ page {
   height: 100%;
   color: gray;
   font-size: 35rpx;
+  
 }
 
 .texts {
