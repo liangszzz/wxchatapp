@@ -12,8 +12,8 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.0.4",
-	"appid": "wx584247607e3f0af4",
-	"projectname": "demo0",
+	"appid": "wx3c65dabef2c7a5c7",
+	"projectname": "%E8%BD%A6%E8%B4%B7",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
@@ -27,13 +27,29 @@
 			"current": -1,
 			"list": []
 		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
 		"game": {
 			"currentL": -1,
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
-			"list": []
+			"current": 1,
+			"list": [
+				{
+					"id": -1,
+					"name": "我的",
+					"pathName": "pages/user/user",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "列表页",
+					"pathName": "pages/clbaseinfo/baseInfo"
+				}
+			]
 		}
 	}
 }
