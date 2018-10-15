@@ -1,0 +1,58 @@
+<!--pages/user/user.wxml-->
+<view class='top'>
+
+  <view class='header'>
+    <image src='../../image/person.jpg' class='header-img'></image>
+  </view>
+
+  <view class='header-left'>
+    <view class='username'>
+      沈海强
+    </view>
+    <view class='phone'>
+      13770207216
+    </view>
+  </view>
+</view>
+
+<view class="personal">
+
+  <view class="personal-item" bindtap="mynews">
+    <view class='item-image'>
+      <image class='image' src='../../image/mynews.png'></image>
+    </view>
+    <view class='item-text'>
+      <view class="texts">我的消息</view>
+    </view>
+  </view>
+
+  <view class="personal-item" bindtap="mycards">
+    <view class='item-image'>
+      <image class='image' src='../../image/card.png'></image>
+    </view>
+    <view class='item-text'>
+      <view class="texts">我的银行卡</view>
+    </view>
+  </view>
+
+  <view class="personal-item" bindtap="updatelog">
+    <view class='item-image'>
+      <image class='image' src='../../image/log.png'></image>
+    </view>
+    <view class='item-text'>
+      <view class="texts">更新日志</view>
+    </view>
+  </view>
+
+</view>
+
+
+<view class='buttom' bindtap="logout">
+  <view class='item-image'>
+      <image class='image' src='../../image/logout.png'></image>
+    </view>
+    <view class='item-text'>
+      <view class="texts">安全退出</view>
+    </view>
+  
+</view>
