@@ -2,7 +2,7 @@
 App({
   onLaunch: function() {
     // 展示本地存储能力
-	//测试df
+	//测试dfasg
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
