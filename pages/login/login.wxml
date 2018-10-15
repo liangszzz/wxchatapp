@@ -1,15 +1,14 @@
-<view class="container">
+<view class="container login">
 
-  <form bindsubmit="formSubmit" bindreset="formReset">
+  <form bindsubmit="formSubmit">
     <view>
-      <input class="weui-input" auto-focus placeholder="请填写手机号码" />
-      <button bindtap="getSmsCode" disabled="{{smsBtnReadOnly}}">{{smsBtnContent}}</button>
+      <input class="phone" type='number' auto-focus placeholder="请输入手机号码" bindinput='bindPhoneInput' value='{{phone}}' />
     </view>
     <view>
-      <input class="weui-input"placeholder="请填写验证码"/>
+      <input class="invitation" placeholder="请输入邀请码" id='invitation_code' bindinput='bindInvitationInput' />
     </view>
     <view class="btn-area">
-      <button formType="submit">注册</button>
+      <button formType="submit" class='btnRegistered' open-type="getUserInfo" bindgetuserinfo="getUserInfo" disabled='{{btnRegistered}}'>快速绑定注册</button>
     </view>
   </form>
 

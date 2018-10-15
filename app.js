@@ -2,27 +2,26 @@
 App({
   onLaunch: function() {
     // 展示本地存储能力
-	//测试dfasg
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-    /////
+
     //判断用户是否是第一次登陆
-    // wx.getSetting({
-    //   success: res => {
-    //     if (res.authSetting['scope.userInfo'] == undefined) {
-    //       wx.reLaunch({
-    //         url: '/pages/login/login',
-    //         success: function (res) { },
-    //         fail: function (res) { },
-    //         complete: function (res) { },
-    //       })
-    //     }
-    //   },
-    //   fail: res => {
-    //     console.log(res)
-    //   }
-    // })
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.userInfo'] == undefined) {
+          wx.reLaunch({
+            url: '/pages/login/login',
+            success: function (res) { },
+            fail: function (res) { },
+            complete: function (res) { },
+          })
+        }
+      },
+      fail: res => {
+        console.log(res)
+      }
+    })
     
 
     //检查网络状态
