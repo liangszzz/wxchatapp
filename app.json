@@ -1,25 +1,32 @@
 {
   "pages": [
+    "pages/clbaseinfo/baseInfo",
     "pages/index/index",
     "pages/logs/logs",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/user/user"
   ],
   "window": {
-    "navigationBarTitleText": "Demo0",
+    "navigationBarTitleText": "车贷平台",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTextStyle": "black",
     "enablePullDownRefresh": true
   },
   "tabBar": {
+    "selectedColor": "black",
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "首页"
+        "text": "首页",
+        "selectedIconPath": "image/index-1.png",
+        "iconPath": "image/index.png"
       },
       {
-        "pagePath": "pages/logs/logs",
-        "text": "我的"
+        "pagePath": "pages/user/user",
+        "text": "我的",
+        "iconPath": "image/me.png",
+        "selectedIconPath": "image/me-1.png"
       }
     ]
   },
