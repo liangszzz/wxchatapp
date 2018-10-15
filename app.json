@@ -1,8 +1,6 @@
 {
   "pages": [
     "pages/clbaseinfo/baseInfo",
-    "pages/index/index",
-    "pages/logs/logs",
     "pages/login/login",
     "pages/user/user"
   ],
@@ -17,7 +15,7 @@
     "selectedColor": "black",
     "list": [
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/clbaseinfo/baseInfo",
         "text": "首页",
         "selectedIconPath": "image/index-1.png",
         "iconPath": "image/index.png"
