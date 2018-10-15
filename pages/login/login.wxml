@@ -1,0 +1,16 @@
+<view class="container">
+
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <view>
+      <input class="weui-input" auto-focus placeholder="请填写手机号码" />
+      <button bindtap="getSmsCode" disabled="{{smsBtnReadOnly}}">{{smsBtnContent}}</button>
+    </view>
+    <view>
+      <input class="weui-input"placeholder="请填写验证码"/>
+    </view>
+    <view class="btn-area">
+      <button formType="submit">注册</button>
+    </view>
+  </form>
+
+</view>
