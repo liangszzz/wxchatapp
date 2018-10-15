@@ -5,7 +5,7 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-
+    /////
     //判断用户是否是第一次登陆
     // wx.getSetting({
     //   success: res => {
