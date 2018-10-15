@@ -105,6 +105,7 @@ App({
     }) // 如果是 tabbar 页面，请使用 wx.switchTab
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    http_url_head:"http://192.168.1.7:8080"
   }
 })
