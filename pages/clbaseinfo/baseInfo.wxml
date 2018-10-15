@@ -1,0 +1,37 @@
+<view class='header'>
+  <view class='header-top'>
+    <text>未还本金总额(元)</text>
+  </view>
+  <view class='header-body'>
+    <text>0.00</text>
+  </view>
+  <view class='header-buttom'>
+    <text>我要借款</text>
+  </view>
+</view>
+
+<view class='body'>
+  <view class='body-left'>
+    <text>近期订单</text>
+  </view>
+  <view class='body-right'>
+    <text>全部账单</text>
+  </view>
+</view>
+
+
+<view class="row" wx:for="{{orderList}}" wx:key="" bindtap="detail" data-id="{{item.id}}">
+  <view class="content">
+    <view class="top">
+      <view class="title">10月15号申请贷款</view>
+      <view class="status">待放款</view>
+    </view>
+    <view class="row-body">
+      <view class="money">5000.00(元)</view>
+    </view>
+    <view class="bottom">
+      <view class="sentence">还款日当天从招商银行（尾号0988）自动扣款
+</view>
+    </view>
+  </view>
+</view>
