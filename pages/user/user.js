@@ -21,14 +21,18 @@ Page({
    * 我的消息
    */
   mynews: function() {
-
+    wx.navigateTo({
+      url: '../news/news',
+    })
   },
 
   /**
    * 我的银行卡
    */
   mycards: function() {
-
+    wx.navigateTo({
+      url: '../bankcard/bankcard',
+    })
   },
 
   /**
