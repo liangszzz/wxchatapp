@@ -1,1 +1,54 @@
-/* pages/bankcard/bankcard.wxss */
+/* pages/news/news.wxss */
+
+page {
+  height: 100%;
+  background-color: rgba(242, 242, 242, 1);
+}
+
+.row {
+  margin: auto;
+  margin-top: 8%;
+  height: 15%;
+  width: 80%;
+  line-height: 20px;
+  border-radius: 15px;
+  background-color: rgba(3, 169, 244, 1);
+  font-size: 14px;
+  font-family: Arial;
+}
+
+.row_first {
+ 
+  display: flex;
+  flex-direction: row;
+  
+}
+
+.create_time {
+  width: 122px;
+  height: 30px;
+  line-height: 17px;
+  color: rgba(255, 255, 255, 1);
+  font-size: 12px;
+  text-align: center;
+  font-family: Arial;
+  margin-top: 30rpx;
+  margin-left: 30rpx;
+}
+
+.bank_name,.bank_account{
+  color: rgba(255, 255, 255, 1);
+  font-size: 18px;
+  text-align: left;
+  font-family: Arial;
+  margin-top: 30rpx;
+   margin-left: 30rpx;
+}
+
+.message{
+  color:black;
+  font-size: 18px;
+  text-align: center;
+  font-family: Arial;
+  margin-top: 30rpx;
+}

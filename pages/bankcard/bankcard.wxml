@@ -1,2 +1,23 @@
 <!--pages/bankcard/bankcard.wxml-->
-<text>pages/bankcard/bankcard.wxml</text>
+<view class="row" wx:for="{{list}}" wx:key="" data-id="{{item.id}}">
+  
+    <view class='row_first'>
+      <view class="bank_name">
+        <view>{{item.bank_name}}</view>
+      </view>
+      <view class="bank_account">
+        <view>(尾号{{item.bank_account}})</view>
+      </view>
+    </view>
+
+    <view class='row_second'>
+      <view class='create_time'>
+        <view>签约日期:{{item.create_time}}</view>
+      </view>
+    </view>
+  
+</view>
+
+<view class='message' hidden="{{ishide}}">
+暂未绑定银行卡
+</view>

@@ -2,7 +2,9 @@
   "pages": [
     "pages/clbaseinfo/baseInfo",
     "pages/login/login",
-    "pages/user/user"
+    "pages/user/user",
+    "pages/news/news",
+    "pages/bankcard/bankcard"
   ],
   "window": {
     "navigationBarTitleText": "车贷平台",
