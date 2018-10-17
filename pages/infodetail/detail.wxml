@@ -1,0 +1,39 @@
+<!--pages/infodetail/detail.wxml-->
+<view class='header'>
+  <view style='width:15%; height:50%;margin:auto'>
+    <image src='../../image/clock.png' class='clock'></image>
+  </view>
+  <view class="header-left">
+    <view class='title'>审核放款中</view>
+    <view class='content'>审核通过后会通过短信或微信通知您，</view>
+    <view class='content'>请耐心等候</view>
+  </view>
+</view>
+
+<view class='body'>
+<view class="info-title">
+订单信息
+</view>
+<view class="separated"></view>
+  <view class='table'>
+        <view class='tr'>
+          <view class='td-name'>借款金额</view>
+          <view class='td-value'>1433223元</view>
+        </view>
+        <view class='tr'>
+          <view class='td-name'>每期应还</view>
+          <view class='td-value'>450元（共6期）</view>
+        </view>
+        <view class='tr'>
+          <view class='td-name'>借款银行卡</view>
+          <view class='td-value'>招商银行（尾号1234）</view>
+        </view>
+        <view class='tr'>
+          <view class='td-name'>提交日期</view>
+          <view class='td-value'>2018-10-17</view>
+        </view>
+      </view>
+</view>
+
+
+<button class='btn' bindtap='back'>确认</button>
