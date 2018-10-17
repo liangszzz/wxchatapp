@@ -1,10 +1,14 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/clbaseinfo/baseInfo",
     "pages/login/login",
     "pages/user/user",
     "pages/news/news",
-    "pages/bankcard/bankcard"
+    "pages/bankcard/bankcard",
+    "pages/personal/personal",
+    "pages/infodetail/detail",
+    "pages/sign/sign"
   ],
   "window": {
     "navigationBarTitleText": "车贷平台",
