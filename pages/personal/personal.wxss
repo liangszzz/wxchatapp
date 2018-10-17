@@ -1,0 +1,104 @@
+/* pages/detail/detail.wxss */
+
+page {
+  height: 100%;
+  background-color: rgba(234, 234, 234, 1);
+}
+
+.header {
+  width: 100%;
+  height: 24px;
+  background-color: rgba(136, 136, 136, 1);
+  color: white;
+  font-size: 12px;
+  font-family: PingFangSC-regular;
+}
+
+.idcard {
+  width: 100%;
+  height: 28%;
+  border-bottom: 1px solid #e8e8e8;
+  background-color: white;
+}
+
+.card_picture {
+  display: flex;
+  flex-direction: row;
+  margin-top: 5rpx;
+  margin-bottom: 30rpx;
+}
+
+.picture {
+  margin: auto;
+  margin-top: 5%;
+  width: 40%;
+  height: 100px;
+  border: 1rpx dashed lightgray;
+}
+
+.userinfo {
+  width: 100%;
+  height: 28%;
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid #e8e8e8;
+  background-color: white;
+}
+
+.userinfo-body {
+  margin-bottom: 30rpx;
+}
+
+.value {
+  font-size: 14px;
+  text-align: left;
+  font-family: PingFangSC-regular;
+  margin-top: 20rpx;
+  margin-left: 30rpx;
+}
+
+.carinfo {
+  width: 100%;
+  height: 45%;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+
+.carpicture {
+  margin-left: 8%;
+  width: 30%;
+  height: 100px;
+  border: 1rpx dashed lightgray;
+}
+
+.agreement {
+  left: 7px;
+  top: 710px;
+  width: 360px;
+  height: 29px;
+  font-size: 12px;
+  text-align: center;
+  font-family: Arial-regular;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.check {
+  transform: scale(0.7, 0.7);
+  color: rgba(3, 169, 244, 1);
+}
+
+.btn {
+width: 90%;
+height: 47px;
+border-radius: 4px;
+background-color: rgba(3, 169, 244, 1);
+color: rgba(255, 255, 255, 1);
+font-size: 18px;
+text-align: center;
+font-family: Microsoft Yahei;
+margin-top: 30rpx;
+margin-bottom: 50rpx;
+}

@@ -1,0 +1,51 @@
+<!--pages/detail/detail.wxml-->
+
+  <view class="header">
+    个人信息有误请及时联系客户经理修改
+  </view>
+  <view class="idcard">
+
+    <view class='value'>身份证正反面</view>
+    <view class='card_picture'>
+      <image class='picture' src='{{imgalist[0]}}' bindtap="previewImage" id="0"></image>
+      <image class='picture' src='{{imgalist[1]}}' bindtap="previewImage" id="1"></image>
+    </view>
+
+  </view>
+
+
+  <view class="userinfo">
+
+    <view class="userinfo-body">
+      <view class='value'>真实姓名：沈海强</view>
+      <view class='value'>身份证号：54545456456454546546</view>
+      <view class='value'>学历：<text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>大学本科</view>
+      <view class='value'>现居地址：江苏省南京市</view>
+      <view class='value'>婚姻状况：未婚</view>
+    </view>
+  </view>
+
+  <view class="carinfo">
+
+    <view class="info-body">
+      <view class='value'>车辆照片</view>
+      <view class='card_picture'>
+      <image class='carpicture' src='{{imgalist[2]}}' bindtap="previewImage" id="2"></image>
+    </view>
+      <view class='value'>车牌号码：苏A88888</view>
+      <view class='value'>车辆型号：奥迪A8</view>
+      <view class='value'>车架号:<text decode="{{true}}" space="{{true}}">&emsp;</text> 1233</view>
+    </view>
+  </view>
+
+  <view class='agreement'>
+  <checkbox value="12" checked="" class='check'/>
+  <view>我已阅读并理解</view> 
+  <view style='color: rgba(3, 169, 244, 1);' bindtap='contract'>《借款合同》</view> 
+  <view style='color: rgba(3, 169, 244, 1);' bindtap='explain'>、《产品说明》</view> 
+  </view>
+
+  <button class='btn'>提交</button>
+
+
+
