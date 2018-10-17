@@ -15,7 +15,7 @@ Page({
     //获取前台页面data-id存放的值
     var id = e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: '../detail/detail?id=' + id,
+      url: '../infodetail/detail?id=' + id,
     })
   },
   onLoad: function () {
