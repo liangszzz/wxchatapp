@@ -104,7 +104,7 @@ page {
   background-color: #fff;
 }
 
-.item-text view{
+/*.item-text view{
     position:relative;
 }
 
@@ -122,4 +122,4 @@ page {
     -webkit-transform:rotate(45deg);
        -moz-transform:rotate(45deg);
             transform:rotate(45deg);
-}
+}*/

@@ -2,7 +2,7 @@
 <view class='top'>
 
   <view class='header'>
-    <image src='../../image/person.jpg' class='header-img'></image>
+    <image class="header-img" src="{{userInfo.avatarUrl}}" mode="cover"></image>
   </view>
 
   <view class='header-left'>
