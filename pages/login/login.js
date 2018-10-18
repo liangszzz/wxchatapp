@@ -10,7 +10,7 @@ Page({
     btnRegistered: true
   },
   onLoad: function() {
-    
+
   },
   bindPhoneInput: function(e) {
     this.setData({
@@ -20,18 +20,16 @@ Page({
       this.setData({
         phoneCheck: true
       })
-    }
-    else{
+    } else {
       this.setData({
         phoneCheck: false
       })
     }
-    if (this.data.phoneCheck && this.data.invitationCheck){
+    if (this.data.phoneCheck && this.data.invitationCheck) {
       this.setData({
         btnRegistered: false
       })
-    }
-    else{
+    } else {
       this.setData({
         btnRegistered: true
       })
@@ -41,12 +39,11 @@ Page({
     this.setData({
       invitation_code: e.detail.value
     })
-    if (this.data.invitation_code.length >0) {
+    if (this.data.invitation_code.length > 0) {
       this.setData({
         invitationCheck: true
       })
-    }
-    else{
+    } else {
       this.setData({
         invitationCheck: false
       })
@@ -55,8 +52,7 @@ Page({
       this.setData({
         btnRegistered: false
       })
-    }
-    else{
+    } else {
       this.setData({
         btnRegistered: true
       })
@@ -66,37 +62,35 @@ Page({
     var data = e.detail.userInfo
     data.phone = this.data.phone
     data.invitation_code = this.data.invitation_code
-    console.log(data)
-    
-    //注册
-    wx.request({
-      url: app.globalData.http_url_head +"login/wxRegister",
-      data: data,
-      method:"POST",
-      success:e=>{
-        console.log(e)
-      },
-      fail:e=>{
-        console.log(e)
-      }
-    })
 
     wx.login({
       timeout: 50000,
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        if(res.errMsg=="login:ok"){
-          console.log(res.code)
+        if (res.errMsg == "login:ok") {
+          data.code = res.code
           wx.request({
-            url: app.globalData.http_url_head + "login/wxLogin",
-            data: {
-              invitation_code: this.data.invitation_code,
-              phone: this.data.phone,
-              code: res.code
-            },
+            url: app.globalData.http_url_head + "login/wxRegister",
+            data: data,
             method: "POST",
-            success: e => {
-              console.log(e)
+            success: result => {
+              console.log(result)
+              if (result.statusCode == 200 && result.data.code==0) {
+                app.globalData.userInfo=result.data.entity
+                  wx.redirectTo({
+                  url: '../clbaseinfo/baseInfo',
+                  success: res => {
+                    console.log(res)
+                  }
+                })
+              } else {
+                wx.showModal({
+                  title: '注册失败',
+                  content: "手机号或邀请码有误!",
+                  showCancel: false,
+                  confirmText: "确定"
+                })
+              }
             },
             fail: e => {
               console.log(e)
