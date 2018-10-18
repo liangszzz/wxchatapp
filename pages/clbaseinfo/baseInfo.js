@@ -9,6 +9,7 @@ Page({
     hasMoreData: false, // 是否存在更多数据
     loadMore: false,  //加载更多，默认false，隐藏
     orderList: [], //存放订单数据
+    remainingPrincipal: 0,
   },
   //事件处理函数
   detail: function (e) {
@@ -21,25 +22,43 @@ Page({
   onLoad: function () {
     console.log("页面加载获取列表页");
 
-    //使用模拟数据进行测试
-    var res = [{
-      id: '1433223',
-      title: '订单号：132121123',
-      create_time: '2018.10.11',
-      content: "尊敬用户：您的订单12312312放款成功"
-    }]
+    wx.request({
+      url: app.globalData.http_url_head + "/user/orders",
+      data: {
+        idcard: '640502199411209870'
+      },
+      method: "POST",
+      success: result => {
+        console.log(result);
+        this.setData({
+          remainingPrincipal: result.data.entity.remainingPrincipalTotal,
+          orderList: result.data.entity.orders
+        });
+      },
+      fail: result => {
+        console.log(result)
+      }
+    })
 
-    if (10 > this.data.limit) {
-      this.setData({
-        orderList: res,
-        loadMore: true
-      })
-    } else {
-      this.setData({
-        orderList: res,
-        hasMoreData: true
-      })
-    }
+    //使用模拟数据进行测试
+    // var res = [{
+    //   id: '1433223',
+    //   title: '订单号：132121123',
+    //   create_time: '2018.10.11',
+    //   content: "尊敬用户：您的订单12312312放款成功"
+    // }]
+
+    // if (10 > this.data.limit) {
+    //   this.setData({
+    //     orderList: res,
+    //     loadMore: true
+    //   })
+    // } else {
+    //   this.setData({
+    //     orderList: res,
+    //     hasMoreData: true
+    //   })
+    // }
 
   },
   getUserInfo: function (e) {

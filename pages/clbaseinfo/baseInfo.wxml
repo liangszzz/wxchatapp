@@ -3,7 +3,7 @@
     <text>未还本金总额(元)</text>
   </view>
   <view class='header-body'>
-    <text>0.00</text>
+    <text>{{remainingPrincipal}}</text>
   </view>
   <view class='header-buttom'>
     <text>我要借款</text>
@@ -21,7 +21,7 @@
 
 
 <view class="row" wx:for="{{orderList}}" wx:key="" bindtap="detail" data-id="{{item.id}}">
-  <view class="content">
+  <!-- <view class="content">
     <view class="top">
       <view class="title">10月15号申请贷款</view>
       <view class="status">待放款</view>
@@ -31,7 +31,20 @@
     </view>
     <view class="bottom">
       <view class="sentence">还款日当天从招商银行（尾号0988）自动扣款
-</view>
+      </view>
+    </view>
+  </view> -->
+  <view class="content" wx:if='{{item.orderStatus == 64}}'>
+    <view class="top">
+      <view class="title">{{item.latestRepayDate[1]}}月{{item.latestRepayDate[2]}}日应还金额</view>
+      <view class="status">还剩{{item.latestRepayDays}}天还款</view>
+    </view>
+    <view class="row-body">
+      <view class="money">{{item.latestShouldRepayAmount}}(元)</view>
+    </view>
+    <view class="bottom">
+      <view class="sentence">还款日当天从{{item.bankName}}（尾号0988）自动扣款
+      </view>
     </view>
   </view>
 </view>
