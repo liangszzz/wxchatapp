@@ -1,43 +1,42 @@
 {
-  "pages": [
-    "pages/index/index",
-    "pages/clbaseinfo/baseInfo",
-    "pages/login/login",
-    "pages/user/user",
-    "pages/news/news",
-    "pages/bankcard/bankcard",
-    "pages/personal/personal",
-    "pages/infodetail/detail",
-    "pages/sign/sign"
-  ],
-  "window": {
-    "navigationBarTitleText": "车贷平台",
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTextStyle": "black",
-    "enablePullDownRefresh": true
-  },
-  "tabBar": {
-    "selectedColor": "black",
-    "list": [
-      {
-        "pagePath": "pages/clbaseinfo/baseInfo",
-        "text": "首页",
-        "selectedIconPath": "image/index-1.png",
-        "iconPath": "image/index.png"
-      },
-      {
-        "pagePath": "pages/user/user",
-        "text": "我的",
-        "iconPath": "image/me.png",
-        "selectedIconPath": "image/me-1.png"
-      }
-    ]
-  },
-  "networkTimeout": {
-    "request": 10000,
-    "downloadFile": 10000
-  },
-  "resizable": false,
-  "debug": false
+    "pages": [
+        "pages/login/login",
+        "pages/clbaseinfo/baseInfo",
+        "pages/user/user",
+        "pages/news/news",
+        "pages/bankcard/bankcard",
+        "pages/personal/personal",
+        "pages/infodetail/detail",
+        "pages/sign/sign"
+    ],
+    "window": {
+        "navigationBarTitleText": "车贷平台",
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTextStyle": "black",
+        "enablePullDownRefresh": true
+    },
+    "tabBar": {
+        "selectedColor": "black",
+        "list": [
+            {
+                "pagePath": "pages/clbaseinfo/baseInfo",
+                "text": "首页",
+                "selectedIconPath": "image/index-1.png",
+                "iconPath": "image/index.png"
+            },
+            {
+                "pagePath": "pages/user/user",
+                "text": "我的",
+                "iconPath": "image/me.png",
+                "selectedIconPath": "image/me-1.png"
+            }
+        ]
+    },
+    "networkTimeout": {
+        "request": 10000,
+        "downloadFile": 10000
+    },
+    "resizable": false,
+    "debug": false
 }
