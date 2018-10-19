@@ -7,7 +7,9 @@ App({
                     url: this.globalData.http_url_head + 'login/wxLogin/' + res.code,
                     method: "POST",
                     success: res => {
-                        this.globalData.user_info = res.data.entity
+                        console.log(res)
+                        this.globalData.userInfo = res.data.entity
+                        console.log(this.globalData.userInfo)
                         wx.reLaunch({
                             url: '/pages/clbaseinfo/baseInfo'
                         })
