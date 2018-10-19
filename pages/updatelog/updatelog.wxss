@@ -1,0 +1,23 @@
+/* pages/updatelog/updatelog.wxss */
+page {
+  background-color: #f2f2f2;
+  font-family: Arial;
+}
+
+.message {
+  background-color: #fff;
+  color:rgba(94, 94, 94, 1);
+  height: 136rpx;
+  display: flex;
+  flex-direction: column;
+  padding: 50rpx 60rpx;
+}
+
+.message text:first-child {
+  font-size: 14px;
+  margin-bottom: 40rpx;
+} 
+
+.message text:last-child {
+  font-size: 10px;
+}
