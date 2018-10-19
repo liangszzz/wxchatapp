@@ -5,22 +5,33 @@ Page({
    * 页面的初始数据
    */
   data: {
-    imgalist: ['http://img1.3lian.com/2015/w7/85/d/101.jpg',
-      'http://img1.3lian.com/2015/w7/85/d/101.jpg',
-      'http://img1.3lian.com/2015/w7/85/d/101.jpg'
-    ]
+    check: 0,
+    imglist: ['/assets/images/shenfen1.jpg', '/assets/images/shenfen1.jpg'],
+    carlist: ['/assets/images/baoma1.jpg', '/assets/images/baoma2.jpg', '/assets/images/baoma3.jpg', '/assets/images/baoma4.jpg', '/assets/images/baoma5.jpg', '/assets/images/baoma6.jpg'],
 
   },
 
   /**
-   * 查看大图
+   * 预览身份证
    */
   previewImage: function(e) {
-    var currentId = parseInt(e.target.id);
-    var currentUrl = this.data.imgalist[currentId];
+    var currentUrl = e.target.dataset.src;
+    console.log(currentUrl);
     wx.previewImage({
       current: currentUrl, // 当前显示图片的http链接
-      urls: this.data.imgalist // 需要预览的图片http链接列表
+      urls: this.data.imglist // 需要预览的图片http链接列表
+    })
+  },
+
+  /**
+   * 预览车辆
+   */
+  previewImageCar: function (e) {
+    var currentUrl = e.target.dataset.src;
+    console.log(currentUrl);
+    wx.previewImage({
+      current: currentUrl, // 当前显示图片的http链接
+      urls: this.data.carlist // 需要预览的图片http链接列表
     })
   },
 
