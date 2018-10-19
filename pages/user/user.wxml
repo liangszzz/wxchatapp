@@ -2,7 +2,7 @@
   <image src="{{userInfo.avatarUrl}}" mode='aspectFill'></image>
   <view class="mine-info">
     <text>{{userInfo.nickName}}</text>
-    <text>18628552234</text>
+    <text>{{userInfo.phone}}</text>
   </view>
 </view>
 
