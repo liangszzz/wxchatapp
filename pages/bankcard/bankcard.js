@@ -18,6 +18,9 @@ Page({
     var phone = "13770207216";
     wx.request({
       url: app.globalData.http_url_head + 'bankCard/query/' + phone,
+      header: {
+        token: app.globalData.userInfo.token
+      },
       method: 'POST',
       success: function (res) {
         if (res.statusCode == 200) {

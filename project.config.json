@@ -12,7 +12,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.0.4",
-	"appid": "wx3c65dabef2c7a5c7",
+	"appid": "wx2d152d70f563b6c7",
 	"projectname": "%E8%BD%A6%E8%B4%B7",
 	"debugOptions": {
 		"hidedInDevtools": []
@@ -36,7 +36,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 8,
 			"list": [
 				{
 					"id": -1,
@@ -47,7 +47,49 @@
 				{
 					"id": -1,
 					"name": "列表页",
-					"pathName": "pages/clbaseinfo/baseInfo"
+					"pathName": "pages/clbaseinfo/baseInfo",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "消息列表页",
+					"pathName": "pages/news/news",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "消息列表页",
+					"pathName": "pages/login/login",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "登录页",
+					"pathName": "pages/login/login",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "银行卡",
+					"pathName": "pages/bankcard/bankcard",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "个人资料",
+					"pathName": "pages/personal/personal",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "详情",
+					"pathName": "pages/infodetail/detail",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "签约代扣",
+					"pathName": "pages/sign/sign"
 				}
 			]
 		}

@@ -7,7 +7,7 @@
 
   <view class='header-left'>
     <view class='username'>
-      沈海强
+      {{userInfo.nickName}}
     </view>
     <view class='phone'>
       13770207216

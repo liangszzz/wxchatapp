@@ -24,6 +24,9 @@ Page({
 
     wx.request({
       url: app.globalData.http_url_head + "/user/orders",
+      header: {
+        token: app.globalData.userInfo.token
+      },
       data: {
         idcard: '640502199411209870'
       },

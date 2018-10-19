@@ -82,8 +82,11 @@ page {
   text-align: left;
   line-height: 20px;
   color: rgba(16, 16, 16, 1);
-  font-size: 20px;
+  font-size: 14px;
   font-family: Arial;
+  display: flex;
+  align-items: center;
+  justify-content: left;
 }
 
 /* 分格线 */
