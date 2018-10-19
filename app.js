@@ -9,8 +9,10 @@ App({
                     success: res => {
                         if (res.data.code == 0) {
                             this.globalData.userInfo = res.data.entity
+                        }
+                        else{
                             wx.reLaunch({
-                                url: '/pages/clbaseinfo/baseInfo'
+                                url: '/pages/login/login'
                             })
                         }
                     }
@@ -24,13 +26,10 @@ App({
     },
 
     onShow: function(options) {
-        console.log(options)
     },
     onHide: function() {
-        console.log("hide")
     },
     onError: function(msg) {
-        console.log(msg)
     },
     onPageNotFound: function(options) {
         console.log(options)
