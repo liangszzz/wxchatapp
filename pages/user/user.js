@@ -53,8 +53,7 @@ Page({
     var that = this;
     that.setData({
       userInfo: app.globalData.userInfo
-    })
-    
+    })  
   },
 
   /**
