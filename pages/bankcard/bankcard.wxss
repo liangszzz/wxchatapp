@@ -1,54 +1,25 @@
-/* pages/news/news.wxss */
-
+/* pages/mybankcard/mybankcard.wxss */
 page {
-  height: 100%;
-  background-color: rgba(242, 242, 242, 1);
+  background-color: #eaeaea;
 }
 
-.row {
-  margin: auto;
-  margin-top: 8%;
-  height: 15%;
-  width: 80%;
-  line-height: 20px;
-  border-radius: 15px;
-  background-color: rgba(3, 169, 244, 1);
-  font-size: 14px;
-  font-family: Arial;
-}
-
-.row_first {
- 
-  display: flex;
-  flex-direction: row;
-  
-}
-
-.create_time {
-  width: 122px;
-  height: 30px;
-  line-height: 17px;
-  color: rgba(255, 255, 255, 1);
-  font-size: 12px;
-  text-align: center;
-  font-family: Arial;
-  margin-top: 30rpx;
-  margin-left: 30rpx;
-}
-
-.bank_name,.bank_account{
-  color: rgba(255, 255, 255, 1);
-  font-size: 18px;
-  text-align: left;
-  font-family: Arial;
-  margin-top: 30rpx;
-   margin-left: 30rpx;
-}
-
-.message{
-  color:black;
-  font-size: 18px;
-  text-align: center;
-  font-family: Arial;
-  margin-top: 30rpx;
+.bankCard_view{
+  width: 90%;
+  height: 120px;
+  background-color: #03A9F4;
+  border-radius: 20px;
+  border-bottom-color: #c5bdbd;
+  border-bottom-style: solid;
+  border-bottom-width: 3rpx;
+  border-top-color: #c5bdbd;
+  border-top-style: solid;
+  border-top-width: 3rpx;
+  border-left-color: #c5bdbd;
+  border-left-style: solid;
+  border-left-width: 3rpx;
+  border-right-color: #c5bdbd;
+  border-right-style: solid;
+  border-right-width: 3rpx;
+  margin:0 auto;
+  margin-top: 20px;
 }
