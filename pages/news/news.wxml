@@ -1,10 +1,8 @@
-<view class="row" wx:for="{{list}}" wx:key="" data-id="{{item.id}}">
-    <view class="content">
-        <view class="top">
-            <view class="content">{{item.content}}</view>
-        </view>
-        <view class="bottom">
-            <view class="sentence">{{item.create_time}}</view>
-        </view>
-    </view>
+
+<view wx:for="{{list}}" wx:key="" data-id="{{item.id}}">
+  <view class="message">
+    <text>{{item.content}}</text>
+    <text>{{item.create_time}}</text>
+  </view>
+  
 </view>

@@ -15,6 +15,9 @@ Page({
     var that = this;
     wx.request({
       url: app.globalData.http_url_head + 'message/query',
+      header: {
+        token: app.globalData.userInfo.token
+      },
       data: {
         phone: "13770207216",
         page: that.data.pageNumber,
