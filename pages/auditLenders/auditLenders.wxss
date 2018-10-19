@@ -1,0 +1,53 @@
+/* pages/auditLenders/auditLenders.wxss */
+/* pages/auditLenders/auditLenders.wxss */
+
+page {
+  background-color: #eaeaea;
+}
+
+.top_view {
+  width: 100%;
+  height: 80px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  padding-top: 20px;
+}
+
+.examine_order_information_view {
+  width: 100%;
+  height: 200px;
+  background-color: #fff;
+  margin-top: 15px;
+}
+
+.examine_order_information_top_view {
+  width: 90%;
+  margin: 0 auto;
+  font-size: 14px;
+  border-bottom-color: #c5bdbd;
+  border-bottom-style: solid;
+  border-bottom-width: 3rpx;
+  padding-top: 15px;
+  padding-bottom: 10px;
+  font-weight: bold;
+}
+
+.examine_information_view {
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 15px;
+  font-size: 12px;
+}
+
+.examine_img {
+  margin-left: 25px;
+  width: 60px;
+  height: 60px;
+}
+
+.examine_btn_view {
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 40px;
+}

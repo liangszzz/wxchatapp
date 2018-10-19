@@ -1,0 +1,20 @@
+<!--pages/auditLenders/auditLenders.wxml-->
+<view>
+  <view class='top_view'>
+    <image class='examine_img' src='/assets/images/alarmClock.png'></image>
+    <view style='margin-left:20px;'>
+      <view><text style='font-size:16px;font-weight:bold'>审核放款中</text></view>
+      <view><text style='font-size:12px'>审核通过后会通过短信或微信通知您，请耐心等候</text></view>
+    </view>
+  </view>
+  <view class='examine_order_information_view'>
+    <view class='examine_order_information_top_view'>订单信息</view>
+    <view class='examine_information_view'>借款金额<text decode="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;40000元</text></view>
+    <view class='examine_information_view'>每期应还<text decode="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;720元(共6期)</text></view>
+    <view class='examine_information_view'>借款银行卡<text decode="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;招商银行(尾号0988)</text></view>
+    <view class='examine_information_view'>提交日期<text decode="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2018-10-14</text></view>
+  </view>
+  <view class='examine_btn_view'>
+    <button style='background-color: #03A9F4;color:#fff;font-size:15px' bindtap='examineBtn'>确定</button>
+  </view>
+</view>
