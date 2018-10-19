@@ -1,39 +1,61 @@
-<!--pages/infodetail/detail.wxml-->
-<view class='header'>
-  <view style='width:15%; height:50%;margin:auto'>
-    <image src='../../image/clock.png' class='clock'></image>
+<!--pages/orderDetails/orderDetails.wxml-->
+<view>
+  <view style='padding-top: 15px;background-color: #ffffff;display:flex;flex-direction:row;height:65px;'>
+    <view class='apply_view'>
+      <view>申请金额</view>
+      <text style='color:#03A9F4;font-size:18px'>40000</text>
+      <text style="color:rgba(136, 136, 136, 1);font-size:14px" decode="{{true}}">&nbsp;&nbsp;元</text>
+    </view>
+    <view class='service_view'>
+      <view>服务费</view>
+      <text style='color:#03A9F4;font-size:18px'>3000</text>
+      <text style="color:rgba(136, 136, 136, 1);font-size:14px" decode="{{true}}">&nbsp;&nbsp;元</text>
+    </view>
+    <view class='periods_view'>
+      <view>剩余期数</view>
+      <text style='color:#03A9F4;font-size:18px'>6</text>
+      <text style="color:rgba(136, 136, 136, 1);font-size:14px" decode="{{true}}">&nbsp;&nbsp;期</text>
+    </view>
   </view>
-  <view class="header-left">
-    <view class='title'>审核放款中</view>
-    <view class='content'>审核通过后会通过短信或微信通知您，</view>
-    <view class='content'>请耐心等候</view>
-  </view>
-</view>
+  <view class='bill_word_view'>账单明细</view>
 
-<view class='body'>
-<view class="info-title">
-订单信息
-</view>
-<view class="separated"></view>
-  <view class='table'>
-        <view class='tr'>
-          <view class='td-name'>借款金额</view>
-          <view class='td-value'>1433223元</view>
+
+  <view wx:for="{{repaymentList}}" wx:key="repayment" wx:for-index="index" wx:for-item="item" style="{{index==0? '': 'margin-top:30rpx;'}}">
+    <view style='background-color: #ffffff;'>
+      <view class='orderDetails_top_view' style='display:flex;flex-direction:row;'>
+        <view style='width:60%;'>
+          <text style='color:#101010;font-size:14px;font-weight:bold;'>第</text>
+          <text style='color:#03A9F4;font-size:14px;font-weight:bold;' decode="{{true}}">&nbsp;{{item.qishu}}&nbsp;</text>
+          <text style='color:#101010;font-size:14px;font-weight:bold'>期还款日</text>
         </view>
-        <view class='tr'>
-          <view class='td-name'>每期应还</view>
-          <view class='td-value'>450元（共6期）</view>
+        <view style='width:40%;text-align:right;color:#a5a5a5;font-size:14px'>{{item.shijian}}</view>
+      </view>
+      <view class='orderDetails_bottom_view' style='display:flex;flex-direction:row;'>
+        <view class='orderDetails_bottom_left_view'>
+          <view style='font-size:12px;margin-bottom:5px;color:rgba(136, 136, 136, 1);'>还款金额</view>
+          <view>
+            <text style='color:#03A9F4;font-size:18px'>{{item.jine}}</text>
+            <text style="color:rgba(136, 136, 136, 1);font-size:14px" decode="{{true}}">&nbsp;&nbsp;元</text>
+          </view>
         </view>
-        <view class='tr'>
-          <view class='td-name'>借款银行卡</view>
-          <view class='td-value'>招商银行（尾号1234）</view>
-        </view>
-        <view class='tr'>
-          <view class='td-name'>提交日期</view>
-          <view class='td-value'>2018-10-17</view>
+        <view class='orderDetails_bottom_right_view'>
+        <block wx:if="{{item.status==1}}">
+          <view class="bg_black"><text style="text-align:right;font-size:12px;color:#03a9f4">已还清</text></view>
+        </block>
+        <block wx:elif="{{item.status==2}}">
+          <view ><button style='background-color:#d2322d;font-size:14px;color:#ffffff;width:168rpx;margin-right:5rpx;'>逾期还款</button></view>
+        </block>
+        <block wx:elif="{{item.status==3}}">
+          <view ><button style='background-color:#03a9f4;font-size:14px;color:#ffffff;width:168rpx;margin-right:5rpx;'>还款</button></view>
+        </block>
         </view>
       </view>
+    </view>
+  </view>
+
+
+  <view>
+    <button class='btn' bindtap='orderDetailBtn'>确定</button>
+  </view>
 </view>
-
-
-<button class='btn' bindtap='back'>确认</button>
+<view style="height:100rpx;background-color:#f2f2f2;"></view>

@@ -5,6 +5,37 @@ Page({
    * 页面的初始数据
    */
   data: {
+    repaymentList: [{
+      qishu: 1,
+      shijian: "2018-05-14",
+      jine: 720.0,
+      status: 1
+    },
+    {
+      qishu: 2,
+      shijian: "2018-06-14",
+      jine: 720.0,
+      status: 2
+    },
+    {
+      qishu: 3,
+      shijian: "2018-07-14",
+      jine: 720.0,
+      status: 3
+    },
+    {
+      qishu: 4,
+      shijian: "2018-07-14",
+      jine: 720.0,
+      status: 4
+    },
+    {
+      qishu: 5,
+      shijian: "2018-07-14",
+      jine: 720.0,
+      status: 5
+    }
+    ]
 
   },
 
