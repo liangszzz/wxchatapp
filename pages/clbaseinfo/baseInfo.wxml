@@ -1,50 +1,45 @@
-<view class='header'>
-  <view class='header-top'>
-    <text>未还本金总额(元)</text>
-  </view>
-  <view class='header-body'>
-    <text>{{remainingPrincipal}}</text>
-  </view>
-  <view class='header-buttom'>
-    <text>我要借款</text>
-  </view>
+<view class="order">
+  <text class="order-title">未还本金总额（元）</text>
+  <text class="order-pay">{{remainingPrincipal}}</text>
+  <button>提前还款</button>
 </view>
 
-<view class='body'>
-  <view class='body-left'>
+<view class="order-banner">
+  <view>
     <text>近期订单</text>
   </view>
-  <view class='body-right'>
+  <text class="order-split">|</text>
+  <view>
     <text>全部账单</text>
   </view>
 </view>
 
-
-<view class="row" wx:for="{{orderList}}" wx:key="" bindtap="detail" data-id="{{item.id}}">
-  <!-- <view class="content">
-    <view class="top">
-      <view class="title">10月15号申请贷款</view>
-      <view class="status">待放款</view>
-    </view>
-    <view class="row-body">
-      <view class="money">5000.00(元)</view>
-    </view>
-    <view class="bottom">
-      <view class="sentence">还款日当天从招商银行（尾号0988）自动扣款
+<!--从后台查询出记录在这里循环-->
+<view wx:for="{{orderList}}" wx:key="order" wx:for-index="index" wx:for-item="item">
+  <view class="order-detail" bindtap='toInfo' data-status="{{item.status}}">
+    <view class="order-detail-info">
+      <view class='info-title-nav'>
+        <text class="title-left">{{item.latestRepayDate[1]}}月{{item.latestRepayDate[2]}}日应还金额</text>
+        <block wx:if="{{item.status==1}}">
+          <text class="title-right-text" style="color:red">还剩{{item.latestRepayDays}}天还款</text>
+        </block>
+        <block wx:elif="{{item.status==2}}">
+          <text class="title-right-text" style="color:#03a9f4">还剩{{item.latestRepayDays}}天还款</text>
+        </block>
+        <block wx:elif="{{item.status==3}}">
+          <text class="title-right-text" style="color:#03a9f4">还剩{{item.latestRepayDays}}天还款</text>
+        </block>
+        <block wx:elif="{{item.status==4}}">
+          <text class="title-right-text" style="color:#03a9f4">还剩{{item.latestRepayDays}}天还款</text>
+        </block>
       </view>
-    </view>
-  </view> -->
-  <view class="content" wx:if='{{item.orderStatus == 64}}'>
-    <view class="top">
-      <view class="title">{{item.latestRepayDate[1]}}月{{item.latestRepayDate[2]}}日应还金额</view>
-      <view class="status">还剩{{item.latestRepayDays}}天还款</view>
-    </view>
-    <view class="row-body">
-      <view class="money">{{item.latestShouldRepayAmount}}(元)</view>
-    </view>
-    <view class="bottom">
-      <view class="sentence">还款日当天从{{item.bankName}}（尾号0988）自动扣款
+      <view class='info-title-nav'>
+        <text class="title-left-big">{{item.latestShouldRepayAmount}}</text>
+        <text class="title-left">（元）</text>
+        <image src='/assets/images/arrow.png' mode='aspectFill'></image>
       </view>
+      <text class="info-desc">还款日当天从{{item.bankName}}（尾号0988）自动扣款</text>
     </view>
   </view>
 </view>
+<view style="height:200rpx;background-color:#f2f2f2;"></view>
