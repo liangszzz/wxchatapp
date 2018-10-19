@@ -21,7 +21,7 @@ Page({
   /**
    * 我的消息
    */
-  mynews: function() {
+  toMessage: function() {
     wx.navigateTo({
       url: '../news/news',
     })
@@ -30,7 +30,7 @@ Page({
   /**
    * 我的银行卡
    */
-  mycards: function() {
+  toBankCard: function() {
     wx.navigateTo({
       url: '../bankcard/bankcard',
     })
@@ -39,8 +39,10 @@ Page({
   /**
    * 更新日志
    */
-  updatelog: function() {
-
+  toUpdatelog: function() {
+    wx.navigateTo({
+      url: '../updatelog/updatelog',
+    })
   },
 
 
@@ -48,7 +50,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-      
+    var that = this;
+    that.setData({
+      userInfo: app.globalData.userInfo
+    })
     
   },
 
