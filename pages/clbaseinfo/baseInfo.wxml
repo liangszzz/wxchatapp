@@ -14,25 +14,51 @@
   </view>
 </view>
 
-<!--从后台查询出记录在这里循环-->
+
+
 <view wx:for="{{orderList}}" wx:key="order" wx:for-index="index" wx:for-item="item">
-  <view class="order-detail" bindtap='toInfo' data-status="{{item.status}}">
+  <view class="order-detail" bindtap='detail' data-status="{{item.status}}">
     <view class="order-detail-info">
-      <view class='info-title-nav'>
+      <view class="info-title-nav" wx:if="{{item.orderStatus==64}}">
         <text class="title-left">{{item.latestRepayDate[1]}}月{{item.latestRepayDate[2]}}日应还金额</text>
-        <block wx:if="{{item.status==1}}">
+        <block>
           <text class="title-right-text" style="color:red">还剩{{item.latestRepayDays}}天还款</text>
         </block>
-        <block wx:elif="{{item.status==2}}">
-          <text class="title-right-text" style="color:#03a9f4">还剩{{item.latestRepayDays}}天还款</text>
-        </block>
-        <block wx:elif="{{item.status==3}}">
-          <text class="title-right-text" style="color:#03a9f4">还剩{{item.latestRepayDays}}天还款</text>
-        </block>
-        <block wx:elif="{{item.status==4}}">
-          <text class="title-right-text" style="color:#03a9f4">还剩{{item.latestRepayDays}}天还款</text>
+        <block wx:if="{{item.orderStatus==64}}">
+          <text class="title-right-text" style="color:##E51C23">还剩{{item.latestRepayDays}}天还款</text>
         </block>
       </view>
+
+      <!-- <view class='info-title-nav' wx:if="{{item.orderStatus==64}}">
+        <text class="title-left">{{item.latestRepayDate[1]}}月{{item.latestRepayDate[2]}}日应还金额</text>
+        <block wx:if="{{item.orderStatus==68}}">
+          <text class="title-right-text" style="color:red">还剩{{item.latestRepayDays}}天还款</text>
+        </block>
+        <block wx:if="{{item.orderStatus==63}}">
+          <text class="title-right-text" style="color:#03a9f4">等待用户确认</text>
+        </block>
+        <block wx:if="{{item.orderStatus==64}}">
+          <text class="title-right-text" style="color:##E51C23">还剩{{item.latestRepayDays}}天还款</text>
+        </block>
+      </view>
+
+
+      <view class='info-title-nav' wx:if="{{item.orderStatus==64}}">
+        <text class="title-left">{{item.latestRepayDate[1]}}月{{item.latestRepayDate[2]}}日应还金额</text>
+        <block wx:if="{{item.orderStatus==68}}">
+          <text class="title-right-text" style="color:red">还剩{{item.latestRepayDays}}天还款</text>
+        </block>
+        <block wx:elif="{{item.orderStatus==63}}">
+          <text class="title-right-text" style="color:#03a9f4">等待用户确认</text>
+        </block>
+        <block wx:elif="{{item.orderStatus==64}}">
+          <text class="title-right-text" style="color:##E51C23">还剩{{item.latestRepayDays}}天还款</text>
+        </block>
+      </view> -->
+
+
+
+
       <view class='info-title-nav'>
         <text class="title-left-big">{{item.latestShouldRepayAmount}}</text>
         <text class="title-left">（元）</text>
@@ -42,4 +68,3 @@
     </view>
   </view>
 </view>
-<view style="height:200rpx;background-color:#f2f2f2;"></view>
