@@ -1,10 +1,13 @@
 // pages/personal/personal.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    biz_order_no:'TEST201803081040',
+    userInfo: {}, //当前用户的openid
     check: 0,
     imglist: ['/assets/images/shenfen1.jpg', '/assets/images/shenfen1.jpg'],
     carlist: ['/assets/images/baoma1.jpg', '/assets/images/baoma2.jpg', '/assets/images/baoma3.jpg', '/assets/images/baoma4.jpg', '/assets/images/baoma5.jpg', '/assets/images/baoma6.jpg'],
@@ -26,7 +29,7 @@ Page({
   /**
    * 预览车辆
    */
-  previewImageCar: function (e) {
+  previewImageCar: function(e) {
     var currentUrl = e.target.dataset.src;
     console.log(currentUrl);
     wx.previewImage({
@@ -38,28 +41,85 @@ Page({
   /**
    * 查看借款合同
    */
-  contract:function(){
-    wx.showModal({
-      title: '借款合同',
-      content: '借款合同内容',
+  contract: function() {
+    wx.navigateTo({
+      url:'../agreement/agreement?type=1',
     })
   },
 
   /**
    * 查看产品说明
    */
-  explain:function(){
-    wx.showModal({
-      title: '产品说明',
-      content: '产品说明内容',
+  explain: function() {
+    wx.navigateTo({
+      url: '../agreement/agreement?type=2',
     })
+  },
+
+  /**
+   * 是否勾选
+   */
+  reading: function(e) {
+    if (e.detail.value == '') {
+      this.setData({
+        check: 0
+      })
+    } else {
+      this.setData({
+        check: 1
+      })
+    }
+  },
+
+  /**
+   * 提交
+   */
+  formSubmit: function(e) {
+    var check = this.data.check;
+    var openId = this.data.userInfo.openId;
+    if (check == 0) {
+      wx.showToast({
+        title: '请先阅读并理解《借款合同》及《产品说明》',
+        icon:"none",
+        duration:2000
+      })
+    } else {
+      //请求后台，修改订单状态及插入formId
+     wx.request({
+       url: app.globalData.http_url_head + "baseInfo/update",
+       header: {
+         token: app.globalData.userInfo.token
+       },
+       data:{
+         formId: e.detail.formId,
+         openId: openId,
+         biz_order_no: this.data.biz_order_no
+       },
+       method: 'POST',
+       success:function(res){
+        if(res.statusCode == 200 && res.data.code== 0){
+          wx.navigateTo({
+            url: '../auditLenders/auditLenders',
+          })
+        }
+       },
+       fail:function(){
+         console.log("获取后台失败！");
+       }
+     })
+    }
+
+    
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    var that = this;
+    that.setData({
+      userInfo: app.globalData.userInfo
+    })  
   },
 
   /**

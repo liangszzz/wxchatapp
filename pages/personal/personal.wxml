@@ -2,66 +2,68 @@
   <text>个人信息有误请及时联系客户经理修改</text>
 </view>
 
-
-<view class="profile">
-  <view class="profile-id">
-    <text>身份证正反面</text>
-    <!--身份证要从后台传一个数组上来,就是链接的数组-->
-    <view>
-      <image src="{{imglist[0]}}" mode='aspectFill' data-src="{{imglist[0]}}" bindtap="previewImage"></image>
-      <image src="{{imglist[1]}}" mode='aspectFill' data-src="{{imglist[1]}}" bindtap="previewImage"></image>
-    </view>
-  </view>
-  <view class="profile-info">
-    <view class="profile-info-left">
-      <text>真实姓名</text>
-      <text>身份证</text>
-      <text>学历</text>
-      <text>现居地址</text>
-      <text>婚姻状况</text>
-    </view>
-    <view class="profile-info-right">
-      <text>金阳</text>
-      <text>440802********0035</text>
-      <text>本科</text>
-      <text>北京市西城区复兴门外大街999号院</text>
-      <text>已婚</text>
-    </view>
-  </view>
-
-  <view class="profile-car">
-    <text class="profile-car-text">车辆照片</text>
-    <!-- 这里可以循环-->
-    <view class="profile-car-nav" wx:for="{{carlist}}" wx:for-item="carImage">
-      <view class="profile-car-detail">
-        <image src="{{carImage}}" data-src="{{carImage}}" bindtap="previewImageCar"></image>
-      </view>
-
-    </view>
-
-    <view class="profile-car-info">
-      <view class="profile-car-info-left">
-        <text>车牌号码</text>
-        <text>车辆型号</text>
-        <text>车架号  </text>
-      </view>
-      <view class="profile-car-info-right">
-        <text>京A 88888</text>
-        <text>宝马 i3</text>
-        <text>2yg23g</text>
+<form bindsubmit="formSubmit" report-submit='true'>
+  <view class="profile">
+    <view class="profile-id">
+      <text>身份证正反面</text>
+      <!--身份证要从后台传一个数组上来,就是链接的数组-->
+      <view>
+        <image src="{{imglist[0]}}" mode='aspectFill' data-src="{{imglist[0]}}" bindtap="previewImage"></image>
+        <image src="{{imglist[1]}}" mode='aspectFill' data-src="{{imglist[1]}}" bindtap="previewImage"></image>
       </view>
     </view>
+    <view class="profile-info">
+      <view class="profile-info-left">
+        <text>真实姓名</text>
+        <text>身份证</text>
+        <text>学历</text>
+        <text>现居地址</text>
+        <text>婚姻状况</text>
+      </view>
+      <view class="profile-info-right">
+        <text>金阳</text>
+        <text>440802********0035</text>
+        <text>本科</text>
+        <text>北京市西城区复兴门外大街999号院</text>
+        <text>已婚</text>
+      </view>
+    </view>
+
+    <view class="profile-car">
+      <text class="profile-car-text">车辆照片</text>
+      <!-- 这里可以循环-->
+      <view class="profile-car-nav" wx:for="{{carlist}}" wx:for-item="carImage">
+        <view class="profile-car-detail">
+          <image src="{{carImage}}" data-src="{{carImage}}" bindtap="previewImageCar"></image>
+        </view>
+
+      </view>
+
+      <view class="profile-car-info">
+        <view class="profile-car-info-left">
+          <text>车牌号码</text>
+          <text>车辆型号</text>
+          <text>车架号  </text>
+        </view>
+        <view class="profile-car-info-right">
+          <text>京A 88888</text>
+          <text>宝马 i3</text>
+          <text>2yg23g</text>
+        </view>
+      </view>
+    </view>
   </view>
-</view>
 
-<view class="profile-confrim">
-  <checkbox-group bindchange="reading">
-    <checkbox value="已阅读" style="transform:scale(.6)" />
-    <text style='color:#a7a7a7'> 我已阅读并理解<text style='color:#09abf4'> 《借款合同》</text>
-    <text style='color:#a7a7a7'>、</text>
-    <text style="color:#09abf4">《产品说明》</text> </text>
-  </checkbox-group>
+  <view class='agreement'>
+    <checkbox-group bindchange="reading">
+      <checkbox value="已阅读" class='check' />
+    </checkbox-group>
+    <view>我已阅读并理解</view>
+    <view bindtap='contract' style='color: rgba(3, 169, 244, 1);'>《借款合同》</view>
+    <text>、</text>
+    <view bindtap='explain' style='color: rgba(3, 169, 244, 1);'>《产品说明》</view>
 
-</view>
-<button class="profile-button" bindtap='profileBtn'>提交</button>
+  </view>
+  <button class="profile-button" form-type='submit'>提交</button>
+</form>
 <view style="height:70rpx;background-color:#f2f2f2;"></view>
