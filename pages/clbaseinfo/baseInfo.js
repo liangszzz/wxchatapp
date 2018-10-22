@@ -58,6 +58,12 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+  },
+
+  toPersonal() {
+    wx.navigateTo({
+      url: '../personal/personal'
+    })
   }
 
 })
