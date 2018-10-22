@@ -1,42 +1,17 @@
 // pages/infodetail/detail.js
+//获取应用实例
+const app = getApp();
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    repaymentList: [{
-      qishu: 1,
-      shijian: "2018-05-14",
-      jine: 720.0,
-      status: 1
-    },
-    {
-      qishu: 2,
-      shijian: "2018-06-14",
-      jine: 720.0,
-      status: 2
-    },
-    {
-      qishu: 3,
-      shijian: "2018-07-14",
-      jine: 720.0,
-      status: 3
-    },
-    {
-      qishu: 4,
-      shijian: "2018-07-14",
-      jine: 720.0,
-      status: 4
-    },
-    {
-      qishu: 5,
-      shijian: "2018-07-14",
-      jine: 720.0,
-      status: 5
-    }
-    ]
-
+    applyAmount: 0,
+    serviceAmount: 0,
+    repaymentTerms: 0,
+    repaymentList: []
   },
 
   /**
@@ -52,7 +27,39 @@ Page({
    */
   onLoad: function(options) {
     var orderNo = options.id;
-    console.log("详情的订单id" + orderNo);
+    // if (!app.globalData.userInfo) {
+    //   return;
+    // }
+    let token = app.globalData.userInfo.token;
+    wx.request({
+      url: app.globalData.http_url_head + 'bill/billDetail',
+      header: {
+        token:token
+      },
+      data: {
+        orderNo : orderNo
+      },
+      method: "POST",
+      success: result => {
+        console.log(result);
+        let applyAmount = 0;
+        let serviceAmount = 0;
+        for (let i=0; i < result.data.entity.length; i++) {
+          applyAmount = applyAmount + result.data.entity[i].shouldPayPrincipal;
+          serviceAmount = serviceAmount + result.data.entity[i].shouldPayService;
+        }
+        let repaymentTerms = result.data.entity[0].repaymentTerms;
+        this.setData({
+          repaymentList: result.data.entity,
+          applyAmount: applyAmount,
+          serviceAmount: serviceAmount,
+          repaymentTerms: repaymentTerms
+        });
+      },
+      fail: result => {
+        console.log(result)
+      }
+    })
 
   },
 
@@ -103,5 +110,11 @@ Page({
    */
   onShareAppMessage: function() {
 
-  }
+  },
+
+  orderDetailBtn: function () {
+    wx.navigateBack({
+      delta: 1
+    })
+  },
 })
