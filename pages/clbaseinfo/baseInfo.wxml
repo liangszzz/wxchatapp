@@ -1,7 +1,13 @@
 <view class="order">
   <text class="order-title">未还本金总额（元）</text>
   <text class="order-pay">{{remainingPrincipal}}</text>
-  <button>提前还款</button>
+  <view wx:if="{{remainingPrincipal != 0}}">
+    <button>提前还款</button>
+  </view>
+  <view wx:if="{{remainingPrincipal == 0}}">
+    <button>我要借款</button>
+  </view>
+
 </view>
 <view class="order-banner">
   <view>
@@ -34,7 +40,7 @@
       <view class='info-title-nav'>
         <text class="title-left">{{item.latestRepayDate[1]}}月{{item.latestRepayDate[2]}}日应还金额</text>
         <block>
-          <text class="title-right-text" style="color:red">还剩{{item.latestRepayDays}}天还款</text>
+          <text class="title-right-text" style="color:red">已结清</text>
         </block>
       </view>
       <view class='info-title-nav'>
