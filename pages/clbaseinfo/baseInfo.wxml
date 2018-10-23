@@ -10,12 +10,12 @@
 
 </view>
 <view class="order-banner">
-  <view>
-    <text>近期订单</text>
+  <view bindtap='toSingleOrder'>
+    <text class="{{currentPage == 'single' ? 'current-order': 'un-current-order'}}">近期订单</text>
   </view>
   <text class="order-split">|</text>
-  <view>
-    <text>全部账单</text>
+  <view bindtap='toAllOrders'>
+    <text class="{{currentPage == 'all' ? 'current-order': 'un-current-order'}}">全部账单</text>
   </view>
 </view>
 <view wx:for="{{orderList}}" wx:key="order" wx:for-index="index" wx:for-item="item">
@@ -38,13 +38,13 @@
   <view class="order-detail" bindtap='detail' data-status="{{item.status}}" wx:if="{{item.orderStatus==68}}">
     <view class="order-detail-info">
       <view class='info-title-nav'>
-        <text class="title-left">{{item.latestRepayDate[1]}}月{{item.latestRepayDate[2]}}日应还金额</text>
+        <text class="title-left">{{item.loadDate[0]}}年{{item.loadDate[1]}}月{{item.loadDate[2]}}日申请</text>
         <block>
           <text class="title-right-text" style="color:red">已结清</text>
         </block>
       </view>
       <view class='info-title-nav'>
-        <text class="title-left-big">{{item.latestShouldRepayAmount}}</text>
+        <text class="title-left-big">{{item.loanAmount}}</text>
         <text class="title-left">（元）</text>
         <image src='/assets/images/arrow.png' mode='aspectFill'></image>
       </view>
@@ -54,13 +54,13 @@
   <view class="order-detail" bindtap='toPersonal' data-status="{{item.status}}" wx:if="{{item.orderStatus==19}}">
     <view class="order-detail-info">
       <view class='info-title-nav'>
-        <text class="title-left">{{item.latestRepayDate[1]}}月{{item.latestRepayDate[2]}}日申请金额</text>
+        <text class="title-left">{{item.loadDate[0]}}年{{item.loadDate[1]}}月{{item.loadDate[2]}}日申请</text>
         <block>
           <text class="title-right-text" style="color:#03A9F4">待用户确认</text>
         </block>
       </view>
       <view class='info-title-nav'>
-        <text class="title-left-big">{{item.latestShouldRepayAmount}}</text>
+        <text class="title-left-big">{{item.loanAmount}}</text>
         <text class="title-left">（元）</text>
         <image src='/assets/images/arrow.png' mode='aspectFill'></image>
       </view>

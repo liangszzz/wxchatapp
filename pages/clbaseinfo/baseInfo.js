@@ -1,6 +1,6 @@
 //index.js
 //获取应用实例
-const app = getApp()
+const app = getApp();
 
 Page({
   data: {
@@ -10,7 +10,32 @@ Page({
     loadMore: false, //加载更多，默认false，隐藏
     orderList: [], //存放订单数据
     remainingPrincipal: 0,
+    currentPage: 'single',
   },
+  queryOrder(url) {
+    let token = app.globalData.userInfo.token;
+    wx.request({
+      url: url,
+      header: {
+        token: token
+      },
+      data: {
+        idcard: '640502199411209870'
+      },
+      method: "POST",
+      success: result => {
+        console.log(result);
+        this.setData({
+          remainingPrincipal: result.data.entity.remainingPrincipalTotal,
+          orderList: result.data.entity.orders
+        });
+      },
+      fail: result => {
+        console.log(result)
+      }
+    });
+  },
+  
   //事件处理函数
   detail: function(e) {
     //获取前台页面data-id存放的值
@@ -19,38 +44,18 @@ Page({
       url: '../infodetail/detail?id=' + id,
     })
   },
+
   onLoad: function() {
-    var that = this;
-    setTimeout(function() {
-      if (!app.globalData.userInfo) {
-        return;
+    if (app.globalData.userInfo) {
+      this.queryOrder(app.globalData.http_url_head + "user/order");
+    } else {
+      // 登录成功回调函数
+      app.loginSuccessCallBack = () => {
+        this.queryOrder(app.globalData.http_url_head + "user/order");
       }
-
-      let token = app.globalData.userInfo.token;
-
-      wx.request({
-        url: app.globalData.http_url_head + "user/orders",
-        header: {
-          token: token
-        },
-        data: {
-          idcard: '640502199411209870'
-        },
-        method: "POST",
-        success: result => {
-          console.log(result);
-          that.setData({
-            remainingPrincipal: result.data.entity.remainingPrincipalTotal,
-            orderList: result.data.entity.orders
-          });
-        },
-        fail: result => {
-          console.log(result)
-        }
-      })
-    }, 500)
-
+    }
   },
+
   getUserInfo: function(e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
@@ -64,6 +69,26 @@ Page({
     wx.navigateTo({
       url: '../personal/personal'
     })
-  }
+  },
+
+  toSingleOrder() {
+    if (this.currentPage == 'single') {
+      return;
+    }
+    this.setData({
+      currentPage: 'single'
+    });
+    this.queryOrder(app.globalData.http_url_head + "user/order");
+  },
+
+  toAllOrders() {
+    if (this.currentPage == 'all') {
+      return;
+    }
+    this.setData({
+      currentPage: 'all'
+    });
+    this.queryOrder(app.globalData.http_url_head + "user/orders");
+  },
 
 })

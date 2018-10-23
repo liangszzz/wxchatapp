@@ -110,3 +110,11 @@ page {
   font-size: 13px;
   color:#9c9c9c;
 }
+
+.current-order{
+  color: #101010
+}
+
+.un-current-order{
+  color: #AAAAAA
+}
