@@ -11,7 +11,9 @@ Page({
     applyAmount: 0,
     serviceAmount: 0,
     repaymentTerms: 0,
-    repaymentList: []
+    repaymentList: [],
+    pageSize: 12,
+    pageNo: 1,
   },
 
   /**
@@ -27,9 +29,8 @@ Page({
    */
   onLoad: function(options) {
     var orderNo = options.id;
-    // if (!app.globalData.userInfo) {
-    //   return;
-    // }
+    var status = options.status;
+    var url;
     let token = app.globalData.userInfo.token;
     wx.request({
       url: app.globalData.http_url_head + 'bill/billDetail',
@@ -37,24 +38,31 @@ Page({
         token:token
       },
       data: {
-        orderNo : orderNo
+        bizOrderNo : orderNo,
+        pageNo: this.data.pageNo,
+        pageSize: this.data.pageSize,
       },
       method: "POST",
       success: result => {
         console.log(result);
         let applyAmount = 0;
         let serviceAmount = 0;
-        for (let i=0; i < result.data.entity.length; i++) {
-          applyAmount = applyAmount + result.data.entity[i].shouldPayPrincipal;
-          serviceAmount = serviceAmount + result.data.entity[i].shouldPayService;
+        if(result.data.entity) {
+          for (let i = 0; i < result.data.entity.length; i++) {
+            applyAmount = applyAmount + result.data.entity[i].shouldPayPrincipal;
+            serviceAmount = serviceAmount + result.data.entity[i].shouldPayService;
+          }
+          let repaymentTerms = 0;
+          if(result.data.entity.length > 0) {
+            repaymentTerms = result.data.entity[0].repaymentTerms;
+          }
+          this.setData({
+            repaymentList: result.data.entity,
+            applyAmount: applyAmount,
+            serviceAmount: serviceAmount,
+            repaymentTerms: repaymentTerms
+          });
         }
-        let repaymentTerms = result.data.entity[0].repaymentTerms;
-        this.setData({
-          repaymentList: result.data.entity,
-          applyAmount: applyAmount,
-          serviceAmount: serviceAmount,
-          repaymentTerms: repaymentTerms
-        });
       },
       fail: result => {
         console.log(result)

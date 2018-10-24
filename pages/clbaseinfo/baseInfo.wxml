@@ -11,7 +11,7 @@
 </view>
 <view class="order-banner">
   <view bindtap='toSingleOrder'>
-    <text class="{{currentPage == 'single' ? 'current-order': 'un-current-order'}}">近期订单</text>
+    <text class="{{currentPage == 'single' ? 'current-order': 'un-current-order'}}">近期账单</text>
   </view>
   <text class="order-split">|</text>
   <view bindtap='toAllOrders'>
@@ -19,7 +19,7 @@
   </view>
 </view>
 <view wx:for="{{orderList}}" wx:key="order" wx:for-index="index" wx:for-item="item">
-  <view class="order-detail" bindtap='detail' data-status="{{item.status}}" wx:if="{{item.orderStatus==64}}">
+  <view class="order-detail" bindtap='detail' data-id="{{item.bizOrderNo}}" data-status="{{item.orderStatus}}" wx:if="{{item.orderStatus==64}}">
     <view class="order-detail-info">
       <view class="info-title-nav">
         <text class="title-left">{{item.latestRepayDate[1]}}月{{item.latestRepayDate[2]}}日应还金额</text>

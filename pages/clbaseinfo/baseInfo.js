@@ -14,6 +14,7 @@ Page({
   },
   queryOrder(url) {
     let token = app.globalData.userInfo.token;
+    let idcard = app.globalData.userInfo.idcard;
     wx.request({
       url: url,
       header: {
@@ -35,13 +36,14 @@ Page({
       }
     });
   },
-  
+
   //事件处理函数
   detail: function(e) {
     //获取前台页面data-id存放的值
     var id = e.currentTarget.dataset.id;
+    var status = e.currentTarget.dataset.status;
     wx.navigateTo({
-      url: '../infodetail/detail?id=' + id,
+      url: '../infodetail/detail?id=' + id + '&status=' + status,
     })
   },
 
@@ -57,7 +59,6 @@ Page({
   },
 
   getUserInfo: function(e) {
-    console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
@@ -89,6 +90,19 @@ Page({
       currentPage: 'all'
     });
     this.queryOrder(app.globalData.http_url_head + "user/orders");
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function() {
+    let page = this.data.currentPage;
+    if (page == 'single') {
+      this.queryOrder(app.globalData.http_url_head + "user/order");
+    } else {
+      this.queryOrder(app.globalData.http_url_head + "user/orders");
+    }
+    wx.stopPullDownRefresh();
   },
 
 })
