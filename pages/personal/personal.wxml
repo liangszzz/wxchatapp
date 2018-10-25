@@ -18,14 +18,15 @@
         <text>身份证</text>
         <text>学历</text>
         <text>现居地址</text>
+        <text> \n </text>
         <text>婚姻状况</text>
       </view>
       <view class="profile-info-right">
-        <text>金阳</text>
-        <text>440802********0035</text>
-        <text>本科</text>
-        <text>北京市西城区复兴门外大街999号院</text>
-        <text>已婚</text>
+        <text>{{clUserInfo.user_name}}</text>
+        <text>{{clUserInfo.idcard}}</text>
+        <text>{{clUserInfo.degree}}</text>
+        <text>{{clUserInfo.residential_address}}</text>
+        <text>{{clUserInfo.marital_status}}</text>
       </view>
     </view>
 
@@ -46,9 +47,9 @@
           <text>车架号  </text>
         </view>
         <view class="profile-car-info-right">
-          <text>京A 88888</text>
-          <text>宝马 i3</text>
-          <text>2yg23g</text>
+          <text>{{clCarInfo.car_no}}</text>
+          <text>{{clCarInfo.car_model}}</text>
+          <text>{{clCarInfo.car_frame_no}}</text>
         </view>
       </view>
     </view>
