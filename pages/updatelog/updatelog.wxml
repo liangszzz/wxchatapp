@@ -1,11 +1,7 @@
 
-<view>
+<view wx:for="{{list}}" wx:key="" data-id="{{item.id}}">
   <view class="message">
-    <text>更新了消息日志记录功能</text>
-    <text>2018-04-12  12:12:50</text>
-  </view>
-  <view class="message">
-    <text>优化了界面体验</text>
-    <text>2018-04-13  12:12:50</text>
+    <text>{{item.update_content}}</text>
+    <text>{{item.create_time}}</text>
   </view>
 </view>
