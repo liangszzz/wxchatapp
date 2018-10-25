@@ -9,7 +9,8 @@
     "pages/infodetail/detail",
     "pages/sign/sign",
     "pages/updatelog/updatelog",
-    "pages/auditLenders/auditLenders"
+    "pages/auditLenders/auditLenders",
+    "pages/agreement/agreement"
   ],
   "window": {
     "navigationBarTitleText": "车贷平台",

@@ -33,9 +33,8 @@ Page({
  * 打开协议页面
  */
   agreement:function(){
-    wx.showModal({
-      title: '自动还款协议',
-      content: '自动还款协议内容',
+    wx.navigateTo({
+      url: '../agreement/agreement?type=3',
     })
   },
 

@@ -51,7 +51,7 @@
       <text class="info-desc">还款日当天从{{item.bankName}}（尾号0988）自动扣款</text>
     </view>
   </view>
-  <view class="order-detail" bindtap='toPersonal' data-status="{{item.status}}" wx:if="{{item.orderStatus==19}}">
+  <view class="order-detail" bindtap='toPersonal' data-status="{{item.status}}" data-id='{{item.bizOrderNo}}' wx:if="{{item.orderStatus==19}}">
     <view class="order-detail-info">
       <view class='info-title-nav'>
         <text class="title-left">{{item.loadDate[0]}}年{{item.loadDate[1]}}月{{item.loadDate[2]}}日申请</text>
