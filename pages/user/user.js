@@ -13,7 +13,7 @@ Page({
    * 安全退出
    */
   logout: function() {
-    wx.redirectTo({
+    wx.reLaunch({
       url: '../login/login',
     })
   },
