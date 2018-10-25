@@ -66,9 +66,10 @@ Page({
     })
   },
 
-  toPersonal() {
+  toPersonal(e) {
+    var bizOrderNo = e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: '../personal/personal'
+      url: '../personal/personal?bizOrderNo=' + bizOrderNo
     })
   },
 

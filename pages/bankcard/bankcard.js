@@ -7,7 +7,8 @@ Page({
    */
   data: {
     list:[],
-    ishide:true
+    ishide:true,
+    userInfo:{}
   },
 
 /**
@@ -15,9 +16,9 @@ Page({
  */
   getList: function () {
     var that = this;
-    var phone = "13770207216";
+    var openId = that.data.userInfo.openId;
     wx.request({
-      url: app.globalData.http_url_head + 'bankCard/query/' + phone,
+      url: app.globalData.http_url_head + 'bankCard/query/' + openId,
       header: {
         token: app.globalData.userInfo.token
       },
@@ -54,6 +55,9 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+    that.setData({
+      userInfo: app.globalData.userInfo 
+    });
     that.getList();
   },
 
