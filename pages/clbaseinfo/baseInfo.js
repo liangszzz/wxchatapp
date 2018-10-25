@@ -21,7 +21,7 @@ Page({
         token: token
       },
       data: {
-        idcard: '640502199411209870'
+        idcard: idcard
       },
       method: "POST",
       success: result => {
