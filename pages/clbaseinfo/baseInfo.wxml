@@ -55,7 +55,8 @@
       <view class='info-title-nav'>
         <text class="title-left">{{item.loadDate[0]}}年{{item.loadDate[1]}}月{{item.loadDate[2]}}日申请</text>
         <block>
-          <text class="title-right-text" style="color:#03A9F4">待用户确认</text>
+          <text wx:if="{{item.wxAppConfirm == 0}}" class="title-right-text" style="color:#03A9F4">待用户确认</text>
+          <text wx:if="{{item.wxAppConfirm == 1}}" class="title-right-text" style="color:#03A9F4">已确认</text>
         </block>
       </view>
       <view class='info-title-nav'>
