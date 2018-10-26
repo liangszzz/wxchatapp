@@ -57,20 +57,25 @@ Page({
       }
     }
   },
-
-  getUserInfo: function(e) {
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
-  },
-
+  /**
+   * 借款还款按钮
+   */
   toPersonal(e) {
+    let orders = this.data.orderList;
+    let url = null;
     var bizOrderNo = e.currentTarget.dataset.id;
-    wx.navigateTo({
-      url: '../personal/personal?bizOrderNo=' + bizOrderNo
-    })
+    for (let i = 0; i < orders.length; i++) {
+      if (orders[i].orderStatus == 19) {
+        url = '../personal/personal?bizOrderNo=' + bizOrderNo
+      }
+    }
+    if (url != null) {
+      wx.navigateTo({
+        url: url
+      })
+    } else {
+      return;
+    }
   },
 
   toSingleOrder() {

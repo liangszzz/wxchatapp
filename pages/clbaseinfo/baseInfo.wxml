@@ -2,10 +2,10 @@
   <text class="order-title">未还本金总额（元）</text>
   <text class="order-pay">{{remainingPrincipal}}</text>
   <view wx:if="{{remainingPrincipal != 0}}">
-    <button>提前还款</button>
+    <button bindtap='detail'>提前还款</button>
   </view>
   <view wx:if="{{remainingPrincipal == 0}}">
-    <button>我要借款</button>
+    <button bindtap='toPersonal'>我要借款</button>
   </view>
 </view>
 <view class="order-banner">
