@@ -12,7 +12,7 @@ Page({
     serviceAmount: 0,
     repaymentTerms: 0,
     repaymentList: [],
-    pageSize: 12,
+    pageSize: 13,
     pageNo: 1,
   },
 
@@ -56,6 +56,7 @@ Page({
           if(result.data.entity.length > 0) {
             repaymentTerms = result.data.entity[0].repaymentTerms;
           }
+          applyAmount = applyAmount.toFixed(2);
           this.setData({
             repaymentList: result.data.entity,
             applyAmount: applyAmount,
@@ -125,4 +126,5 @@ Page({
       delta: 1
     })
   },
+
 })

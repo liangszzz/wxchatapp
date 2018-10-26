@@ -49,12 +49,12 @@
               <button style='background-color:#d2322d;font-size:14px;color:#ffffff;width:168rpx;margin-right:5rpx;'>逾期还款</button>
             </view>
           </block>
-          <block wx:elif="{{item.billStatus==2 && !item.isOverdue}}">
+          <block wx:elif="{{item.billStatus==2 && !item.isOverdue && item.isLatestTerm}}">
             <view>
               <button style='background-color:#03a9f4;font-size:14px;color:#ffffff;width:168rpx;margin-right:5rpx;'>还款</button>
             </view>
           </block>
-          <block wx:elif="{{item.billStatus==1 && item.isLatestTerm}}">
+          <block wx:elif="{{item.billStatus==1 && item.isLatestTerm && !item.isOverdue}}">
             <view>
               <button style='background-color:#03a9f4;font-size:14px;color:#ffffff;width:168rpx;margin-right:5rpx;'>还款</button>
             </view>

@@ -34,7 +34,7 @@
       <text class="info-desc">还款日当天从{{item.bankName}}（尾号0988）自动扣款</text>
     </view>
   </view>
-  <view class="order-detail" bindtap='detail' data-status="{{item.status}}" wx:if="{{item.orderStatus==68}}">
+  <view class="order-detail" bindtap='detail' data-id='{{item.bizOrderNo}}' data-status="{{item.status}}" wx:if="{{item.orderStatus==68 || item.orderStatus==72}}">
     <view class="order-detail-info">
       <view class='info-title-nav'>
         <text class="title-left">{{item.loadDate[0]}}年{{item.loadDate[1]}}月{{item.loadDate[2]}}日申请</text>
@@ -67,7 +67,7 @@
       <text class="info-desc">还款日当天从{{item.bankName}}（尾号0988）自动扣款</text>
     </view>
   </view>
-  <view class="order-detail" bindtap='toPersonal' data-status="{{item.status}}" data-id='{{item.bizOrderNo}}' wx:if="{{item.orderStatus==20}}">
+  <view class="order-detail" data-status="{{item.status}}" data-id='{{item.bizOrderNo}}' wx:if="{{item.orderStatus==20}}">
     <view class="order-detail-info">
       <view class='info-title-nav'>
         <text class="title-left">{{item.loadDate[0]}}年{{item.loadDate[1]}}月{{item.loadDate[2]}}日申请</text>
@@ -83,7 +83,7 @@
       <text class="info-desc">还款日当天从{{item.bankName}}（尾号0988）自动扣款</text>
     </view>
   </view>
-  <view class="order-detail" bindtap='toPersonal' data-status="{{item.status}}" data-id='{{item.bizOrderNo}}' wx:if="{{item.orderStatus==21 || item.orderStatus==22 || item.orderStatus==61}}">
+  <view class="order-detail" data-status="{{item.status}}" data-id='{{item.bizOrderNo}}' wx:if="{{item.orderStatus==21 || item.orderStatus==22 || item.orderStatus==61}}">
     <view class="order-detail-info">
       <view class='info-title-nav'>
         <text class="title-left">{{item.loadDate[0]}}年{{item.loadDate[1]}}月{{item.loadDate[2]}}日申请</text>
@@ -99,7 +99,7 @@
       <text class="info-desc">还款日当天从{{item.bankName}}（尾号0988）自动扣款</text>
     </view>
   </view>
-  <view class="order-detail" bindtap='toPersonal' data-status="{{item.status}}" data-id='{{item.bizOrderNo}}' wx:if="{{item.orderStatus==60}}">
+  <view class="order-detail" data-status="{{item.status}}" data-id='{{item.bizOrderNo}}' wx:if="{{item.orderStatus==60}}">
     <view class="order-detail-info">
       <view class='info-title-nav'>
         <text class="title-left">{{item.loadDate[0]}}年{{item.loadDate[1]}}月{{item.loadDate[2]}}日申请</text>
@@ -115,7 +115,7 @@
       <text class="info-desc">还款日当天从{{item.bankName}}（尾号0988）自动扣款</text>
     </view>
   </view>
-  <view class="order-detail" bindtap='toPersonal' data-status="{{item.status}}" data-id='{{item.bizOrderNo}}' wx:if="{{item.orderStatus==62}}">
+  <view class="order-detail" data-status="{{item.status}}" data-id='{{item.bizOrderNo}}' wx:if="{{item.orderStatus==62}}">
     <view class="order-detail-info">
       <view class='info-title-nav'>
         <text class="title-left">{{item.loadDate[0]}}年{{item.loadDate[1]}}月{{item.loadDate[2]}}日申请</text>

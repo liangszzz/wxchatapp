@@ -41,10 +41,22 @@ Page({
   detail: function(e) {
     //获取前台页面data-id存放的值
     var id = e.currentTarget.dataset.id;
+    let orders = this.data.orderList;
     var status = e.currentTarget.dataset.status;
-    wx.navigateTo({
-      url: '../infodetail/detail?id=' + id + '&status=' + status,
-    })
+    var url = null;
+    for (let i = 0; i < orders.length; i++) {
+      if (orders[i].orderStatus == 64 || orders[i].orderStatus == 68 || orders[i].orderStatus == 72) {
+        url = '../infodetail/detail?id=' + orders[i].bizOrderNo + '&status=' + status;
+      }
+    }
+    if (url == null) {
+      return;
+    } else {
+      wx.navigateTo({
+        url: '../infodetail/detail?id=' + id + '&status=' + status,
+      })
+    }
+
   },
 
   onLoad: function() {
@@ -69,30 +81,30 @@ Page({
         url = '../personal/personal?bizOrderNo=' + bizOrderNo
         //判断当前订单是否已经确认
         wx.request({
-          url: app.globalData.http_url_head + 'baseInfo/check/'+ bizOrderNo,
+          url: app.globalData.http_url_head + 'baseInfo/check/' + bizOrderNo,
           header: {
             token: app.globalData.userInfo.token
           },
           method: 'post',
-          success: function (res) {
+          success: function(res) {
             console.log(res);
-            if (res.statusCode = 200 && res.data.code == 0){
+            if (res.statusCode = 200 && res.data.code == 0) {
               url = '../auditLenders/auditLenders?biz_order_no=' + bizOrderNo
               wx.navigateTo({
                 url: url
               })
-            }else{
+            } else {
               url = '../personal/personal?bizOrderNo=' + bizOrderNo
               wx.navigateTo({
                 url: url
               })
             }
           },
-          fail: function () {
+          fail: function() {
             console.log("获取后台失败");
           }
         })
-        
+
       }
     }
   },
