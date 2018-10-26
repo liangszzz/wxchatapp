@@ -6,13 +6,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    src:""
+    message:""
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
     var type = options.type;
     //根据不同type 1：借款合同 2：产品说明 3：自动还款协议
     wx.request({
@@ -22,7 +23,13 @@ Page({
       },
       method: 'POST',
       success:function(res){
-        console.log(res);
+        if(res.statusCode == 200 && res.data.code == 0){
+            that.setData({
+              message:res.data.msg
+            })
+        }else{
+
+        }
       },
       fail:function(){
         console.log("请求后台失败");
