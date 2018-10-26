@@ -10,7 +10,7 @@
   <view class='examine_order_information_view'>
     <view class='examine_order_information_top_view'>订单信息</view>
     <view class='examine_information_view'>借款金额<text decode="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{baseInfo.apply_amount}}元</text></view>
-    <view class='examine_information_view'>每期应还<text decode="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{baseInfo.total}}元(共{{baseInfo.repayment_terms}}期)</text></view>
+    <!--<view class='examine_information_view'>每期应还<text decode="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{baseInfo.total}}元(共{{baseInfo.repayment_terms}}期)</text></view>-->
     <view class='examine_information_view'>借款银行卡<text decode="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{cluserInfo.bank_name}}(尾号{{cluserInfo.bank_account}})</text></view>
     <view class='examine_information_view'>提交日期<text decode="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{baseInfo.create_date}}</text></view>
   </view>
