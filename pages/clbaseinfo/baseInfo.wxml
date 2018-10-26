@@ -31,7 +31,8 @@
         <text class="title-left">（元）</text>
         <image src='/assets/images/arrow.png' mode='aspectFill'></image>
       </view>
-      <text class="info-desc">还款日当天从{{item.bankName}}（尾号0988）自动扣款</text>
+      <text class="info-desc" wx:if='{{bankName}}'>还款日当天从{{bankName}}（尾号{{bankAccount}}）自动扣款</text>
+      <text class="info-desc" wx:if='{{!bankName}}'>未签约代扣</text>
     </view>
   </view>
   <view class="order-detail" bindtap='detail' data-id='{{item.bizOrderNo}}' data-status="{{item.status}}" wx:if="{{item.orderStatus==68 || item.orderStatus==72}}">
@@ -47,7 +48,8 @@
         <text class="title-left">（元）</text>
         <image src='/assets/images/arrow.png' mode='aspectFill'></image>
       </view>
-      <text class="info-desc">还款日当天从{{item.bankName}}（尾号0988）自动扣款</text>
+      <text class="info-desc" wx:if='{{bankName}}'>还款日当天从{{bankName}}（尾号{{bankAccount}}）自动扣款</text>
+      <text class="info-desc" wx:if='{{!bankName}}'>未签约代扣</text>
     </view>
   </view>
   <view class="order-detail" bindtap='toPersonal' data-status="{{item.status}}" data-id='{{item.bizOrderNo}}' wx:if="{{item.orderStatus==19}}">
@@ -64,7 +66,8 @@
         <text class="title-left">（元）</text>
         <image src='/assets/images/arrow.png' mode='aspectFill'></image>
       </view>
-      <text class="info-desc">还款日当天从{{item.bankName}}（尾号0988）自动扣款</text>
+      <text class="info-desc" wx:if='{{bankName}}'>还款日当天从{{bankName}}（尾号{{bankAccount}}）自动扣款</text>
+      <text class="info-desc" wx:if='{{!bankName}}'>未签约代扣</text>
     </view>
   </view>
   <view class="order-detail" data-status="{{item.status}}" data-id='{{item.bizOrderNo}}' wx:if="{{item.orderStatus==20}}">
@@ -80,7 +83,8 @@
         <text class="title-left">（元）</text>
         <image src='/assets/images/arrow.png' mode='aspectFill'></image>
       </view>
-      <text class="info-desc">还款日当天从{{item.bankName}}（尾号0988）自动扣款</text>
+      <text class="info-desc" wx:if='{{bankName}}'>还款日当天从{{bankName}}（尾号{{bankAccount}}）自动扣款</text>
+      <text class="info-desc" wx:if='{{!bankName}}'>未签约代扣</text>
     </view>
   </view>
   <view class="order-detail" data-status="{{item.status}}" data-id='{{item.bizOrderNo}}' wx:if="{{item.orderStatus==21 || item.orderStatus==22 || item.orderStatus==61}}">
@@ -96,7 +100,8 @@
         <text class="title-left">（元）</text>
         <image src='/assets/images/arrow.png' mode='aspectFill'></image>
       </view>
-      <text class="info-desc">还款日当天从{{item.bankName}}（尾号0988）自动扣款</text>
+      <text class="info-desc" wx:if='{{bankName}}'>还款日当天从{{bankName}}（尾号{{bankAccount}}）自动扣款</text>
+      <text class="info-desc" wx:if='{{!bankName}}'>未签约代扣</text>
     </view>
   </view>
   <view class="order-detail" data-status="{{item.status}}" data-id='{{item.bizOrderNo}}' wx:if="{{item.orderStatus==60}}">
@@ -112,7 +117,8 @@
         <text class="title-left">（元）</text>
         <image src='/assets/images/arrow.png' mode='aspectFill'></image>
       </view>
-      <text class="info-desc">还款日当天从{{item.bankName}}（尾号0988）自动扣款</text>
+      <text class="info-desc" wx:if='{{bankName}}'>还款日当天从{{bankName}}（尾号{{bankAccount}}）自动扣款</text>
+      <text class="info-desc" wx:if='{{!bankName}}'>未签约代扣</text>
     </view>
   </view>
   <view class="order-detail" data-status="{{item.status}}" data-id='{{item.bizOrderNo}}' wx:if="{{item.orderStatus==62}}">
@@ -128,7 +134,8 @@
         <text class="title-left">（元）</text>
         <image src='/assets/images/arrow.png' mode='aspectFill'></image>
       </view>
-      <text class="info-desc">还款日当天从{{item.bankName}}（尾号0988）自动扣款</text>
+      <text class="info-desc" wx:if='{{bankName}}'>还款日当天从{{bankName}}（尾号{{bankAccount}}）自动扣款</text>
+      <text class="info-desc" wx:if='{{!bankName}}'>未签约代扣</text>
     </view>
   </view>
 </view>

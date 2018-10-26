@@ -11,10 +11,14 @@ Page({
     orderList: [], //存放订单数据
     remainingPrincipal: 0,
     currentPage: 'single',
+    bankName: null,
+    bankAccount: null,
   },
   queryOrder(url) {
     let token = app.globalData.userInfo.token;
     let idcard = app.globalData.userInfo.idcard;
+    let bankName = app.globalData.userInfo.bankName;
+    let bankAccount = app.globalData.userInfo.bankCard;
     wx.request({
       url: url,
       header: {
@@ -25,10 +29,11 @@ Page({
       },
       method: "POST",
       success: result => {
-        console.log(result);
         this.setData({
           remainingPrincipal: result.data.entity.remainingPrincipalTotal,
-          orderList: result.data.entity.orders
+          orderList: result.data.entity.orders,
+          bankName: bankName,
+          bankAccount: bankAccount
         });
       },
       fail: result => {
@@ -78,6 +83,9 @@ Page({
     var bizOrderNo = e.currentTarget.dataset.id;
     for (let i = 0; i < orders.length; i++) {
       if (orders[i].orderStatus == 19) {
+        if(bizOrderNo == null) {
+          bizOrderNo = orders[i].bizOrderNo;
+        }
         url = '../personal/personal?bizOrderNo=' + bizOrderNo
         //判断当前订单是否已经确认
         wx.request({
