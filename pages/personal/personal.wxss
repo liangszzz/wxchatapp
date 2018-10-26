@@ -1,5 +1,6 @@
 page {
   background-color: #f2f2f2;
+  height: 100%;
 }
 
 .profile-warn {
@@ -13,7 +14,7 @@ page {
 .profile {
   background-color: #fff;
   padding: 0 40rpx;
-  float: left;
+  
 }
 
 .profile view:last-child {
@@ -56,7 +57,7 @@ page {
 /*个人信息*/
 
 .profile-info {
-  height: 365rpx;
+  height: 339rpx;
   border-bottom: 3rpx solid #c2c2c2;
   font-size: 14px;
   line-height: 2.3;
@@ -69,7 +70,6 @@ page {
   color: #a7a7a7;
   display: flex;
   flex-direction: column;
-  width: 30%;
 }
 
 .profile-info-right {
@@ -79,11 +79,13 @@ page {
   margin-left: 40rpx;
 }
 
+
 /*车辆情况*/
 
 .profile-car {
   border-bottom: 3rpx solid #c2c2c2;
-  float: left;
+  background-color: #fff;
+ 
 }
 
 .profile-car-text {

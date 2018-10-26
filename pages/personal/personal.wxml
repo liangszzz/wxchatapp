@@ -18,7 +18,6 @@
         <text>身份证</text>
         <text>学历</text>
         <text>现居地址</text>
-        <text> \n </text>
         <text>婚姻状况</text>
       </view>
       <view class="profile-info-right">
