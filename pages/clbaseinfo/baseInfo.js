@@ -67,14 +67,33 @@ Page({
     for (let i = 0; i < orders.length; i++) {
       if (orders[i].orderStatus == 19) {
         url = '../personal/personal?bizOrderNo=' + bizOrderNo
+        //判断当前订单是否已经确认
+        wx.request({
+          url: app.globalData.http_url_head + 'baseInfo/check/'+ bizOrderNo,
+          header: {
+            token: app.globalData.userInfo.token
+          },
+          method: 'post',
+          success: function (res) {
+            console.log(res);
+            if (res.statusCode = 200 && res.data.code == 0){
+              url = '../auditLenders/auditLenders?biz_order_no=' + bizOrderNo
+              wx.navigateTo({
+                url: url
+              })
+            }else{
+              url = '../personal/personal?bizOrderNo=' + bizOrderNo
+              wx.navigateTo({
+                url: url
+              })
+            }
+          },
+          fail: function () {
+            console.log("获取后台失败");
+          }
+        })
+        
       }
-    }
-    if (url != null) {
-      wx.navigateTo({
-        url: url
-      })
-    } else {
-      return;
     }
   },
 
