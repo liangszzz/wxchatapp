@@ -82,12 +82,44 @@
       <text class="info-desc">还款日当天从{{item.bankName}}（尾号0988）自动扣款</text>
     </view>
   </view>
-  <view class="order-detail" bindtap='toPersonal' data-status="{{item.status}}" data-id='{{item.bizOrderNo}}' wx:if="{{item.orderStatus==21 || item.orderStatus==22 || item.orderStatus==60 || item.orderStatus==61 || item.orderStatus==62}}">
+  <view class="order-detail" bindtap='toPersonal' data-status="{{item.status}}" data-id='{{item.bizOrderNo}}' wx:if="{{item.orderStatus==21 || item.orderStatus==22 || item.orderStatus==61}}">
     <view class="order-detail-info">
       <view class='info-title-nav'>
         <text class="title-left">{{item.loadDate[0]}}年{{item.loadDate[1]}}月{{item.loadDate[2]}}日申请</text>
         <block>
           <text class="title-right-text" style="color:#03A9F4">审核拒绝</text>
+        </block>
+      </view>
+      <view class='info-title-nav'>
+        <text class="title-left-big">{{item.loanAmount}}</text>
+        <text class="title-left">（元）</text>
+        <image src='/assets/images/arrow.png' mode='aspectFill'></image>
+      </view>
+      <text class="info-desc">还款日当天从{{item.bankName}}（尾号0988）自动扣款</text>
+    </view>
+  </view>
+  <view class="order-detail" bindtap='toPersonal' data-status="{{item.status}}" data-id='{{item.bizOrderNo}}' wx:if="{{item.orderStatus==60}}">
+    <view class="order-detail-info">
+      <view class='info-title-nav'>
+        <text class="title-left">{{item.loadDate[0]}}年{{item.loadDate[1]}}月{{item.loadDate[2]}}日申请</text>
+        <block>
+          <text class="title-right-text" style="color:#03A9F4">审核通过</text>
+        </block>
+      </view>
+      <view class='info-title-nav'>
+        <text class="title-left-big">{{item.loanAmount}}</text>
+        <text class="title-left">（元）</text>
+        <image src='/assets/images/arrow.png' mode='aspectFill'></image>
+      </view>
+      <text class="info-desc">还款日当天从{{item.bankName}}（尾号0988）自动扣款</text>
+    </view>
+  </view>
+  <view class="order-detail" bindtap='toPersonal' data-status="{{item.status}}" data-id='{{item.bizOrderNo}}' wx:if="{{item.orderStatus==62}}">
+    <view class="order-detail-info">
+      <view class='info-title-nav'>
+        <text class="title-left">{{item.loadDate[0]}}年{{item.loadDate[1]}}月{{item.loadDate[2]}}日申请</text>
+        <block>
+          <text class="title-right-text" style="color:#03A9F4">放款失败</text>
         </block>
       </view>
       <view class='info-title-nav'>
