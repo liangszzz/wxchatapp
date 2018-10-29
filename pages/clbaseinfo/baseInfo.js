@@ -15,6 +15,9 @@ Page({
     bankAccount: null,
   },
   queryOrder(url) {
+    if (!app.globalData.userInfo || !app.globalData.userInfo.token) {
+      return
+    }
     let token = app.globalData.userInfo.token;
     let idcard = app.globalData.userInfo.idcard;
     let bankName = app.globalData.userInfo.bankName;
@@ -72,7 +75,7 @@ Page({
       app.loginSuccessCallBack = () => {
         this.queryOrder(app.globalData.http_url_head + "user/order");
       }
-        wx.reLaunch({
+      wx.reLaunch({
         url: '../login/login',
       })
     }
@@ -86,7 +89,7 @@ Page({
     var bizOrderNo = e.currentTarget.dataset.id;
     for (let i = 0; i < orders.length; i++) {
       if (orders[i].orderStatus == 19) {
-        if(bizOrderNo == null) {
+        if (bizOrderNo == null) {
           bizOrderNo = orders[i].bizOrderNo;
         }
         //判断当前订单是否已经确认
