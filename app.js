@@ -8,14 +8,14 @@ App({
           method: "POST",
           success: res => {
             if (res.data.code == 0) {
-              this.globalData.userInfo = res.data.entity
+                this.globalData.userInfo = res.data.entity
+                if (this.loginSuccessCallBack) {
+                    this.loginSuccessCallBack();
+                }
             } else {
               wx.reLaunch({
                 url: '/pages/login/login'
               })
-            }
-            if (this.loginSuccessCallBack) {
-              this.loginSuccessCallBack();
             }
           }
         })
@@ -38,6 +38,6 @@ App({
   },
   globalData: {
     userInfo: null,
-    http_url_head: "http://192.168.1.3:8080/"
+      http_url_head: "http://106.15.126.226:8081/"
   }
 })
