@@ -46,7 +46,7 @@
           </block>
           <block wx:elif="{{item.isOverdue}}">
             <view>
-              <button style='background-color:#d2322d;font-size:14px;color:#ffffff;width:168rpx;margin-right:5rpx;'>逾期还款</button>
+              <button style='background-color:#d2322d;font-size:14px;color:#ffffff;width:200rpx;margin-right:5rpx;'>逾期还款</button>
             </view>
           </block>
           <block wx:elif="{{item.billStatus==2 && !item.isOverdue && item.isLatestTerm}}">
