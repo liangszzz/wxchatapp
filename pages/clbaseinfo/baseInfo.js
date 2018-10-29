@@ -86,7 +86,6 @@ Page({
         if(bizOrderNo == null) {
           bizOrderNo = orders[i].bizOrderNo;
         }
-        url = '../personal/personal?bizOrderNo=' + bizOrderNo
         //判断当前订单是否已经确认
         wx.request({
           url: app.globalData.http_url_head + 'baseInfo/check/' + bizOrderNo,
