@@ -71,7 +71,7 @@ Page({
             return;
         } else {
             wx.navigateTo({
-                url: '../infodetail/detail?id=' + id + '&status=' + status,
+                url: url,
             })
         }
 
