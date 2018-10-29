@@ -122,8 +122,8 @@ Page({
   },
 
   orderDetailBtn: function () {
-    wx.navigateBack({
-      delta: 1
+    wx.reLaunch({
+      url: '../clbaseinfo/baseInfo',
     })
   },
 
