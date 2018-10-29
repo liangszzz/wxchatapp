@@ -72,7 +72,7 @@ Page({
       app.loginSuccessCallBack = () => {
         this.queryOrder(app.globalData.http_url_head + "user/order");
       }
-      wx.navigateTo({
+        wx.reLaunch({
         url: '../login/login',
       })
     }
