@@ -65,13 +65,16 @@ Page({
   },
 
   onLoad: function() {
-    if (app.globalData.userInfo) {
+    if (app.globalData.userInfo && app.globalData.userInfo.token) {
       this.queryOrder(app.globalData.http_url_head + "user/order");
     } else {
       // 登录成功回调函数
       app.loginSuccessCallBack = () => {
         this.queryOrder(app.globalData.http_url_head + "user/order");
       }
+      wx.navigateTo({
+        url: '../login/login',
+      })
     }
   },
   /**
