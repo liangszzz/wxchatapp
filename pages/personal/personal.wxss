@@ -57,7 +57,7 @@ page {
 /*个人信息*/
 
 .profile-info {
-  height: 339rpx;
+  height: 360rpx;
   border-bottom: 3rpx solid #c2c2c2;
   font-size: 14px;
   line-height: 2.3;
