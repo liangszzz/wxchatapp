@@ -14,7 +14,7 @@ Page({
         bankName: null,
         bankAccount: null,
     },
-    onShow() {
+    onLoad() {
         if (app.globalData.userInfo && app.globalData.userInfo.token) {
             this.queryOrder(app.globalData.http_url_head + "user/order");
         } else {
