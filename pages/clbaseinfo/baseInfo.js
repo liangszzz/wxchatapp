@@ -73,6 +73,9 @@ Page({
     var url = null;
     for (let i = 0; i < orders.length; i++) {
       if (orders[i].orderStatus == 64 || orders[i].orderStatus == 68 || orders[i].orderStatus == 72) {
+        if(id == null || id == undefined) {
+          id = orders[i].bizOrderNo;
+        }
         url = '../infodetail/detail?id=' + id + '&status=' + status;
       }
     }

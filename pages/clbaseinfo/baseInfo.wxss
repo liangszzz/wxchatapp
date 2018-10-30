@@ -69,6 +69,7 @@ page {
 .order-detail {
   background-color: #fff;
   height: 220rpx;
+  margin-bottom: 10rpx;
 }
 
 
