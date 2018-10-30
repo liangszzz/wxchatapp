@@ -1,5 +1,5 @@
 <view class="profile-warn">
-  <text>个人信息有误请及时联系客户经理修改</text>
+<text decode="{{true}}">&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;个人信息有误请及时联系客户经理修改</text>
 </view>
 
 <form bindsubmit="formSubmit" report-submit='true'>
