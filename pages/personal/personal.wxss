@@ -81,16 +81,16 @@ page {
 
 
 /*车辆情况*/
-
 .profile-car {
+  width: 100%;
   border-bottom: 3rpx solid #c2c2c2;
   background-color: #fff;
  
 }
 
 .profile-car-text {
+  background-color: #fff;
   float:left;
-  /*为了使下面的浮动掉下去*/
   width: 100%;
   color: #a7a7a7;
   font-size: 14px;
@@ -98,6 +98,7 @@ page {
 
 .profile-car-nav {
   float: left;
+  background-color: #fff;
 }
 
 .profile-car-detail {
@@ -116,11 +117,11 @@ page {
   /*为了使下面的浮动掉下去*/
   width: 100%;
   height: 211rpx;
-  float: left;
   font-size: 14px;
   line-height: 2.3;
   display: flex;
   flex-direction: row;
+  background-color: #fff;
 }
 
 .profile-car-info-left {
