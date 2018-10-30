@@ -14,7 +14,7 @@ Page({
         bankName: null,
         bankAccount: null,
     },
-    onLoad() {
+    onLoad:function(e){
         if (app.globalData.userInfo && app.globalData.userInfo.token) {
             this.queryOrder(app.globalData.http_url_head + "user/order");
         } else {
@@ -24,9 +24,9 @@ Page({
             }
         }
     },
-    queryOrder(url) {
+    queryOrder:function(url) {
         if (!app.globalData.userInfo || !app.globalData.userInfo.token) {
-            return
+            return;
         }
         let token = app.globalData.userInfo.token;
         let idcard = app.globalData.userInfo.idcard;
@@ -74,10 +74,6 @@ Page({
                 url: url,
             })
         }
-
-    },
-
-    onLoad: function() {
 
     },
     /**
