@@ -1,13 +1,14 @@
 <view class="big_view">
   <form bindsubmit="formSubmit">
     <view>
-      <input class="phone_view" type='text' auto-focus placeholder="请输入手机号码" placeholder-class="placeholder-class" bindinput='bindPhoneInput' value='{{phone}}' />
+      <input class="phone_view" type='number' auto-focus placeholder="请输入手机号码" placeholder-class="placeholder-class" bindinput='bindPhoneInput' value='{{phone}}' />
     </view>
     <view>
-      <input class="invitationCode_view" placeholder="请输入邀请码" id='invitation_code' bindinput='bindInvitationInput' placeholder-class="placeholder-class" />
+      <input class="invitationCode_view" placeholder="请输入邀请码" type='number' id='invitation_code' bindinput='bindInvitationInput' placeholder-class="placeholder-class" />
     </view>
     <view class="btn-area">
-      <button formType="submit" class='register_btn' open-type="getUserInfo" bindgetuserinfo="getUserInfo" disabled='{{btnRegistered}}'>快速绑定注册</button>
+      <button formType="submit" class='register_btn' open-type="getUserInfo" 
+      bindgetuserinfo="getUserInfo" disabled='{{btnRegistered}}'>快速绑定注册</button>
     </view>
   </form>
 

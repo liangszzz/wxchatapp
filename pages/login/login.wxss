@@ -33,6 +33,7 @@ page {
   border-top-width: 5rpx;
   text-align: center;
   margin-top: 465rpx;
+  color: white
 }
 
 .invitationCode_view {
@@ -53,6 +54,7 @@ page {
   border-top-width: 5rpx;
   text-align: center;
   margin-top: 70rpx;
+  color: white
 }
 
 .register_btn {
@@ -63,4 +65,8 @@ page {
   margin-top: 73rpx;
   font-size: 15px;
   color:#fff;
+}
+
+.placeholder-class{
+  color: white;
 }
