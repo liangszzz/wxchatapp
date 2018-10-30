@@ -42,6 +42,7 @@ page {
   height: 80rpx;
   display: flex;
   flex-direction: row;
+  margin-bottom: 1rpx;
 }
 
 .order-banner view {
@@ -59,12 +60,15 @@ page {
   margin-top: 10rpx;
 }
 
-/*再下一个view*/
+.detail {
+  margin-top: 1rpx;
+  margin: 1rpx 0rpx;
+}
 
+/*再下一个view*/
 .order-detail {
   background-color: #fff;
   height: 220rpx;
-  margin: 10rpx 0rpx;
 }
 
 
