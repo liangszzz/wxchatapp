@@ -1,5 +1,6 @@
 // pages/user/user.js
 const app = getApp()
+const util = require('../../utils/util.js')
 Page({
 
   /**
@@ -21,29 +22,29 @@ Page({
   /**
    * 我的消息
    */
-  toMessage: function() {
+  toMessage:util.throttle(function (e) {
     wx.navigateTo({
       url: '../news/news',
     })
-  },
+  }, 1000),
 
   /**
    * 我的银行卡
    */
-  toBankCard: function() {
+  toBankCard: util.throttle(function (e) {
     wx.navigateTo({
       url: '../bankcard/bankcard',
     })
-  },
+  }, 1000),
 
   /**
    * 更新日志
    */
-  toUpdatelog: function() {
+  toUpdatelog: util.throttle(function (e) {
     wx.navigateTo({
       url: '../updatelog/updatelog',
     })
-  },
+  },1000),
 
 
   /**
