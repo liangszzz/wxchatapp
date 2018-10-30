@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    orderNo: null,
     applyAmount: 0,
     serviceAmount: 0,
     repaymentTerms: 0,
@@ -21,24 +22,20 @@ Page({
    */
   back: function(e) {
     wx.navigateBack({
-      delta:1
+      delta: 1
     })
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function(options) {
-    var orderNo = options.id;
-    var status = options.status;
+
+  getBills: function(orderNo) {
     var url;
     let token = app.globalData.userInfo.token;
     wx.request({
       url: app.globalData.http_url_head + 'bill/billDetail',
       header: {
-        token:token
+        token: token
       },
       data: {
-        bizOrderNo : orderNo,
+        bizOrderNo: orderNo,
         pageNo: this.data.pageNo,
         pageSize: this.data.pageSize,
       },
@@ -47,13 +44,13 @@ Page({
         console.log(result);
         let applyAmount = 0;
         let serviceAmount = 0;
-        if(result.data.entity) {
+        if (result.data.entity) {
           for (let i = 0; i < result.data.entity.length; i++) {
             applyAmount = applyAmount + result.data.entity[i].shouldPayPrincipal;
             serviceAmount = serviceAmount + result.data.entity[i].shouldPayService;
           }
           let repaymentTerms = 0;
-          if(result.data.entity.length > 0) {
+          if (result.data.entity.length > 0) {
             repaymentTerms = result.data.entity[0].repaymentTerms;
           }
           applyAmount = applyAmount.toFixed(2);
@@ -69,7 +66,13 @@ Page({
         console.log(result)
       }
     })
+  },
 
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function(options) {
+    this.getBills(options.id);
   },
 
   /**
@@ -104,7 +107,8 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-
+    this.getBills(this.data.orderNo);
+    wx.stopPullDownRefresh();
   },
 
   /**
@@ -121,7 +125,7 @@ Page({
 
   },
 
-  orderDetailBtn: function () {
+  orderDetailBtn: function() {
     wx.reLaunch({
       url: '../clbaseinfo/baseInfo',
     })
