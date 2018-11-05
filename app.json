@@ -2,15 +2,16 @@
   "pages": [
     "pages/clbaseinfo/baseInfo",
     "pages/login/login",
-    "pages/user/user",
-    "pages/news/news",
+    "pages/mine/mine",
+    "pages/message/message",
     "pages/bankcard/bankcard",
-    "pages/personal/personal",
-    "pages/infodetail/detail",
+    "pages/userinfo/userinfo",
+    "pages/clbaseinfodetail/clbaseinfodetail",
     "pages/sign/sign",
     "pages/updatelog/updatelog",
     "pages/auditLenders/auditLenders",
-    "pages/agreement/agreement"
+    "pages/agreement/agreement",
+    "pages/carinfo/carinfo"
   ],
   "window": {
     "navigationBarTitleText": "车贷平台",
@@ -33,7 +34,7 @@
         "selectedIconPath": "assets/tabs/home-active.png"
       },
       {
-        "pagePath": "pages/user/user",
+        "pagePath": "pages/mine/mine",
         "text": "我的",
         "iconPath": "assets/tabs/message.png",
         "selectedIconPath": "assets/tabs/message-active.png"
