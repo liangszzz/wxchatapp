@@ -76,7 +76,7 @@ Page({
         if(id == null || id == undefined) {
           id = orders[i].bizOrderNo;
         }
-        url = '../infodetail/detail?id=' + id + '&status=' + status;
+        url = '../clbaseinfodetail/clbaseinfodetail?id=' + id + '&status=' + status;
       }
     }
     if (url == null) {
@@ -110,7 +110,7 @@ Page({
         if (wxAppConfirm == 1) {
           url = '../auditLenders/auditLenders?biz_order_no=' + bizOrderNo
         } else {
-          url = '../personal/personal?bizOrderNo=' + bizOrderNo
+          url = '../userinfo/userinfo?bizOrderNo=' + bizOrderNo
         }
 
       }
