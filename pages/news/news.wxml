@@ -1,8 +1,0 @@
-
-<view wx:for="{{list}}" wx:key="" data-id="{{item.id}}">
-  <view class="message">
-    <text>{{item.content}}</text>
-    <text>{{item.create_time}}</text>
-  </view>
-  
-</view>
