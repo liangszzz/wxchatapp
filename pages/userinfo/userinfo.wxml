@@ -1,0 +1,85 @@
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  <form bindsubmit="formSubmit" report-submit='true'>
+    <view class="page__bd">
+
+      <view class="weui-cells__title">
+        个人信息有误请及时联系客户经理修改</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">真实姓名</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" placeholder="请输入真实姓名" value='{{clUserInfo.user_name}}' />
+          </view>
+        </view>
+
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">身份证</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" placeholder="请输入身份证号" value='{{clUserInfo.idcard}}' />
+          </view>
+        </view>
+
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">身份证地址</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" placeholder="请输入身份证地址" value='{{clUserInfo.idcard_address}}' />
+          </view>
+        </view>
+
+      </view>
+
+      <view class="weui-cells__title">
+        联系人信息</view>
+      <view class="weui-cells weui-cells_after-title" wx:for="{{clContactInfoList}}" wx:key="" data-id="{{item.id}}">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">联系人{{item.index}}姓名</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input"  value='{{item.contact_name}}' />
+          </view>
+        </view>
+
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">联系人{{item.index}}电话</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input"  value='{{item.contact_phone}}' />
+          </view>
+        </view>
+
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">联系人{{item.index}}身份</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" value='{{item.contact_relationship}}' />
+          </view>
+        </view>
+      </view>
+
+
+    </view>
+
+
+
+    <view class="profile-id">
+      <view class="weui-cells__title">
+        身份证正反面
+      </view>
+      <view>
+        <image src="{{imglist[0]}}" mode='aspectFill' data-src="{{imglist[0]}}" bindtap="previewImageId"></image>
+        <image src="{{imglist[1]}}" mode='aspectFill' data-src="{{imglist[1]}}" bindtap="previewImageId"></image>
+      </view>
+    </view>
+
+
+  </form>
+</view>
