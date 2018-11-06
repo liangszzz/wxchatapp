@@ -1,1 +1,83 @@
-/* pages/carinfo/carinfo.wxss */
+page {
+  background-color: #fff;
+}
+
+.profile-warn {
+  height: 60rpx;
+  color: #8c8891;
+  font-size: 12px;
+  font-family: PingFangSC-regular;
+  line-height: 60rpx;
+  padding: 0 20rpx;
+  font-weight: bol;
+}
+
+/*信息外框*/
+
+.profile-info {
+  padding: 0 40rpx;
+}
+
+/*每一行*/
+
+.profile-info-detail {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  line-height: 75rpx;
+  border-bottom: 2rpx solid #c8c8c8;
+}
+
+/*每一行的左边*/
+
+.profile-info-text {
+  font-family: PingFangSC-regular;
+  color: rgba(136, 136, 136, 1);
+  font-size: 14px;
+  width: 43%;
+}
+
+/*每一行的右边*/
+
+.profile-info-input {
+  font-size: 12px;
+  font-family: Microsoft Yahei;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-info-tile {
+  font-size: 15px;
+  height: 70rpx;
+  color: #888888;
+  font-family: PingFangSC-regular;
+  font-weight: bold;
+}
+
+.profile-car {
+  margin-top: 50rpx;
+  height: 245rpx;
+}
+
+.profile-car-img {
+  width: 280rpx;
+  height: 181rpx;
+  border: 2rpx dashed gray;
+  border-radius: 12rpx;
+  margin-left: 10rpx;
+}
+
+.uploadWrap {
+  width: 100%;
+  display: flex;
+  display: -webkit-box;
+  flex-direction: column;
+}
+
+.next_btn {
+  margin-top: 100rpx;
+  font-size: 18px;
+  background-color: #03a9f4;
+  color: #fff;
+}

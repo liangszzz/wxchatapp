@@ -1,2 +1,152 @@
-<!--pages/carinfo/carinfo.wxml-->
-<text>pages/carinfo/carinfo.wxml</text>
+<form bindsubmit="formSubmit" report-submit='true'>
+  <view class="profile-warn">
+    <text><text style="color:red">*</text> 信息有误请及时联系客户经理修改</text>
+  </view>
+
+  <view class="profile-info">
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>车牌号码</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="text" disabled='{{able}}' value="京A 88888" />
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>车辆品牌</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="text" disabled='{{able}}' value="哈弗" />
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>车辆型号</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="text" disabled='{{able}}' value="2014款 哈弗H6 运动版 1.5T 手动 四驱 精英型" />
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>车辆估值（元）</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="text" disabled='{{able}}' value="52000.0" />
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>车身颜色</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="text" disabled='true' value="黑色" />
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>车架号</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="text" disabled='{{able}}' value="LGWEF4A5" />
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>发动机号</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="text" disabled='{{able}}' value="1405644" />
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>最高学历</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="text" disabled='{{able}}' value="本科" />
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>车辆使用年限</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="text" disabled='{{able}}' value="4" />
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>客户职业信息</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="text" disabled='{{able}}' value="办事人员和有关人员" />
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>行驶里程</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="text" disabled='{{able}}' value="130000.0" />
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>是否有过重大事故</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="text" disabled='{{able}}' value="否" />
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>事故类型</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="text" disabled='{{able}}' value="无" />
+      </view>
+    </view>
+
+
+    <view class="profile-car">
+      <view class="profile-info-tile">
+        <text>车辆照片</text>
+      </view>
+      <scroll-view scroll-x="true">
+        <view class="uploadWrap" scroll-x="true">
+          <view wx:for="{{carlist}}" wx:key="car" wx:for-index="index" wx:for-item="item">
+            <image class='profile-car-img' src="{{item}}" mode='aspectFill' data-src="{{item}}" bindtap="previewImageCar"></image>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+    <view class="profile-car">
+      <view class="profile-info-tile">
+        <text>机动车登记证书/抵押登记证</text>
+      </view>
+      <scroll-view scroll-x="true">
+        <view class="uploadWrap" scroll-x="true">
+          <view wx:for="{{dengjiList}}" wx:key="deng" wx:for-index="index" wx:for-item="item">
+            <image class='profile-car-img' src="{{item}}" mode='aspectFill' data-src="{{item}}" bindtap="previewImageDeng"></image>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+    <view class="profile-car">
+      <view class="profile-info-tile">
+        <text>行驶证</text>
+      </view>
+      <scroll-view scroll-x="true">
+        <view class="uploadWrap" scroll-x="true">
+          <view wx:for="{{xingshiList}}" wx:key="xing" wx:for-index="index" wx:for-item="item">
+            <image class='profile-car-img' src="{{item}}" mode='aspectFill' data-src="{{item}}" bindtap="previewImageXing"></image>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+    <button class="next_btn">下一步</button>
+  </view>
+  <view style="height:100rpx;background-color:#fff;"></view>
+</form>
