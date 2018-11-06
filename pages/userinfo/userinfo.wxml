@@ -1,85 +1,207 @@
-<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
-  <form bindsubmit="formSubmit" report-submit='true'>
-    <view class="page__bd">
+<form bindsubmit="formSubmit" report-submit='true'>
+  <view class="profile-warn">
+    <text><text style="color:red">*</text> 信息有误请及时联系客户经理修改</text>
+  </view>
 
-      <view class="weui-cells__title">
-        个人信息有误请及时联系客户经理修改</view>
-      <view class="weui-cells weui-cells_after-title">
-        <view class="weui-cell weui-cell_input">
-          <view class="weui-cell__hd">
-            <view class="weui-label">真实姓名</view>
-          </view>
-          <view class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入真实姓名" value='{{clUserInfo.user_name}}' />
-          </view>
-        </view>
-
-        <view class="weui-cell weui-cell_input">
-          <view class="weui-cell__hd">
-            <view class="weui-label">身份证</view>
-          </view>
-          <view class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入身份证号" value='{{clUserInfo.idcard}}' />
-          </view>
-        </view>
-
-        <view class="weui-cell weui-cell_input">
-          <view class="weui-cell__hd">
-            <view class="weui-label">身份证地址</view>
-          </view>
-          <view class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入身份证地址" value='{{clUserInfo.idcard_address}}' />
-          </view>
-        </view>
-
+  <view class="profile-info">
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>真实姓名</text>
       </view>
-
-      <view class="weui-cells__title">
-        联系人信息</view>
-      <view class="weui-cells weui-cells_after-title" wx:for="{{clContactInfoList}}" wx:key="" data-id="{{item.id}}">
-        <view class="weui-cell weui-cell_input">
-          <view class="weui-cell__hd">
-            <view class="weui-label">联系人{{item.index}}姓名</view>
-          </view>
-          <view class="weui-cell__bd">
-            <input class="weui-input"  value='{{item.contact_name}}' />
-          </view>
-        </view>
-
-        <view class="weui-cell weui-cell_input">
-          <view class="weui-cell__hd">
-            <view class="weui-label">联系人{{item.index}}电话</view>
-          </view>
-          <view class="weui-cell__bd">
-            <input class="weui-input"  value='{{item.contact_phone}}' />
-          </view>
-        </view>
-
-        <view class="weui-cell weui-cell_input">
-          <view class="weui-cell__hd">
-            <view class="weui-label">联系人{{item.index}}身份</view>
-          </view>
-          <view class="weui-cell__bd">
-            <input class="weui-input" value='{{item.contact_relationship}}' />
-          </view>
-        </view>
+      <view class="profile-info-input">
+        <input type="text" disabled='true' value="金阳" />
       </view>
-
-
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>身份证</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="text" disabled='true' value="440802197510230035" />
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>身份证地址</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="text" disabled='{{able}}' value="江苏省南通如东县掘港镇虹桥村" />
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>现居地址</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="text" disabled='{{able}}' value="北京市西城区复兴门外大街999号院" />
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>手机号码</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="text" disabled='true' value="15502168858" />
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>健康状况</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="text" disabled='{{able}}' value="健康" />
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>身份类型</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="text" disabled='{{able}}' value="在职" />
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>最高学历</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="text" disabled='{{able}}' value="本科" />
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>公司名称</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="text" disabled='{{able}}' value="个体" />
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>客户职业信息</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="text" disabled='{{able}}' value="办事人员和有关人员" />
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>公司电话</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="text" disabled='{{able}}' value="15502168858" />
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>证件到期日</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="text" disabled='{{able}}' value="2038-05-03" />
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>开户行</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="text" disabled='{{able}}' value="中国银行" />
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>银行卡类型</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="text" disabled='{{able}}' value="借记卡" />
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>银行卡号</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="text" disabled='{{able}}' value="62178561000827993" />
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>预留手机号</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="text" disabled='{{able}}' value="15502168858" />
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>个人总收入(元/月)</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="text" disabled='{{able}}' value="5000" />
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>微信</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="text" disabled='{{able}}' value="100010001000" />
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>婚姻状况</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="text" disabled='{{able}}' value="已婚" />
+      </view>
     </view>
 
 
+    <!--联系人信息-->
+    <view class="profile-info-contact">
+      <view class="profile-info-tile">
+        <text>联系人信息</text>
+      </view>
 
+      <view class="profile-info-detail">
+        <view class="profile-info-text">
+          <text>联系人1姓名</text>
+        </view>
+        <view class="profile-info-input">
+          <input type="text" disabled='{{able}}' value="刘松林" />
+        </view>
+      </view>
+      <view class="profile-info-detail">
+        <view class="profile-info-text">
+          <text>联系人1电话</text>
+        </view>
+        <view class="profile-info-input">
+          <input type="text" disabled='{{able}}' value="15226772836" />
+        </view>
+      </view>
+      <view class="profile-info-detail">
+        <view class="profile-info-text">
+          <text>联系人1关系</text>
+        </view>
+        <view class="profile-info-input">
+          <input type="text" disabled='{{able}}' value="父母" />
+        </view>
+      </view>
+    </view>
+
+    <!--身份证信息-->
     <view class="profile-id">
-      <view class="weui-cells__title">
-        身份证正反面
+      <view class="profile-info-tile">
+        <text>身份证正反面</text>
       </view>
+      <!--身份证要从后台传一个数组上来,就是链接的数组,假如渠道同步过来有身份证那么这里显示身份证否则这里要上传两张图片-->
       <view>
-        <image src="{{imglist[0]}}" mode='aspectFill' data-src="{{imglist[0]}}" bindtap="previewImageId"></image>
-        <image src="{{imglist[1]}}" mode='aspectFill' data-src="{{imglist[1]}}" bindtap="previewImageId"></image>
+        <image src="{{imglist[0]}}" mode='aspectFill' data-src="{{imglist[0]}}" bindtap="previewImage"></image>
+        <image src="{{imglist[1]}}" mode='aspectFill' data-src="{{imglist[1]}}" bindtap="previewImage"></image>
       </view>
     </view>
-
-
-  </form>
-</view>
+    <button class="next_btn" form-type='submit'>下一步</button>
+  </view>
+  <view style="height:100rpx;background-color:#fff;"></view>
+</form>
