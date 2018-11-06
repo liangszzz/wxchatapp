@@ -16,7 +16,7 @@ page {
 }
 
 .phone_view {
-  width: 508rpx;
+  width: 75%;
   height: 82rpx;
   border-radius: 22rpx;
   border-bottom-color: #f0f0f0;
@@ -33,11 +33,16 @@ page {
   border-top-width: 5rpx;
   text-align: center;
   margin-top: 465rpx;
-  color: white
+  margin-left:auto;
+  margin-right:auto;
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+
 }
 
 .invitationCode_view {
-  width: 508rpx;
+  width: 60%;
   height: 82rpx;
   border-radius: 22rpx;
   border-bottom-color: #f0f0f0;
@@ -54,7 +59,23 @@ page {
   border-top-width: 5rpx;
   text-align: center;
   margin-top: 70rpx;
-  color: white
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+}
+
+.register_verification_btn {
+  width: 35%;
+  height: 82rpx;
+  border-radius: 22rpx;
+  background-color: #37b0f7;
+  margin-top: 73rpx;
+  font-size: 10px;
+  color:#fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left:7px;
 }
 
 .register_btn {
@@ -65,8 +86,7 @@ page {
   margin-top: 73rpx;
   font-size: 15px;
   color:#fff;
-}
-
-.placeholder-class{
-  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

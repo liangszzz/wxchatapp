@@ -1,15 +1,18 @@
 <view class="big_view">
-  <form bindsubmit="formSubmit">
-    <view>
-      <input class="phone_view" type='number' auto-focus placeholder="请输入手机号码" placeholder-class="placeholder-class" bindinput='bindPhoneInput' value='{{phone}}' />
+    <view style='width: 100%;'>
+        <input class="phone_view" type='number' placeholder="请输入手机号码" 
+        placeholder-class="phcolor" bindinput='bindPhoneInput' value='{{phone}}' />
+    </view>
+    <view style='width: 100%;'>
+        <view style='width: 75%;margin-left:auto;margin-right:auto;display:flex;flex-direction:row;'>
+            <input class="invitationCode_view" placeholder="请输入验证码" 
+            type='number' id='invitation_code' bindinput='bindInvitationInput' placeholder-class="phcolor" />
+            <button class='register_verification_btn' disabled='{{btnSendSms}}' bindtap="sendSms">{{btnSendSmsMsg}}</button>
+        </view>
     </view>
     <view>
-      <input class="invitationCode_view" placeholder="请输入邀请码" type='number' id='invitation_code' bindinput='bindInvitationInput' placeholder-class="placeholder-class" />
+        <button class='register_btn' open-type="getUserInfo" bindgetuserinfo="getUserInfo" 
+        disabled='{{btnRegistered}}'>快速登陆</button>
     </view>
-    <view class="btn-area">
-      <button formType="submit" class='register_btn' open-type="getUserInfo" 
-      bindgetuserinfo="getUserInfo" disabled='{{btnRegistered}}'>快速绑定注册</button>
-    </view>
-  </form>
 
 </view>
