@@ -119,16 +119,46 @@ Page({
    * 提交
    */
   formSubmit: function(e) {
-    var openId = this.data.userInfo.openId;
+    var that = this;
+    var openId = app.globalData.userInfo.openId;
     var formId = e.detail.formId;
     let data = e.detail.value
-    console.log(data)
+    console.log(data);
+    if(this.data.imglist.length<2){
+      wx.showToast({
+        title: '缺少图片信息，请上传图片',
+        icon: 'none',
+        duration: 2000 //持续的时间
+      })
+      return false
+    }
     // 传入表单数据，调用验证方法
     if (!this.WxValidate.checkForm(data)) {
       const error = this.WxValidate.errorList[0]
       console.log(error);
       return false
     }
+    //后台保存数据
+    wx.request({
+      url: app.globalData.http_url_head+'user/save',
+      header:{
+        token:app.globalData.userInfo.token
+      },
+      data:{
+        data:data
+      },
+      method:"post",
+      success:function(res){
+        wx.navigateTo({
+          url: '../carinfo/carinfo?biz_order_no=' + that.data.clUserInfo.biz_order_no,
+        })
+        
+      },
+      fail:function(){
+        console.log("数据保存失败")
+      }
+    })
+   
   },
 
   initValidate() {

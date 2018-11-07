@@ -163,29 +163,30 @@
       <view class="profile-info-tile">
         <text>联系人信息</text>
       </view>
-
-      <view class="profile-info-detail">
-        <view class="profile-info-text">
-          <text>联系人1姓名</text>
+      <view wx:for="{{clContactInfoList}}" wx:key="index" data-id="{{item.id}}">
+        <view class="profile-info-detail">
+          <view class="profile-info-text">
+            <text>联系人{{index+1}}姓名</text>
+          </view>
+          <view class="profile-info-input">
+            <input type="text" disabled='{{able}}' name="contact_name{{index+1}}" value="{{item.contact_name}}" />
+          </view>
         </view>
-        <view class="profile-info-input">
-          <input type="text" disabled='{{able}}' value="刘松林" />
+        <view class="profile-info-detail">
+          <view class="profile-info-text">
+            <text>联系人{{index+1}}电话</text>
+          </view>
+          <view class="profile-info-input">
+            <input type="text" disabled='{{able}}'  name="contact_phone{{index+1}}" value="{{item.contact_phone}}" />
+          </view>
         </view>
-      </view>
-      <view class="profile-info-detail">
-        <view class="profile-info-text">
-          <text>联系人1电话</text>
-        </view>
-        <view class="profile-info-input">
-          <input type="text" disabled='{{able}}' value="15226772836" />
-        </view>
-      </view>
-      <view class="profile-info-detail">
-        <view class="profile-info-text">
-          <text>联系人1关系</text>
-        </view>
-        <view class="profile-info-input">
-          <input type="text" disabled='{{able}}' value="父母" />
+        <view class="profile-info-detail">
+          <view class="profile-info-text">
+            <text>联系人{{index+1}}关系</text>
+          </view>
+          <view class="profile-info-input">
+            <input type="text" disabled='{{able}}' name="contact_relationship{{index+1}}" value="{{item.contact_relationship}}" />
+          </view>
         </view>
       </view>
     </view>
@@ -202,11 +203,11 @@
       </view>
     </view>
     <view wx:if="{{fromType == 1}}">
-    <button class="next_btn" form-type='submit'>下一步</button>
+      <button class="next_btn" form-type='submit'>下一步</button>
     </view>
-    
+
     <view wx:if="{{fromType == 2}}">
-    <button class="next_btn" form-type='submit'>修改</button>
+      <button class="next_btn" form-type='submit'>修改</button>
     </view>
 
   </view>
