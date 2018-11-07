@@ -51,7 +51,7 @@ Page({
    */
   toUserInfo: util.throttle(function (e) {
     wx.navigateTo({
-      url: '../userinfo/userinfo',
+      url: '../userinfo/userinfo?idcard=' + app.globalData.userInfo.idcard,
     })
   }, 1000),
 
