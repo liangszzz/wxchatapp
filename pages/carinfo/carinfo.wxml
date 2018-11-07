@@ -1,6 +1,9 @@
 <form bindsubmit="formSubmit" report-submit='true'>
   <view class="profile-warn">
     <text><text style="color:red">*</text> 信息有误请及时联系客户经理修改</text>
+    <view hidden="true">
+      <input type="text" disabled='{{able}}' name="biz_order_no" value="{{clCarInfo.biz_order_no}}" />
+    </view>
   </view>
 
   <view class="profile-info">
@@ -9,7 +12,7 @@
         <text>车牌号码</text>
       </view>
       <view class="profile-info-input">
-        <input type="text" disabled='{{able}}' value="京A 88888" />
+        <input type="text" disabled='{{able}}' name="car_no" value="{{clCarInfo.car_no}}" />
       </view>
     </view>
     <view class="profile-info-detail">
@@ -17,7 +20,7 @@
         <text>车辆品牌</text>
       </view>
       <view class="profile-info-input">
-        <input type="text" disabled='{{able}}' value="哈弗" />
+        <input type="text" disabled='{{able}}' name="car_brand" value="{{clCarInfo.car_brand}}" />
       </view>
     </view>
     <view class="profile-info-detail">
@@ -25,7 +28,7 @@
         <text>车辆型号</text>
       </view>
       <view class="profile-info-input">
-        <input type="text" disabled='{{able}}' value="2014款 哈弗H6 运动版 1.5T 手动 四驱 精英型" />
+        <input type="text" disabled='{{able}}' name="car_model" value="{{clCarInfo.car_model}}" />
       </view>
     </view>
     <view class="profile-info-detail">
@@ -33,7 +36,7 @@
         <text>车辆估值（元）</text>
       </view>
       <view class="profile-info-input">
-        <input type="text" disabled='{{able}}' value="52000.0" />
+        <input type="text" disabled='{{able}}' name="car_cost" value="{{clRiskInfo.car_cost}}" />
       </view>
     </view>
     <view class="profile-info-detail">
@@ -41,7 +44,7 @@
         <text>车身颜色</text>
       </view>
       <view class="profile-info-input">
-        <input type="text" disabled='true' value="黑色" />
+        <input type="text" disabled='true'name="car_color" value="{{clCarInfo.car_color}}" />
       </view>
     </view>
     <view class="profile-info-detail">
@@ -49,7 +52,7 @@
         <text>车架号</text>
       </view>
       <view class="profile-info-input">
-        <input type="text" disabled='{{able}}' value="LGWEF4A5" />
+        <input type="text" disabled='{{able}}' value="{{clCarInfo.car_frame_no}}" />
       </view>
     </view>
     <view class="profile-info-detail">
@@ -57,39 +60,25 @@
         <text>发动机号</text>
       </view>
       <view class="profile-info-input">
-        <input type="text" disabled='{{able}}' value="1405644" />
+        <input type="text" disabled='{{able}}' name="car_engine_no" value="{{clCarInfo.car_engine_no}}" />
       </view>
     </view>
-    <view class="profile-info-detail">
-      <view class="profile-info-text">
-        <text>最高学历</text>
-      </view>
-      <view class="profile-info-input">
-        <input type="text" disabled='{{able}}' value="本科" />
-      </view>
-    </view>
+
     <view class="profile-info-detail">
       <view class="profile-info-text">
         <text>车辆使用年限</text>
       </view>
       <view class="profile-info-input">
-        <input type="text" disabled='{{able}}' value="4" />
+        <input type="text" disabled='{{able}}' name="car_service_life" value="{{clCarInfo.car_service_life}}" />
       </view>
     </view>
-    <view class="profile-info-detail">
-      <view class="profile-info-text">
-        <text>客户职业信息</text>
-      </view>
-      <view class="profile-info-input">
-        <input type="text" disabled='{{able}}' value="办事人员和有关人员" />
-      </view>
-    </view>
+
     <view class="profile-info-detail">
       <view class="profile-info-text">
         <text>行驶里程</text>
       </view>
       <view class="profile-info-input">
-        <input type="text" disabled='{{able}}' value="130000.0" />
+        <input type="text" disabled='{{able}}' name="car_driving_mileage" value="{{clCarInfo.car_driving_mileage}}" />
       </view>
     </view>
     <view class="profile-info-detail">
@@ -97,7 +86,7 @@
         <text>是否有过重大事故</text>
       </view>
       <view class="profile-info-input">
-        <input type="text" disabled='{{able}}' value="否" />
+        <input type="text" disabled='{{able}}' name="major_accident" value="{{clCarInfo.major_accident}}" />
       </view>
     </view>
     <view class="profile-info-detail">
@@ -105,7 +94,7 @@
         <text>事故类型</text>
       </view>
       <view class="profile-info-input">
-        <input type="text" disabled='{{able}}' value="无" />
+        <input type="text" disabled='{{able}}' name="accident_type" value="{{clCarInfo.accident_type}}" />
       </view>
     </view>
 
@@ -140,13 +129,14 @@
       </view>
       <scroll-view scroll-x="true">
         <view class="uploadWrap" scroll-x="true">
-          <view wx:for="{{xingshiList}}" wx:key="xing" wx:for-index="index" wx:for-item="item">
-            <image class='profile-car-img' src="{{item}}" mode='aspectFill' data-src="{{item}}" bindtap="previewImageXing"></image>
+          <view>
+            <image class='profile-car-img' src="{{xingshiList[0]}}" mode='aspectFill' data-src="{{xingshiList[0]}}" bindtap="previewImageXing"></image>
+            <image class='profile-car-img' src="{{xingshiList[1]}}" mode='aspectFill' data-src="{{xingshiList[1]}}" bindtap="previewImageXing"></image>
           </view>
         </view>
       </scroll-view>
     </view>
-    <button class="next_btn">下一步</button>
+    <button class="next_btn" form-type='submit'>下一步</button>
   </view>
   <view style="height:100rpx;background-color:#fff;"></view>
 </form>
