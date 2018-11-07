@@ -25,7 +25,7 @@
         <text>身份证地址</text>
       </view>
       <view class="profile-info-input">
-        <input type="text" disabled='{{able}}' value="江苏省南通如东县掘港镇虹桥村" />
+        <input type="text" disabled='{{able}}' name="idcard_address" value="江苏省南通如东县掘港镇虹桥村" />
       </view>
     </view>
     <view class="profile-info-detail">
@@ -201,7 +201,14 @@
         <image src="{{imglist[1]}}" mode='aspectFill' data-src="{{imglist[1]}}" bindtap="previewImage"></image>
       </view>
     </view>
+    <view wx:if="{{fromType == 1}}">
     <button class="next_btn" form-type='submit'>下一步</button>
+    </view>
+    
+    <view wx:if="{{fromType == 2}}">
+    <button class="next_btn" form-type='submit'>修改</button>
+    </view>
+
   </view>
   <view style="height:100rpx;background-color:#fff;"></view>
 </form>
