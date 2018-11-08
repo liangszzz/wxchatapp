@@ -1,46 +1,54 @@
 <!--pages/sign/sign.wxml-->
-<view class="header">
-  添加您的银行卡用于收款
-</view>
-<view class='table'>
-  <view class='tr'>
-    <view class='td-name'>持卡人</view>
-    <view class='td-value'>沈海强</view>
-  </view>
-  <view class='tr'>
-    <view class='td-name'>身份证号</view>
-    <view class='td-value'>32046454654644748456</view>
-  </view>
-  <view class='tr'>
-    <view class='td-name'>签约银行</view>
-    <view class='td-value'>工商银行</view>
-  </view>
-  <view class='tr'>
-    <view class='td-name'>卡号</view>
-    <view class='td-value'>44135135784541654</view>
-  </view>
-  <view class='tr'>
-    <view class='td-name'>手机号</view>
-    <view class='td-value'>
-      <input class="invitation" value='{{phoneNum}}' bindinput="phoneInput" maxlength='11' />
+<text decode="{{true}}" class='top-text'>&nbsp;&nbsp;&nbsp;&nbsp;添加您的银行卡用于收款</text>
+<view class='big-view'>
+    <view class='row-view'>
+        <view style='width:100px;'>持卡人</view>
+        <text style='color:#888888'>{{user_name}}</text>
     </view>
-  </view>
+    <view class='line-view'></view>
+    <view class='row-view'>
+        <view style='width:100px;'>身份证号</view>
+        <text style='color:#888888'>{{idcard}}</text>
+    </view>
+    <view class='line-view'></view>
+
+    <view class='row-view'>
+        <view style='width:100px;'>签约银行</view>
+        <view class='content_answer_view'>
+            <picker bindchange="bindPickerChange" value="{{index}}" range="{{bank_name_list}}" disabled='{{can_update}}'>
+                <view class="picker_view_1">
+                    {{bank_name_list[index]}}
+                    <view class='picker_view_2'>🔽</view>
+                </view>
+            </picker>
+        </view>
+    </view>
+    <view class='row-view'>
+        <view style='width:100px;'>卡号</view>
+        <input style='color:#888888' placeholder='请输入银行卡' value='{{bank_card}}' bindinput="bank_card_input" type='number' disabled='{{can_update}}' maxlength="19" />
+    </view>
+    <view class='line-view'></view>
+    <view class='row-view'>
+        <view style='width:100px;'>手机号</view>
+        <text style='color:#888888'>{{reserve_phone_no}}</text>
+    </view>
+
+    <view class='line-view'></view>
+
+    <view class='code-view' hidden='{{hiddenSmsCode}}'>
+        <view style='width:30%;'>短信验证码</view>
+        <view class="code-input-view">
+            <input placeholder="请输入验证码" bindinput='smsCodeInput' placeholder-class="placeholder-class" maxlength="6" />
+        </view>
+        <view style='width:35%;color:#03A9F4;text-align:right' bindtap='getcode'>{{btnSendSmsMsg}}</view>
+    </view>
+
+
+    <view class='checkbox-view'>
+        <checkbox-group bindchange="readChenge">
+            <checkbox value="read" bindchange="read_chenge" /> 我已阅读并理解
+            <text bindtap='agreement' style='color: rgba(3, 169, 244, 1);'>《自动还款协议》</text>
+        </checkbox-group>
+    </view>
 </view>
-
-<view class='code'>
-  <view class="textcode">短信验证码</view>
-  <view class="inputcode">
-    <input class="invitation" placeholder="请输入验证码" placeholder-class="placeholder-class" />
-  </view>
-  <view class='line'></view>
-  <view class='getcode' bindtap='getcode'>获取验证码</view>
-</view>
-
-<view class='agreement'>
-  <checkbox value="12" checked="" class='check' />
-  <view>我已阅读并理解</view>
-  <view bindtap='agreement' style='color: rgba(3, 169, 244, 1);'>《自动还款协议》</view>
-
-</view>
-
-<button class='btn' bindtap='back'>确认</button>
+<button class='bottom-btn' bindtap='verifyTap' disabled='{{btn_verify_disabled}}'>确认</button>

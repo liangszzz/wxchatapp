@@ -1,132 +1,95 @@
-/* pages/sign/sign.wxss */
+/* pages/contractContract/contractContract.wxss */
 
 page {
-  height: 100%;
-  background-color: rgba(242, 242, 242, 1);
+  background-color: #eaeaea;
 }
 
-.header {
+.top-text {
+  width: 100%;
   height: 25px;
-  color: rgba(136, 136, 136, 1);
-  font-size: 14px;
-  text-align: left;
-  font-family: PingFangSC-regular;
+  font-size: 12px;
   display: flex;
-  align-items: left;
-  justify-content: left;
+  align-items: center;
+  color: #888;
 }
 
-.table {
-  border: 1px;
-  background-color: white;
-}
-
-.tr {
+.big-view {
   width: 100%;
-  display: flex;
+  height: 370px;
+  background-color: #fff;
 }
 
-.td-name {
-  left: 20px;
-  top: 122px;
-  width: 40%;
-  height: 60px;
-  color: rgba(16, 16, 16, 1);
-  font-size: 12px;
-  text-align: left;
-  font-family: PingFangSC-regular;
-  border-bottom: 1px solid rgba(187, 187, 187, 1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.td-value {
-  left: 82px;
-  top: 122px;
-  width: 80%;
-  height: 60px;
-  color: rgba(136, 136, 136, 1);
-  font-size: 12px;
-  text-align: left;
-  font-family: Microsoft Yahei;
-  border-bottom: 1px solid rgba(187, 187, 187, 1);
-  display: flex;
-  align-items: center;
-  justify-content: left;
-}
-
-.code {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 60px;
-  background-color: white;
-}
-
-.placeholder-class {
-  color: rgba(136, 136, 136, 1);
-  font-size: 12px;
-  text-align: left;
-  font-family: Microsoft Yahei;
-}
-
-.textcode {
-  color: rgba(16, 16, 16, 1);
-  font-size: 12px;
-  text-align: center;
-  font-family: PingFangSC-regular;
-  width: 28%;
-}
-
-.getcode {
-  left: 268px;
-  top: 337px;
-  width: 32%;
-  height: 17px;
-  color: rgba(3, 169, 244, 1);
-  font-size: 12px;
-  text-align: left;
-  font-family: PingFangSC-regular;
-}
-
-.line {
-  height: 15px;
-  margin: 5px 5px 5px 10px;
-  border-left: 1px solid rgba(187, 187, 187, 1);
-}
-
-.inputcode {
-  width: 30%;
-}
-
-.agreement {
-  left: 7px;
-  top: 710px;
-  width: 100%;
-  height: 29px;
-  font-size: 12px;
-  text-align: center;
-  font-family: Arial-regular;
-  background-color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.check {
-  transform: scale(0.7, 0.7);
-  color: rgba(3, 169, 244, 1);
-}
-
-.btn {
-  margin-top: 40px;
+.row-view {
   width: 90%;
-  height: 47px;
-  border-radius: 4px;
-  background-color: rgba(230, 67, 64, 1);
-  color: rgba(255, 255, 255, 1);
-  font-size: 18px;
-  text-align: center;
-  font-family: Microsoft Yahei;
+  padding-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: row;
+}
+
+.line-view {
+  width: 90%;
+  height: 1px;
+  background-color: #bbb;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.bottom-btn{
+  width:90%;
+  margin-top:35px;
+  background-color: #37b0f7;
+  font-size: 15px;
+  color:#fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.code-view{
+  width:90%;
+  display: flex;
+  flex-direction: row;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+}
+
+.code-input-view{
+  border-right-color: #c5bdbd;
+  border-right-style: solid;
+  border-right-width: 1rpx;
+  width:35%;
+}
+
+.checkbox-view{
+  width:90%;
+  display: flex;
+  flex-direction: row;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 35px;
+}
+
+.content_answer_view {
+  width: 65%;
+}
+
+.picker_view_1{
+  width: 70%;
+  height: 45rpx;
+  /* border-width:2rpx;
+  border-color: rgba(110, 107, 107, 0.411);
+  border-style:solid; */
+  font-size: 30rpx;
+  margin-left: 15px;
+  /* border-radius: 15rpx; */
+}
+
+.picker_view_2{
+  font-size: 30rpx;
+  float: right;
+  margin-right: 3px;
+  color: rgba(110, 107, 107, 0.411);
 }
