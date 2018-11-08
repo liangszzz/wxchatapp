@@ -111,7 +111,7 @@ Page({
         if (wxAppConfirm == 1) {
           url = '../auditLenders/auditLenders?biz_order_no=' + bizOrderNo
         } else {
-          url = '../userinfo/userinfo?biz_order_no=' + bizOrderNo
+          url = '../sign/sign?biz_order_no=' + bizOrderNo
         }
 
       }
