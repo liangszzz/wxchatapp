@@ -1,6 +1,9 @@
 <form bindsubmit="formSubmit" report-submit='true'>
   <view class="profile-warn">
     <text><text style="color:red">*</text> 信息有误请及时联系客户经理修改</text>
+    <view hidden="true">
+      <input type="text" disabled='{{able}}' name="biz_order_no" value="{{clUserInfo.biz_order_no}}" />
+    </view>
   </view>
 
   <view class="profile-info">
@@ -9,7 +12,7 @@
         <text>真实姓名</text>
       </view>
       <view class="profile-info-input">
-        <input type="text" disabled='true' value="金阳" />
+        <input type="text" disabled='true' name="user_name" value="{{clUserInfo.user_name}}" />
       </view>
     </view>
     <view class="profile-info-detail">
@@ -17,7 +20,7 @@
         <text>身份证</text>
       </view>
       <view class="profile-info-input">
-        <input type="text" disabled='true' value="440802197510230035" />
+        <input type="text" disabled='true' name="idcard" value="{{clUserInfo.idcard}}" />
       </view>
     </view>
     <view class="profile-info-detail">
@@ -25,7 +28,7 @@
         <text>身份证地址</text>
       </view>
       <view class="profile-info-input">
-        <input type="text" disabled='{{able}}' name="idcard_address" value="江苏省南通如东县掘港镇虹桥村" />
+        <input type="text" disabled='{{able}}' name="idcard_address" value="{{clUserInfo.idcard_address}}" />
       </view>
     </view>
     <view class="profile-info-detail">
@@ -33,7 +36,7 @@
         <text>现居地址</text>
       </view>
       <view class="profile-info-input">
-        <input type="text" disabled='{{able}}' value="北京市西城区复兴门外大街999号院" />
+        <input type="text" disabled='{{able}}' name="residential_address" value="{{clUserInfo.residential_address}}" />
       </view>
     </view>
     <view class="profile-info-detail">
@@ -41,7 +44,7 @@
         <text>手机号码</text>
       </view>
       <view class="profile-info-input">
-        <input type="text" disabled='true' value="15502168858" />
+        <input type="text" disabled='true' name="phone_no" value="{{clUserInfo.phone_no}}" />
       </view>
     </view>
     <view class="profile-info-detail">
@@ -49,7 +52,11 @@
         <text>健康状况</text>
       </view>
       <view class="profile-info-input">
-        <input type="text" disabled='{{able}}' value="健康" />
+        <picker bindchange="bindHelthChange" name="health_status" range-key="{{'label'}}" value="{{helthIndex}}" disabled='{{able}}' range="{{helthArray}}">
+          <view class="picker">
+            {{helthArray[helthIndex].label}}
+          </view>
+        </picker>
       </view>
     </view>
     <view class="profile-info-detail">
@@ -57,7 +64,11 @@
         <text>身份类型</text>
       </view>
       <view class="profile-info-input">
-        <input type="text" disabled='{{able}}' value="在职" />
+        <picker bindchange="bindidChange" name="identity_type" value="{{idIndex}}" range-key="{{'label'}}" disabled='{{able}}' range="{{idArray}}">
+          <view class="picker">
+            {{idArray[idIndex].label}}
+          </view>
+        </picker>
       </view>
     </view>
     <view class="profile-info-detail">
@@ -65,7 +76,11 @@
         <text>最高学历</text>
       </view>
       <view class="profile-info-input">
-        <input type="text" disabled='{{able}}' value="本科" />
+        <picker bindchange="bindeduChange" name="degree" value="{{eduIndex}}" range-key="{{'label'}}" disabled='{{able}}' range="{{eduArray}}">
+          <view class="picker">
+            {{eduArray[eduIndex].label}}
+          </view>
+        </picker>
       </view>
     </view>
     <view class="profile-info-detail">
@@ -73,7 +88,7 @@
         <text>公司名称</text>
       </view>
       <view class="profile-info-input">
-        <input type="text" disabled='{{able}}' value="个体" />
+        <input type="text" disabled='{{able}}' name="company_name" value="{{clUserInfo.company_name}}" />
       </view>
     </view>
     <view class="profile-info-detail">
@@ -81,7 +96,11 @@
         <text>客户职业信息</text>
       </view>
       <view class="profile-info-input">
-        <input type="text" disabled='{{able}}' value="办事人员和有关人员" />
+        <picker bindchange="bindclientChange" name="customer_professional_info" value="{{clientIndex}}" range-key="{{'label'}}" disabled='{{able}}' range="{{clientArray}}">
+          <view class="picker">
+            {{clientArray[clientIndex].label}}
+          </view>
+        </picker>
       </view>
     </view>
     <view class="profile-info-detail">
@@ -89,7 +108,7 @@
         <text>公司电话</text>
       </view>
       <view class="profile-info-input">
-        <input type="text" disabled='{{able}}' value="15502168858" />
+        <input type="text" disabled='{{able}}' name="company_phone_no" value="{{clUserInfo.company_phone_no}}" />
       </view>
     </view>
     <view class="profile-info-detail">
@@ -97,7 +116,7 @@
         <text>证件到期日</text>
       </view>
       <view class="profile-info-input">
-        <input type="text" disabled='{{able}}' value="2038-05-03" />
+        <input type="text" disabled='{{able}}' name="certificate_expiry_date" value="{{clUserInfo.certificate_expiry_date}}" />
       </view>
     </view>
     <view class="profile-info-detail">
@@ -105,7 +124,7 @@
         <text>开户行</text>
       </view>
       <view class="profile-info-input">
-        <input type="text" disabled='{{able}}' value="中国银行" />
+        <input type="text" disabled='{{able}}' name="bank_name" value="{{clUserInfo.bank_name}}" />
       </view>
     </view>
     <view class="profile-info-detail">
@@ -113,7 +132,11 @@
         <text>银行卡类型</text>
       </view>
       <view class="profile-info-input">
-        <input type="text" disabled='{{able}}' value="借记卡" />
+        <picker bindchange="bindbankChange" value="{{bankIndex}}" name="bank_card_type" range-key="{{'label'}}" disabled='{{able}}' range="{{bankArray}}">
+          <view class="picker">
+            {{bankArray[bankIndex].label}}
+          </view>
+        </picker>
       </view>
     </view>
     <view class="profile-info-detail">
@@ -121,7 +144,7 @@
         <text>银行卡号</text>
       </view>
       <view class="profile-info-input">
-        <input type="text" disabled='{{able}}' value="62178561000827993" />
+        <input type="text" disabled='{{able}}' name="bank_account" value="{{clUserInfo.bank_account}}" />
       </view>
     </view>
     <view class="profile-info-detail">
@@ -129,7 +152,7 @@
         <text>预留手机号</text>
       </view>
       <view class="profile-info-input">
-        <input type="text" disabled='{{able}}' value="15502168858" />
+        <input type="text" disabled='{{able}}' name="reserve_phone_no" value="{{clUserInfo.reserve_phone_no}}" />
       </view>
     </view>
     <view class="profile-info-detail">
@@ -137,7 +160,7 @@
         <text>个人总收入(元/月)</text>
       </view>
       <view class="profile-info-input">
-        <input type="text" disabled='{{able}}' value="5000" />
+        <input type="text" disabled='{{able}}' name="personal_income" value="{{clUserInfo.personal_income}}" />
       </view>
     </view>
     <view class="profile-info-detail">
@@ -145,7 +168,7 @@
         <text>微信</text>
       </view>
       <view class="profile-info-input">
-        <input type="text" disabled='{{able}}' value="100010001000" />
+        <input type="text" disabled='{{able}}' name="wechat" value="{{clUserInfo.wechat}}" />
       </view>
     </view>
     <view class="profile-info-detail">
@@ -153,23 +176,26 @@
         <text>婚姻状况</text>
       </view>
       <view class="profile-info-input">
-        <input type="text" disabled='{{able}}' value="已婚" />
+        <picker bindchange="bindmarriageChange" name="marital_status" value="{{marriageIndex}}" range-key="{{'label'}}" disabled='{{able}}' range="{{marriageArray}}">
+          <view class="picker">
+            {{marriageArray[marriageIndex].label}}
+          </view>
+        </picker>
       </view>
     </view>
 
 
-    <!--联系人信息-->
     <view class="profile-info-contact">
       <view class="profile-info-tile">
         <text>联系人信息</text>
       </view>
-      <view wx:for="{{clContactInfoList}}" wx:key="index" data-id="{{item.id}}">
+      <view class="profile-info-list" wx:for="{{clContactInfoList}}" wx:key="contact" wx:for-index="index" wx:for-item="item">
         <view class="profile-info-detail">
           <view class="profile-info-text">
             <text>联系人{{index+1}}姓名</text>
           </view>
           <view class="profile-info-input">
-            <input type="text" disabled='{{able}}' name="contact_name{{index+1}}" value="{{item.contact_name}}" />
+            <input type="text" disabled='{{able}}' name="contact_name_{{index}}" value="{{item.contact_name}}" />
           </view>
         </view>
         <view class="profile-info-detail">
@@ -177,7 +203,7 @@
             <text>联系人{{index+1}}电话</text>
           </view>
           <view class="profile-info-input">
-            <input type="text" disabled='{{able}}'  name="contact_phone{{index+1}}" value="{{item.contact_phone}}" />
+            <input type="text" disabled='{{able}}' name="contact_phone_{{index}}" value="{{item.contact_phone}}" />
           </view>
         </view>
         <view class="profile-info-detail">
@@ -185,7 +211,11 @@
             <text>联系人{{index+1}}关系</text>
           </view>
           <view class="profile-info-input">
-            <input type="text" disabled='{{able}}' name="contact_relationship{{index+1}}" value="{{item.contact_relationship}}" />
+            <picker bindchange="bindshipChange" data-id="{{index}}" name="contact_relationship_{{index}}" range-key='label' value="{{relationIndexArray[index]}}" disabled='{{able}}' range="{{relationshipArray}}">
+              <view class="picker">
+                {{relationshipArray[relationIndexArray[index]].label}}
+              </view>
+            </picker>
           </view>
         </view>
       </view>

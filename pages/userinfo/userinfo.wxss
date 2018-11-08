@@ -41,15 +41,22 @@ page {
   justify-content: center;
 }
 
+/*联系人信息*/
 .profile-info-contact{
   margin: 50rpx 0rpx;
 }
+
+
 .profile-info-tile{
   font-size: 15px;
-  height: 70rpx;
+  height: 50rpx;
   color:#888888;
   font-family: PingFangSC-regular;
   font-weight: bold;
+}
+
+.profile-info-list{
+  padding:15rpx 0rpx;
 }
 
   /*身份证*/
