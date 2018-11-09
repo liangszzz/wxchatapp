@@ -40,7 +40,6 @@ Page({
     biz_order_no = options.biz_order_no;
     if (fromType == 2) {
       orderStatus = options.orderStatus;
-      console.log(orderStatus);
     }
     that.initValidate()
     var imglist = that.data.imglist;
@@ -393,6 +392,14 @@ Page({
     relationIndexArray[e.target.dataset.id] = e.detail.value;
     this.setData({
       relationIndexArray: relationIndexArray
+    })
+  },
+
+  binddateChange:function(e){
+    var clUserInfo = this.data.clUserInfo;
+    clUserInfo.certificate_expiry_date = e.detail.value
+    this.setData({
+      clUserInfo: clUserInfo
     })
   },
 

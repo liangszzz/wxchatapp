@@ -116,7 +116,11 @@
         <text>证件到期日</text>
       </view>
       <view class="profile-info-input">
-        <input type="text" disabled='{{able}}' name="certificate_expiry_date" value="{{clUserInfo.certificate_expiry_date}}" />
+        <picker mode="date" bindchange="binddateChange" value="{{clUserInfo.certificate_expiry_date}}" name="certificate_expiry_date"  disabled='{{able}}' start="2015-09-01" end="2099-09-01">
+          <view class="picker">
+            {{clUserInfo.certificate_expiry_date}}
+          </view>
+        </picker>
       </view>
     </view>
     <view class="profile-info-detail">
