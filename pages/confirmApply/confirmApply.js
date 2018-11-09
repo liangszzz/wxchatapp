@@ -30,8 +30,7 @@ Page({
   },
 
   getBills: function(orderNo) {
-    // let token = app.globalData.userInfo.token;
-    let token = 'token:oZOmt4uzSvEUQoBfSMMO0j27ShwU';
+    let token = app.globalData.userInfo.token;
     wx.request({
       url: app.globalData.http_url_head + 'bill/initBills',
       header: {
@@ -214,8 +213,7 @@ Page({
       method = 4
     }
 
-    // let token = app.globalData.userInfo.token;
-    let token = 'token:oZOmt4uzSvEUQoBfSMMO0j27ShwU';
+    let token = app.globalData.userInfo.token;
     wx.request({
       url: app.globalData.http_url_head + 'bill/afterChangeInitBills',
       header: {
