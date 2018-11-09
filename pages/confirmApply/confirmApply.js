@@ -280,6 +280,7 @@ Page({
       })
       return false;
     }
+    let that = this;
     var formId = e.detail.formId;
     var openId = app.globalData.userInfo.openId;
     //保存formId
@@ -296,7 +297,7 @@ Page({
       success: function(res) {
         if (res.statusCode == 200 && res.data.code == 0) {
           wx.navigateTo({
-            url: '../auditLenders/auditLenders'
+            url: '../auditLenders/auditLenders?biz_order_no=' + that.data.bizOrderNo
           })
         }
       },
