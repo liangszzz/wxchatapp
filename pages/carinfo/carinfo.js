@@ -11,7 +11,7 @@ Page({
     carlist: [],
     dengjiList: [],
     xingshiList: [],
-    formType: '', // 1：订单页进入 2：我的页面进入
+    formType: 1, // 1：订单页进入 2：我的页面进入
     accidentIndex: 0,
     accidentArray: [],
     hasIndex: 0,
@@ -24,7 +24,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log("1");
     var that = this;
     var idcard = '';
     var biz_order_no = options.biz_order_no;
@@ -81,7 +80,7 @@ Page({
             accidentIndex: accidentIndex,
             hasIndex: hasIndex,
             orderStatus: orderStatus,
-            fromType: fromType
+            fromType: options.fromType
           })
         }
       },
@@ -196,6 +195,7 @@ Page({
    * 下一步
    */
   formSubmit: function(e) {
+    var fromType = this.data.fromType;
     //先检查图片是否存在
     if (this.data.carlist.length < 1 || this.data.dengjiList.length < 1 || this.data.xingshiList.length < 2) {
       wx.showToast({
@@ -205,8 +205,6 @@ Page({
       })
       return false
     }
-    var openId = app.globalData.userInfo.openId;
-    var formId = e.detail.formId;
     let data = e.detail.value
     // 传入表单数据，调用验证方法
     if (!this.WxValidate.checkForm(data)) {
@@ -231,7 +229,7 @@ Page({
       method: "post",
       success: function(res) {
         if (res.statusCode == 200 && res.data.code == 0) {
-          if(that.data.formType == 1){
+          if (fromType == 1){
             wx.navigateTo({
               url: '../sign/sign?biz_order_no=' + that.data.clCarInfo.biz_order_no,
             })
