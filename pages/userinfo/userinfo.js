@@ -62,7 +62,6 @@ Page({
         idcard: idcard
       },
       success: function(res) {
-        console.log(res);
         if (res.statusCode == 200 && res.data.code == 0) {
           var clUserInfo = res.data.dataMap.clUserInfo; //用户基本信息
           var clContactInfoList = res.data.dataMap.clContactInfoList; //联系人信息
@@ -116,7 +115,6 @@ Page({
               }
             }
           }
-          console.log(relationIndexArray);
           that.setData({
             clUserInfo: clUserInfo,
             imglist: imglist,
@@ -202,7 +200,6 @@ Page({
     var openId = app.globalData.userInfo.openId;
     var formId = e.detail.formId;
     let data = e.detail.value
-    console.log(data);
     if(this.data.imglist.length<2){
       wx.showToast({
         title: '缺少图片信息，请上传图片',
@@ -383,8 +380,6 @@ Page({
   },
 
   bindshipChange: function (e) {
-    console.log(e.target.dataset.id); //relationIndexArray下标
-    console.log(e.detail.value); //relationShip下标
     var relationIndexArray = this.data.relationIndexArray;
     relationIndexArray[e.target.dataset.id] = e.detail.value;
     this.setData({
