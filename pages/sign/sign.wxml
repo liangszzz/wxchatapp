@@ -1,5 +1,5 @@
 <!--pages/sign/sign.wxml-->
-<text decode="{{true}}" class='top-text'>&nbsp;&nbsp;&nbsp;&nbsp;添加您的银行卡用于收款</text>
+<text decode="{{true}}" class='top-text'>&nbsp;&nbsp;&nbsp;&nbsp;添加您的银行卡用于还款</text>
 <view class='big-view'>
     <view class='row-view'>
         <view style='width:100px;'>持卡人</view>
@@ -23,6 +23,7 @@
             </picker>
         </view>
     </view>
+    <view class='line-view'></view>
     <view class='row-view'>
         <view style='width:100px;'>卡号</view>
         <input style='color:#888888' placeholder='请输入银行卡' value='{{bank_card}}' bindinput="bank_card_input" type='number' disabled='{{can_update}}' maxlength="19" />
