@@ -1,20 +1,41 @@
-<!--pages/auditLenders/auditLenders.wxml-->
 <view>
-  <view class='top_view'>
-    <image class='examine_img' src='/assets/images/alarmClock.png'></image>
-    <view style='margin-left:20px;'>
-      <view><text style='font-size:16px;font-weight:bold'>审核放款中</text></view>
-      <view><text style='font-size:12px'>审核通过后会通过短信或微信通知您，请耐心等候</text></view>
+    <view class='top_view'>
+        <image class='examine_img' src='/assets/images/alarmClock.png'></image>
+        <view style='margin-left:20px;'>
+            <view>
+                <text style='font-size:16px;font-weight:bold'>{{page_name}}</text>
+            </view>
+            <view>
+                <text style='font-size:12px'>{{page_content}}</text>
+            </view>
+        </view>
     </view>
-  </view>
-  <view class='examine_order_information_view'>
-    <view class='examine_order_information_top_view'>订单信息</view>
-    <view class='examine_information_view'>借款金额<text decode="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{baseInfo.apply_amount}}元</text></view>
-    <!--<view class='examine_information_view'>每期应还<text decode="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{baseInfo.total}}元(共{{baseInfo.repayment_terms}}期)</text></view>-->
-    <view class='examine_information_view'>借款银行卡<text decode="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{cluserInfo.bank_name}}(尾号{{cluserInfo.bank_account}})</text></view>
-    <view class='examine_information_view'>提交日期<text decode="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{baseInfo.create_date}}</text></view>
-  </view>
-  <view class='examine_btn_view'>
-    <button style='background-color: #03A9F4;color:#fff;font-size:15px' bindtap='examineBtn'>确定</button>
-  </view>
+    <view class='examine_order_information_view'>
+        <view class='examine_order_information_top_view'>订单信息</view>
+        <view class='examine_information_view'>借款金额
+            <text class='examine_information_text' decode="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{apply_amount}}元</text>
+        </view>
+        <view class='examine_information_view'>每期应还
+            <text class='examine_information_text' decode="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{should_pay_per}}元(共{{repayment_terms}}期)</text>
+        </view>
+        <view class='examine_information_view'>末期金额
+            <text class='examine_information_text' decode="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{should_pay_last}}元</text>
+        </view>
+        <view class='examine_information_view'>提交日期
+            <text class='examine_information_text' decode="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{submit_date}}</text>
+        </view>
+        <view class='examine_information_view'>预计到期时间
+            <text class='examine_information_text' decode="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{should_pay_last_date}}</text>
+        </view>
+        <view class='examine_information_view'>还款方式
+            <text class='examine_information_text' decode="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{repayment_method}}</text>
+        </view>
+        <view class='examine_information_view'>借款银行卡
+            <text class='examine_information_text' decode="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{bank_info}}</text>
+        </view>
+        <view class='examine_information_view'>由大兴安岭农商银行提供贷款服务</view>
+    </view>
+    <view class='examine_btn_view'>
+        <button style='background-color: #03A9F4;color:#fff;font-size:15px' bindtap='examineBtn'>确定</button>
+    </view>
 </view>

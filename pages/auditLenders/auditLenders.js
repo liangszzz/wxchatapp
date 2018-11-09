@@ -6,8 +6,26 @@ Page({
    * 页面的初始数据
    */
   data: {
-    baseInfo: {},
-    cluserInfo:{}
+      //页面名称
+      page_name:"审核放款中",
+      //页面标题下的内容
+      page_content:"",
+      //借款金额
+      apply_amount:"4000",
+      //每期应还
+      should_pay_per:"1000",
+      //末期应还
+      should_pay_last:"1000",
+      //期数
+      repayment_terms:"4",
+      //提交日期
+      submit_date:"2018-01-01",
+      //末期还款日期
+      should_pay_last_date:"2018-05-01",
+      //还款方式
+      repayment_method:"等额本息",
+      //银行卡信息
+      bank_info:"中国银行(尾号0011)"
   },
 
   /**
@@ -15,22 +33,27 @@ Page({
    */
   onLoad: function(options) {
     var that = this;
-    var biz_order_no = options.biz_order_no;
+      var biz_order_no = options.biz_order_no;
     wx.request({
-      url: app.globalData.http_url_head + "/baseInfo/detail",
+      url: app.globalData.http_url_head + "baseInfo/detail/"+biz_order_no,
       header: {
         token: app.globalData.userInfo.token
       },
       method: 'POST',
-      data: {
-        biz_order_no: biz_order_no
-      },
       success: function(res) {
-        console.log(res.data.entity);
+        console.log(res)
         if (res.statusCode == 200 && res.data.code == 0) {
           that.setData({
-            baseInfo: res.data.entity,
-            cluserInfo: res.data.entity.clUserInfo
+              page_name: res.data.dataMap.page_name,
+              page_content: res.data.dataMap.page_content,
+              apply_amount: res.data.dataMap.apply_amount,
+              should_pay_per: res.data.dataMap.should_pay_per,
+              should_pay_last: res.data.dataMap.should_pay_last,
+              repayment_terms: res.data.dataMap.repayment_terms,
+              submit_date: res.data.dataMap.submit_date,
+              should_pay_last_date: res.data.dataMap.should_pay_last_date,
+              repayment_method: res.data.dataMap.repayment_method,
+              bank_info: res.data.dataMap.bank_info
           })
         }
       },
@@ -51,51 +74,11 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
-
-  },
-
-  /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
 
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
 
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {
-
-  }
 })

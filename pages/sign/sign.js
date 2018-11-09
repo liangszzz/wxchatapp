@@ -29,7 +29,8 @@ Page({
         //确认按钮
         btn_verify_disabled: true,
         //短信验证码
-        smsCode:""
+        smsCode:"",
+        biz_order_no:""
     },
 
 
@@ -38,6 +39,9 @@ Page({
      */
     onLoad: function(options) {
         let that = this;
+        this.setData({
+            biz_order_no: options.biz_order_no
+        })
         wx.request({
             url: app.globalData.http_url_head + 'sign/toCheckSign/' + options.biz_order_no,
             header: {
@@ -208,6 +212,9 @@ Page({
     verifyTap:function(e){
         if (this.data.hiddenSmsCode){
             //跳转
+            wx.navigateTo({
+                url: '../confirmApply/confirmApply?bizOrderNo='+this.data.biz_order_no,
+            })
             return
         }
         let that=this;
@@ -229,8 +236,10 @@ Page({
             },
             success: function (e) {
                 if (e.data.code == 0) {
-                    console.log(e)
                     //跳转
+                    wx.navigateTo({
+                        url: '../confirmApply/confirmApply?bizOrderNo=' + this.data.biz_order_no,
+                    })
                 }
                 else {
                     that.setData({
