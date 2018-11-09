@@ -9,8 +9,8 @@ Page({
     imglist: [],
     clContactInfoList: [],
     clUserInfo: {},
-    userInfo:{},
-    fromType: '', // 1：订单页进入 2：我的页面进入
+    userInfo: {},
+    fromType: 1, // 1：订单页进入 2：我的页面进入
     helthIndex: 0,
     helthArray: [],
     idIndex: 0,
@@ -23,8 +23,9 @@ Page({
     bankArray: [],
     marriageIndex: 0,
     marriageArray: [],
-    relationshipArray:[],
-    relationIndexArray: []
+    relationshipArray: [],
+    relationIndexArray: [],
+    orderStatus: ''
   },
 
   /**
@@ -34,13 +35,12 @@ Page({
     var that = this;
     var idcard = '';
     var biz_order_no = '';
-    var fromType = that.data.fromType;
-    if (options.idcard != '' && options.idcard != null) { //从我的页面进入
-      fromType = 2;
-      idcard = options.idcard
-    } else { //订单页进入传bizOrderNo
-      fromType = 1;
-      biz_order_no = options.biz_order_no;
+    var orderStatus = '';
+    var fromType = options.fromType;
+    biz_order_no = options.biz_order_no;
+    if (fromType == 2) {
+      orderStatus = options.orderStatus;
+      console.log(orderStatus);
     }
     that.initValidate()
     var imglist = that.data.imglist;
@@ -99,7 +99,7 @@ Page({
               bankIndex = index;
             }
           }
-          var marriageArray = res.data.dataMap.marital_status;//婚姻状况
+          var marriageArray = res.data.dataMap.marital_status; //婚姻状况
           for (var index in idArray) {
             if (marriageArray[index].value == clUserInfo.marital_status) {
               marriageIndex = index;
@@ -109,8 +109,8 @@ Page({
           var relationshipArray = res.data.dataMap.relationShip; //社会关系
           for (var i in clContactInfoList) {
             var relation = clContactInfoList[i].contact_relationship;
-            for (var index in relationshipArray){
-              if (relation == relationshipArray[index].value){
+            for (var index in relationshipArray) {
+              if (relation == relationshipArray[index].value) {
                 relationIndexArray[i] = index
               }
             }
@@ -128,12 +128,14 @@ Page({
             marriageArray: marriageArray,
             helthIndex: helthIndex,
             idIndex: idIndex,
-            clientIndex, clientIndex,
+            clientIndex,
+            clientIndex,
             bankIndex: bankIndex,
             eduIndex: eduIndex,
             marriageIndex: marriageIndex,
             relationshipArray: relationshipArray,
-            relationIndexArray: relationIndexArray
+            relationIndexArray: relationIndexArray,
+            orderStatus: orderStatus
           })
         }
       },
@@ -166,12 +168,12 @@ Page({
               token: app.globalData.userInfo.token
             },
             formData: { //传图片的类型，内单号
-              file_type:"1",
+              file_type: "1",
               biz_order_no: that.data.clUserInfo.biz_order_no
             },
             success: function(res) {
               let data = JSON.parse(res.data);
-              if(res.statusCode == 200 && data.code == 0){
+              if (res.statusCode == 200 && data.code == 0) {
                 imglist[imglist.length] = data.entity.file_path;
                 that.setData({
                   imglist: imglist
@@ -197,10 +199,9 @@ Page({
    */
   formSubmit: function(e) {
     var that = this;
-    var openId = app.globalData.userInfo.openId;
-    var formId = e.detail.formId;
+    var fromType =that.data.fromType;
     let data = e.detail.value
-    if(this.data.imglist.length<2){
+    if (this.data.imglist.length < 2) {
       wx.showToast({
         title: '缺少图片信息，请上传图片',
         icon: 'none',
@@ -218,7 +219,7 @@ Page({
       })
       return false
     }
-   
+
     var health_status = this.data.helthArray[data.health_status].value;
     var identity_type = this.data.idArray[data.identity_type].value;
     var degree = this.data.eduArray[data.degree].value;
@@ -232,14 +233,14 @@ Page({
     data.customer_professional_info = customer_professional_info;
     data.bank_card_type = bank_card_type;
     data.marital_status = marital_status;
-    
+
     var clContactInfoList = this.data.clContactInfoList;
     var contactArray = [];
-    for (var index in clContactInfoList){
+    for (var index in clContactInfoList) {
       var item = new Object();
       var name = 'contact_name_' + index;
       var phone = 'contact_phone_' + index;
-      var relationShip = 'contact_relationship_'+index;
+      var relationShip = 'contact_relationship_' + index;
       var contact_name = data[name];
       var contact_phone = data[phone];
       var contact_relationship = this.data.relationshipArray[data[relationShip]].value;
@@ -251,25 +252,33 @@ Page({
     data.contactArray = contactArray;
     //后台保存数据
     wx.request({
-      url: app.globalData.http_url_head+'user/save',
-      header:{
-        token:app.globalData.userInfo.token
+      url: app.globalData.http_url_head + 'user/save',
+      header: {
+        token: app.globalData.userInfo.token
       },
-      data:{
-        data:data
+      data: {
+        data: data
       },
-      method:"post",
-      success:function(res){
-        wx.navigateTo({
-          url: '../carinfo/carinfo?biz_order_no=' + that.data.clUserInfo.biz_order_no,
-        })
-        
+      method: "post",
+      success: function(res) {
+        if (res.data.code == 0 && res.statusCode == 200) {
+          if (fromType == 1){
+            wx.navigateTo({
+              url: '../carinfo/carinfo?biz_order_no=' + that.data.clUserInfo.biz_order_no + '&fromType=1',
+            })
+          }else{
+            wx.showToast({
+              title: '修改成功',
+              icon: 'success',
+              duration: 2000
+            })
+          }
+        }
       },
-      fail:function(){
+      fail: function() {
         console.log("数据保存失败")
       }
     })
-   
   },
 
   initValidate() {
@@ -345,46 +354,55 @@ Page({
   },
 
 
-/**
- * 所有选择监听
- */
-  bindHelthChange:function(e){
+  /**
+   * 所有选择监听
+   */
+  bindHelthChange: function(e) {
     this.setData({
       helthIndex: e.detail.value
     })
   },
-  bindidChange: function (e) {
+  bindidChange: function(e) {
     this.setData({
       idIndex: e.detail.value
     })
   },
-  bindeduChange: function (e) {
+  bindeduChange: function(e) {
     this.setData({
       eduIndex: e.detail.value
     })
   },
-  bindclientChange: function (e) {
+  bindclientChange: function(e) {
     this.setData({
       clientIndex: e.detail.value
     })
   },
-  bindbankChange: function (e) {
+  bindbankChange: function(e) {
     this.setData({
       bankIndex: e.detail.value
     })
   },
-  bindmarriageChange: function (e) {
+  bindmarriageChange: function(e) {
     this.setData({
       marriageIndex: e.detail.value
     })
   },
 
-  bindshipChange: function (e) {
+  bindshipChange: function(e) {
     var relationIndexArray = this.data.relationIndexArray;
     relationIndexArray[e.target.dataset.id] = e.detail.value;
     this.setData({
       relationIndexArray: relationIndexArray
     })
   },
+
+  /**
+   * 返回按钮
+   */
+  back: function() {
+    wx.navigateBack({
+      delta: 1
+    })
+  }
 
 })

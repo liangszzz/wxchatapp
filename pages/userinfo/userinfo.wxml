@@ -237,7 +237,12 @@
     </view>
 
     <view wx:if="{{fromType == 2}}">
-      <button class="next_btn" form-type='submit'>修改</button>
+      <view wx:if="{{orderStatus == 19}}">
+        <button class="next_btn" form-type='submit'>修改</button>
+      </view>
+      <view wx:else>
+        <button class="next_btn" bindtap='back'>返回</button>
+      </view>
     </view>
 
   </view>

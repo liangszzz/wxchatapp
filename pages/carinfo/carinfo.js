@@ -16,19 +16,22 @@ Page({
     accidentArray: [],
     hasIndex: 0,
     hasArray: ['否', '是'],
+    fromType: '',
+    orderStatus: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    console.log("1");
     var that = this;
     var idcard = '';
-    var biz_order_no = '';
-    if (options.biz_order_no != '' && options.biz_order_no != null) { //从列表页进入
-      biz_order_no = options.biz_order_no;
-    } else { //从我的页面进入
-      idcard = options.idcard;
+    var biz_order_no = options.biz_order_no;
+    var fromType = options.fromType;
+    var orderStatus = '';
+    if (fromType == 2) {
+      orderStatus = options.orderStatus;
     }
     var carlist = that.data.carlist;
     var dengjiList = that.data.dengjiList;
@@ -76,7 +79,9 @@ Page({
             dengjiList: dengjiList,
             accidentArray: accidentArray,
             accidentIndex: accidentIndex,
-            hasIndex: hasIndex
+            hasIndex: hasIndex,
+            orderStatus: orderStatus,
+            fromType: fromType
           })
         }
       },
@@ -192,7 +197,7 @@ Page({
    */
   formSubmit: function(e) {
     //先检查图片是否存在
-    if (this.data.carlist.length < 1 || this.data.dengjiList.length < 1 || this.data.xingshiList.length < 2){
+    if (this.data.carlist.length < 1 || this.data.dengjiList.length < 1 || this.data.xingshiList.length < 2) {
       wx.showToast({
         title: '缺少图片信息，请上传图片',
         icon: 'none',
@@ -225,11 +230,19 @@ Page({
       },
       method: "post",
       success: function(res) {
-        if(res.statusCode == 200 && res.data.code == 0){
-         wx.navigateTo({
-           url: '../sign/sign?biz_order_no=' + that.data.clCarInfo.biz_order_no,
-         })
-        }else{
+        if (res.statusCode == 200 && res.data.code == 0) {
+          if(that.data.formType == 1){
+            wx.navigateTo({
+              url: '../sign/sign?biz_order_no=' + that.data.clCarInfo.biz_order_no,
+            })
+          }else{
+            wx.showToast({
+              title: '修改成功',
+              icon: 'success',
+              duration: 2000
+            })
+          } 
+        } else {
           wx.showToast({
             title: res.data.msg,
             icon: 'none',
@@ -267,7 +280,7 @@ Page({
       car_service_life: {
         required: true,
       },
-      car_cost:{
+      car_cost: {
         required: true,
       }
     }
@@ -303,19 +316,27 @@ Page({
     this.WxValidate = new WxValidate(rules, messages)
   },
 
-/**
- * 选择监听
- */
-  bindhasChange: function (e) {
+  /**
+   * 选择监听
+   */
+  bindhasChange: function(e) {
     this.setData({
       hasIndex: e.detail.value
     })
   },
-  bindaccidentChange: function (e) {
+  bindaccidentChange: function(e) {
     this.setData({
       accidentIndex: e.detail.value
     })
   },
 
+  /**
+   * 返回按钮
+   */
+  back: function() {
+    wx.navigateBack({
+      delta: 1
+    })
+  }
 
 })

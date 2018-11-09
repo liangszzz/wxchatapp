@@ -44,7 +44,7 @@
         <text>车身颜色</text>
       </view>
       <view class="profile-info-input">
-        <input type="text" disabled='{{able}}'name="car_color" value="{{clCarInfo.car_color}}" />
+        <input type="text" disabled='{{able}}' name="car_color" value="{{clCarInfo.car_color}}" />
       </view>
     </view>
     <view class="profile-info-detail">
@@ -87,10 +87,10 @@
       </view>
       <view class="profile-info-input">
         <picker bindchange="bindhasChange" name="major_accident" value="{{hasIndex}}" disabled='{{able}}' range="{{hasArray}}">
-        <view class="picker">
-          {{hasArray[hasIndex]}}
-        </view>
-      </picker>
+          <view class="picker">
+            {{hasArray[hasIndex]}}
+          </view>
+        </picker>
       </view>
     </view>
     <view class="profile-info-detail">
@@ -99,10 +99,10 @@
       </view>
       <view class="profile-info-input">
         <picker bindchange="bindaccidentChange" name="accident_type" value="{{accidentIndex}}" disabled='{{able}}' range="{{accidentArray}}">
-        <view class="picker">
-          {{accidentArray[accidentIndex]}}
-        </view>
-      </picker>
+          <view class="picker">
+            {{accidentArray[accidentIndex]}}
+          </view>
+        </picker>
       </view>
     </view>
 
@@ -144,7 +144,18 @@
         </view>
       </scroll-view>
     </view>
-    <button class="next_btn" form-type='submit'>下一步</button>
+    <view wx:if="{{fromType == 1}}">
+      <button class="next_btn" form-type='submit'>下一步</button>
+    </view>
+
+    <view wx:if="{{fromType == 2}}">
+      <view wx:if="{{orderStatus == 19}}">
+        <button class="next_btn" form-type='submit'>修改</button>
+      </view>
+      <view wx:else>
+        <button class="next_btn" bindtap='back'>返回</button>
+      </view>
+    </view>
   </view>
   <view style="height:100rpx;background-color:#fff;"></view>
 </form>
