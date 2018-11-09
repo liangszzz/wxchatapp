@@ -1,0 +1,115 @@
+/* pages/orderDetails/orderDetails.wxss */
+
+page {
+  background-color: #eaeaea;
+}
+
+
+.apply_view {
+  font-size: 14px;
+  width: 33%;
+  height: 108rpx;
+  text-align: center;
+  line-height: 1.7;
+}
+
+.service_view {
+  font-size: 14px;
+  line-height: 1.7;
+  width: 34%;
+  height: 108rpx;
+  text-align: center;
+  border-left-color: #c5bdbd;
+  border-left-style: solid;
+  border-left-width: 3rpx;
+  border-right-color: #c5bdbd;
+  border-right-style: solid;
+  border-right-width: 3rpx;
+}
+
+.periods_view {
+  font-size: 14px;
+  line-height: 1.7;
+  width: 33%;
+  height: 108rpx;
+  text-align: center;
+}
+
+.bill_view {
+  display: flex;
+  flex-direction: row;
+  background-color: #fff;
+  width:95%;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.bill_word_view {
+  padding-top: 29rpx;
+  padding-left: 3rpx;
+  padding-bottom: 13rpx;
+  font-size: 14px;
+  font-weight: bold;
+  width:20%;
+}
+
+.bill_pay_view {
+  background-color: #fff;
+  font-size: 12px;
+  display: flex;
+  flex-direction: row;
+  padding-top: 30rpx;
+  justify-content:flex-end;
+  width: 80%
+}
+
+.bill_pay_view .picker {
+  border: 1rpx solid gray;
+  border-radius: 10rpx;
+  padding: 5rpx 10rpx;
+}
+
+.orderDetails_top_view {
+  width: 95%;
+  border-bottom-color: #c5bdbd;
+  border-bottom-style: solid;
+  border-bottom-width: 2rpx;
+  margin: 0 auto;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+.orderDetails_bottom_view {
+  width: 95%;
+  height: 125rpx;
+  margin: 0 auto;
+  padding-top: 10rpx;
+}
+
+.orderDetails_bottom_left_view {
+  width: 60%;
+}
+
+.orderDetails_bottom_right_view {
+  width: 40%;
+  color: #03a9f4;
+  font-size: 16px;
+  text-align: right;
+  padding-top: 25rpx;
+}
+
+.btn {
+  font-size: 15px;
+  color: #fff;
+  width: 90%;
+  margin-top: 15px;
+  background-color: #03a9f4;
+}
+
+.btn-update{
+   font-size: 15px;
+  color: #fff;
+  width: 90%;
+  margin-top: 15px;
+  background-color: #46ae52;
+}

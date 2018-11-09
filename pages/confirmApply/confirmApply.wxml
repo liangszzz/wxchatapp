@@ -1,0 +1,77 @@
+<view style="font-size:12px;color: rgba(136, 136, 136, 1);font-weight:bold;background-color:#fff;padding-left: 40rpx;">由大兴安岭农商银行提供贷款服务</view>
+<view >
+  <view style='padding-top: 15px;background-color: #ffffff;display:flex;flex-direction:row;height:65px;'>
+    <view class='apply_view'>
+      <view>申请金额</view>
+      <view style="display:flex;flex-direction:row;padding:9rpx 20rpx;">
+        <input type="text"  style='color:#03A9F4;font-size:18px;width:170rpx;' value="{{applyAmount}}" bindblur='changApplyAmount'/>
+        <text style="color:rgba(136, 136, 136, 1);font-size:14px">元</text>
+      </view>
+    </view>
+    <view class='service_view'>
+      <view>利率</view>
+      <text style="color:rgba(136, 136, 136, 1);font-size:14px" >年化</text>
+      <text style='color:#03A9F4;font-size:18px' decode="{{true}}">&nbsp;&nbsp;{{rate}}%</text>
+    </view>
+    <view class='periods_view'>
+      <view>期数</view>
+      <picker bindchange="termsChange" value="{{terms}}"   range="{{termRange}}">
+        <view class="picker">
+         <text style='color:#03A9F4;font-size:18px'>{{terms}}<text decode="{{true}}" style='color:#03A9F4;font-size:13px'>&nbsp;&nbsp;▼</text></text>
+         <text style="color:rgba(136, 136, 136, 1);font-size:14px" decode="{{true}}">&nbsp;&nbsp;期</text>
+        </view>
+      </picker>
+    </view>
+  </view>
+  <view style='background-color:#fff'>
+    <view class='bill_view'>
+      <view class='bill_word_view'>账单明细</view>
+      <view class="bill_pay_view" ><text decode="{{true}}">还款方式&nbsp;&nbsp;&nbsp;</text><picker bindchange="bindpayChange" value="{{payIndex}}"   range="{{payArray}}">
+          <view class="picker">
+          <text style='color:#888888;font-size:12px'>{{payArray[payIndex]}}</text>
+          <text decode="{{true}}" style='color:#888888;font-size:7px'>&nbsp;&nbsp;&nbsp;▼</text>
+          </view>
+        </picker></view>
+    </view>
+  </view>
+
+
+  <view wx:for="{{repaymentList}}" wx:key="repayment" wx:for-index="index" wx:for-item="item" style="{{index==0? '': 'margin-top:12rpx;'}}">
+    <view style='background-color: #ffffff;'>
+      <view class='orderDetails_top_view' style='display:flex;flex-direction:row;'>
+        <view style='width:60%;'>
+          <text style='color:#101010;font-size:14px;font-weight:bold;'>第</text>
+          <text style='color:#03A9F4;font-size:14px;font-weight:bold;' decode="{{true}}">&nbsp;{{item.currentTerm}}&nbsp;</text>
+          <text style='color:#101010;font-size:14px;font-weight:bold'>期还款日</text>
+        </view>
+        <view style='width:40%;text-align:right;color:#a5a5a5;font-size:14px'>{{item.shouldPayDate[0]}}-{{item.shouldPayDate[1]}}-{{item.shouldPayDate[2]}}</view>
+      </view>
+      <view class='orderDetails_bottom_view' style='display:flex;flex-direction:row;'>
+        <view class='orderDetails_bottom_left_view'>
+          <view style='font-size:12px;margin-bottom:5px;color:rgba(136, 136, 136, 1);'>还款金额</view>
+          <view>
+            <text style='color:#03A9F4;font-size:18px'>{{item.amount}}</text>
+            <text style="color:rgba(136, 136, 136, 1);font-size:14px" decode="{{true}}">&nbsp;&nbsp;元</text>
+          </view>
+        </view>
+       
+      </view>
+    </view>
+  </view>
+
+  <view class="profile-confrim">
+    <checkbox-group bindchange="reading">
+      <checkbox value="1" style="transform:scale(.6)" />
+      <text  style='color:#a7a7a7;font-size:12px;'> 我已阅读并理解</text>
+      <text style="color:#09abf4;font-size:12px;">《借款合同》、《产品说明》</text>
+    </checkbox-group>
+  </view>
+  <view wx:if="{{!amountChanged && !termsChanged && !methodChanged}}">
+    <button class='btn' bindtap='toAuditLenders'>确认借款</button>
+  </view>
+  <view wx:else>
+  <!--还是这个页面,更新data内容和渲染视图-->
+    <button class='btn-update' bindtap='updateBills'>更新并预览账单</button>
+  </view>
+</view>
+<view style="height:100rpx;background-color:#f2f2f2;"></view>
