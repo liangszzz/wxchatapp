@@ -4,16 +4,16 @@ page {
 }
 
 .mine-nav {
-  height: 210rpx;
+  height: 250rpx;
   background-color: #03a9f4;
   display: flex;
 }
 
 .mine-nav image {
-  width: 135rpx;
-  height: 135rpx;
+  width: 148rpx;
+  height: 148rpx;
   border-radius: 50%;
-  margin: 40rpx 0rpx 40rpx 60rpx;
+  margin: 50rpx 0rpx 50rpx 60rpx;
 }
 
 .mine-info {

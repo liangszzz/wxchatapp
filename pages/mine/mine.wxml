@@ -3,19 +3,20 @@
   <view class="mine-info">
     <text>{{userInfo.nickName}}</text>
     <text>{{userInfo.phone}}</text>
+    <text>授信额度：{{loanAmount}} 元</text>
   </view>
 </view>
 
 <view class='mine-item'>
 
   <view class="mine-item-col" bindtap='toUserInfo'>
-    <image src='/assets/images/message.png' mode='aspectFill'></image>
-    <text>我的基本资料</text>
+    <image src='/assets/images/mine.png' mode='aspectFill'></image>
+    <text>我的基本信息</text>
     <image src='/assets/images/arrow.png' mode='aspectFill'></image>
   </view>
 
   <view class="mine-item-col" bindtap='toCarInfo'>
-    <image src='/assets/images/message.png' mode='aspectFill'></image>
+    <image src='/assets/images/car.png' mode='aspectFill'></image>
     <text>我的车辆信息</text>
     <image src='/assets/images/arrow.png' mode='aspectFill'></image>
   </view>

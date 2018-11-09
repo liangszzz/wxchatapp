@@ -8,6 +8,9 @@ Page({
    */
   data: {
     userInfo: {},
+    orderStatus: '',
+    biz_order_no: '',
+    loanAmount:''
   },
 
   /**
@@ -22,7 +25,7 @@ Page({
   /**
    * 我的消息
    */
-  toMessage:util.throttle(function (e) {
+  toMessage: util.throttle(function(e) {
     wx.navigateTo({
       url: '../message/message',
     })
@@ -31,7 +34,7 @@ Page({
   /**
    * 我的银行卡
    */
-  toBankCard: util.throttle(function (e) {
+  toBankCard: util.throttle(function(e) {
     wx.navigateTo({
       url: '../bankcard/bankcard',
     })
@@ -40,29 +43,29 @@ Page({
   /**
    * 更新日志
    */
-  toUpdatelog: util.throttle(function (e) {
+  toUpdatelog: util.throttle(function(e) {
     wx.navigateTo({
       url: '../updatelog/updatelog',
     })
-  },1000),
+  }, 1000),
 
   /**
    * 我的基本资料
    */
-  toUserInfo: util.throttle(function (e) {
+  toUserInfo: function() {
     wx.navigateTo({
-      url: '../userinfo/userinfo?idcard=' + app.globalData.userInfo.idcard,
+      url: '../userinfo/userinfo?biz_order_no=' + this.data.biz_order_no + '&fromType=2&orderStatus=' + this.data.orderStatus,
     })
-  }, 1000),
+  },
 
   /**
    * 我的车辆信息
    */
-  toCarInfo: util.throttle(function (e) {
+  toCarInfo:function() {
     wx.navigateTo({
-      url: '../carinfo/carinfo',
+      url: '../carinfo/carinfo?biz_order_no=' + this.data.biz_order_no + '&fromType=2&orderStatus=' + this.data.orderStatus,
     })
-  }, 1000),
+  },
 
 
   /**
@@ -70,11 +73,43 @@ Page({
    */
   onLoad: function(options) {
     var that = this;
+    //获取该用户最近的订单
+    wx.request({
+      url: app.globalData.http_url_head + 'user/order',
+      method: 'post',
+      header: {
+        token: app.globalData.userInfo.token
+      },
+      data: {
+        idcard: app.globalData.userInfo.idcard
+      },
+      success: function(res) {
+        if (res.statusCode == 200 && res.data.code == 0) {
+          var bizOrderNo = res.data.entity.orders[0].bizOrderNo;
+          var loanAmount = res.data.entity.orders[0].loanAmount;
+          var orderStatus = res.data.entity.orders[0].orderStatus;
+          that.setData({
+            loanAmount: loanAmount,
+            biz_order_no: bizOrderNo,
+            orderStatus: orderStatus
+          })
+        } else {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none',
+            duration: 2000 //持续的时间
+          })
+        }
+      },
+      fail: function() {
+        console.log("获取后台数据失败")
+      }
+    })
     that.setData({
       userInfo: app.globalData.userInfo
-    })  
+    })
   },
 
-  
-  
+
+
 })
