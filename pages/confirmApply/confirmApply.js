@@ -21,7 +21,7 @@ Page({
     payIndex: 0,
     payArray: ['等额本息', '到期还本付息'],
     terms: 0,
-    termRange: [3,6,9,12],
+    termRange: [3, 6, 9, 12],
     /**
      *这里的账单的数据,status以数据库中为准,到时查询的时候页面也要相应的改动
      */
@@ -46,14 +46,14 @@ Page({
         let rate = 0;
         let terms = 0;
         let method = 0;
-        let repaymentList= [];
+        let repaymentList = [];
         let payIndex = 0;
         if (result.data.entity) {
           applyAmount = result.data.entity.applyAmount;
           rate = result.data.entity.rate * 100;
           terms = result.data.entity.terms;
           method = result.data.entity.method;
-          if(method == 4) {
+          if (method == 4) {
             payIndex = 1;
           } else {
             payIndex = 0;
@@ -149,8 +149,8 @@ Page({
       termsChanged = true;
     }
     this.setData({
-      terms : terms,
-      termsChanged : termsChanged
+      terms: terms,
+      termsChanged: termsChanged
     })
   },
   /**
@@ -184,9 +184,9 @@ Page({
     }
   },
 
-/**
- * 申请金额变化 
- */
+  /**
+   * 申请金额变化 
+   */
   changApplyAmount: function(e) {
     let amount = e.detail.value;
     let amountChanged = false;
@@ -199,9 +199,9 @@ Page({
     })
   },
 
-/**
- * 更新并预览账单
- */
+  /**
+   * 更新并预览账单
+   */
   updateBills: function() {
     var url;
     let applyAmount = this.data.applyAmount;
@@ -269,16 +269,37 @@ Page({
   /**
    * 跳转到审核中
    */
-  toAuditLenders: function(event) {
+  formSubmit: function(e) {
     if (this.data.check == 0) {
       wx.showModal({
         title: '提示',
         content: '请先阅读《借款合同》和《产品说明》',
       })
-    } else {
-      wx.navigateTo({
-        url: '../auditLenders/auditLenders'
-      })
+      return false;
     }
+    var formId = e.detail.formId;
+    var openId = app.globalData.userInfo.openId;
+    //保存formId
+    wx.request({
+      url: app.globalData.http_url_head + 'baseInfo/updateFormId',
+      method: 'post',
+      header: {
+        token: app.globalData.userInfo.token
+      },
+      data: {
+        formId: formId,
+        openId: openId
+      },
+      success: function(res) {
+        if (res.statusCode == 200 && res.data.code == 0) {
+          wx.navigateTo({
+            url: '../auditLenders/auditLenders'
+          })
+        }
+      },
+      fail: function() {
+        console.log("保存失败")
+      }
+    })
   }
 })
