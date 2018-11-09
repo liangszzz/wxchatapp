@@ -12,6 +12,10 @@ Page({
     dengjiList: [],
     xingshiList: [],
     formType: '', // 1：订单页进入 2：我的页面进入
+    accidentIndex: 0,
+    accidentArray: [],
+    hasIndex: 0,
+    hasArray: ['否', '是'],
   },
 
   /**
@@ -29,6 +33,7 @@ Page({
     var carlist = that.data.carlist;
     var dengjiList = that.data.dengjiList;
     var xingshiList = that.data.xingshiList;
+    var accidentArray = that.data.accidentArray;
     that.initValidate();
     //请求后台获取相关信息
     wx.request({
@@ -42,7 +47,6 @@ Page({
       },
       method: 'POST',
       success: function(res) {
-        console.log(res);
         if (res.statusCode == 200 && res.data.code == 0) {
           var clRiskInfo = res.data.dataMap.clRiskInfo; //风控信息，用于获取车辆估值
           var clCarInfo = res.data.dataMap.clCarInfo; //车辆基本信息
@@ -58,12 +62,21 @@ Page({
           for (var index in registerList) {
             dengjiList[index] = registerList[index].fast_dfs_path
           }
+          var accidentTypes = res.data.dataMap.accidentTypes;
+          for (var index in accidentTypes) {
+            accidentArray[index] = accidentTypes[index].label
+          }
+          var accidentIndex = clCarInfo.accident_type;
+          var hasIndex = clCarInfo.major_accident;
           that.setData({
             clRiskInfo: clRiskInfo,
             clCarInfo: clCarInfo,
             carlist: carlist,
             xingshiList: xingshiList,
-            dengjiList: dengjiList
+            dengjiList: dengjiList,
+            accidentArray: accidentArray,
+            accidentIndex: accidentIndex,
+            hasIndex: hasIndex
           })
         }
       },
@@ -190,11 +203,14 @@ Page({
     var openId = app.globalData.userInfo.openId;
     var formId = e.detail.formId;
     let data = e.detail.value
-    console.log(data)
     // 传入表单数据，调用验证方法
     if (!this.WxValidate.checkForm(data)) {
       const error = this.WxValidate.errorList[0]
-      console.log(error);
+      wx.showToast({
+        title: error.msg,
+        icon: 'none',
+        duration: 2000 //持续的时间
+      })
       return false
     }
     var that = this;
@@ -209,7 +225,6 @@ Page({
       },
       method: "post",
       success: function(res) {
-        console.log(res);
         if(res.statusCode == 200 && res.data.code == 0){
          wx.navigateTo({
            url: '../sign/sign?biz_order_no=' + that.data.clCarInfo.biz_order_no,
@@ -234,6 +249,27 @@ Page({
       car_no: {
         required: true,
       },
+      car_brand: {
+        required: true,
+      },
+      car_color: {
+        required: true,
+      },
+      car_driving_mileage: {
+        required: true,
+      },
+      car_engine_no: {
+        required: true,
+      },
+      car_model: {
+        required: true,
+      },
+      car_service_life: {
+        required: true,
+      },
+      car_cost:{
+        required: true,
+      }
     }
 
     // 验证字段的提示信息，若不传则调用默认的信息
@@ -241,9 +277,45 @@ Page({
       car_no: {
         required: '车牌号码不能为空',
       },
+      car_brand: {
+        required: "车辆品牌不能为空",
+      },
+      car_color: {
+        required: "车辆颜色不能为空",
+      },
+      car_driving_mileage: {
+        required: "车辆行驶里程不能为空",
+      },
+      car_engine_no: {
+        required: "发动机号不能为空",
+      },
+      car_model: {
+        required: "车辆型号不能为空",
+      },
+      car_service_life: {
+        required: "车辆使用年限不能为空",
+      },
+      car_cost: {
+        required: "车辆估值不能为空",
+      }
     }
     // 创建实例对象
     this.WxValidate = new WxValidate(rules, messages)
   },
+
+/**
+ * 选择监听
+ */
+  bindhasChange: function (e) {
+    this.setData({
+      hasIndex: e.detail.value
+    })
+  },
+  bindaccidentChange: function (e) {
+    this.setData({
+      accidentIndex: e.detail.value
+    })
+  },
+
 
 })

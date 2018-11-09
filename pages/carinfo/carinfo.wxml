@@ -36,7 +36,7 @@
         <text>车辆估值（元）</text>
       </view>
       <view class="profile-info-input">
-        <input type="text" disabled='{{able}}' name="car_cost" value="{{clRiskInfo.car_cost}}" />
+        <input type="number" disabled='{{able}}' name="car_cost" value="{{clRiskInfo.car_cost}}" />
       </view>
     </view>
     <view class="profile-info-detail">
@@ -44,7 +44,7 @@
         <text>车身颜色</text>
       </view>
       <view class="profile-info-input">
-        <input type="text" disabled='true'name="car_color" value="{{clCarInfo.car_color}}" />
+        <input type="text" disabled='{{able}}'name="car_color" value="{{clCarInfo.car_color}}" />
       </view>
     </view>
     <view class="profile-info-detail">
@@ -52,7 +52,7 @@
         <text>车架号</text>
       </view>
       <view class="profile-info-input">
-        <input type="text" disabled='{{able}}' value="{{clCarInfo.car_frame_no}}" />
+        <input type="text" disabled='true' name="car_frame_no" value="{{clCarInfo.car_frame_no}}" />
       </view>
     </view>
     <view class="profile-info-detail">
@@ -69,7 +69,7 @@
         <text>车辆使用年限</text>
       </view>
       <view class="profile-info-input">
-        <input type="text" disabled='{{able}}' name="car_service_life" value="{{clCarInfo.car_service_life}}" />
+        <input type="number" disabled='{{able}}' name="car_service_life" value="{{clCarInfo.car_service_life}}" />
       </view>
     </view>
 
@@ -78,7 +78,7 @@
         <text>行驶里程</text>
       </view>
       <view class="profile-info-input">
-        <input type="text" disabled='{{able}}' name="car_driving_mileage" value="{{clCarInfo.car_driving_mileage}}" />
+        <input type="number" disabled='{{able}}' name="car_driving_mileage" value="{{clCarInfo.car_driving_mileage}}" />
       </view>
     </view>
     <view class="profile-info-detail">
@@ -86,7 +86,11 @@
         <text>是否有过重大事故</text>
       </view>
       <view class="profile-info-input">
-        <input type="text" disabled='{{able}}' name="major_accident" value="{{clCarInfo.major_accident}}" />
+        <picker bindchange="bindhasChange" name="major_accident" value="{{hasIndex}}" disabled='{{able}}' range="{{hasArray}}">
+        <view class="picker">
+          {{hasArray[hasIndex]}}
+        </view>
+      </picker>
       </view>
     </view>
     <view class="profile-info-detail">
@@ -94,7 +98,11 @@
         <text>事故类型</text>
       </view>
       <view class="profile-info-input">
-        <input type="text" disabled='{{able}}' name="accident_type" value="{{clCarInfo.accident_type}}" />
+        <picker bindchange="bindaccidentChange" name="accident_type" value="{{accidentIndex}}" disabled='{{able}}' range="{{accidentArray}}">
+        <view class="picker">
+          {{accidentArray[accidentIndex]}}
+        </view>
+      </picker>
       </view>
     </view>
 
