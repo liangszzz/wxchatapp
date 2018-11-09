@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    bizOrderNo: '',
     applyAmount: 0,
     rate: 0,
     terms: 0,
@@ -29,15 +30,15 @@ Page({
   },
 
   getBills: function(orderNo) {
-    var url;
     // let token = app.globalData.userInfo.token;
+    let token = 'token:oZOmt4uzSvEUQoBfSMMO0j27ShwU';
     wx.request({
       url: app.globalData.http_url_head + 'bill/initBills',
       header: {
-        token: 'token:oZOmt4uzSvEUQoBfSMMO0j27ShwU'
+        token: token
       },
       data: {
-        bizOrderNo: 'lph201810300001'
+        bizOrderNo: orderNo
       },
       method: "POST",
       success: result => {
@@ -62,6 +63,7 @@ Page({
         }
 
         this.setData({
+          bizOrderNo: orderNo,
           applyAmount: applyAmount,
           rate: rate,
           terms: terms,
@@ -85,7 +87,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.getBills(options.id);
+    let bizOrderNo = options.bizOrderNo;
+    this.getBills(bizOrderNo);
   },
 
   /**
@@ -203,21 +206,23 @@ Page({
    * 更新并预览账单
    */
   updateBills: function() {
-    var url;
     let applyAmount = this.data.applyAmount;
     let method = 1;
     let terms = this.data.terms;
+    let bizOrderNo = this.data.bizOrderNo;
     if (this.data.payIndex == 1) {
       method = 4
     }
+
     // let token = app.globalData.userInfo.token;
+    let token = 'token:oZOmt4uzSvEUQoBfSMMO0j27ShwU';
     wx.request({
       url: app.globalData.http_url_head + 'bill/afterChangeInitBills',
       header: {
-        token: 'token:oZOmt4uzSvEUQoBfSMMO0j27ShwU'
+        token: token
       },
       data: {
-        bizOrderNo: 'lph201810300001',
+        bizOrderNo: bizOrderNo,
         applyAmount: applyAmount,
         terms: terms,
         method: method
@@ -301,5 +306,5 @@ Page({
         console.log("保存失败")
       }
     })
-  }
+  },
 })
