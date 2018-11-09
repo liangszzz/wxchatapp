@@ -11,7 +11,8 @@
     "pages/updatelog/updatelog",
     "pages/auditLenders/auditLenders",
     "pages/agreement/agreement",
-    "pages/carinfo/carinfo"
+    "pages/carinfo/carinfo",
+    "pages/confirmApply/confirmApply"
   ],
   "window": {
     "navigationBarTitleText": "车贷平台",
