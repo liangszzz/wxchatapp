@@ -16,9 +16,9 @@ Page({
  */
   getList: function () {
     var that = this;
-    var openId = that.data.userInfo.openId;
+    var idCard = that.data.userInfo.idcard;
     wx.request({
-      url: app.globalData.http_url_head + 'bankCard/query/' + openId,
+      url: app.globalData.http_url_head + 'sign/queryBankCard/' + idCard,
       header: {
         token: app.globalData.userInfo.token
       },

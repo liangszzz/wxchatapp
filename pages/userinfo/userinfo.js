@@ -25,7 +25,8 @@ Page({
     marriageArray: [],
     relationshipArray: [],
     relationIndexArray: [],
-    orderStatus: ''
+    orderStatus: '',
+    bank_list:[],
   },
 
   /**
@@ -65,6 +66,7 @@ Page({
           var clUserInfo = res.data.dataMap.clUserInfo; //用户基本信息
           var clContactInfoList = res.data.dataMap.clContactInfoList; //联系人信息
           var clAttachmentInfoList = res.data.dataMap.clAttachmentInfoList; //附件信息
+          let bank_list = res.data.dataMap.bank_list; //银行名称列表
           for (var index in clAttachmentInfoList) {
             imglist[index] = clAttachmentInfoList[index].fast_dfs_path
           }
@@ -134,7 +136,8 @@ Page({
             marriageIndex: marriageIndex,
             relationshipArray: relationshipArray,
             relationIndexArray: relationIndexArray,
-            orderStatus: orderStatus
+            orderStatus: orderStatus,
+            bank_list: bank_list,
           })
         }
       },

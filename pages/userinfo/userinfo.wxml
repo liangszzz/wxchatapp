@@ -108,7 +108,7 @@
         <text>公司电话</text>
       </view>
       <view class="profile-info-input">
-        <input type="number" disabled='{{able}}' name="company_phone_no" value="{{clUserInfo.company_phone_no}}" />
+        <input type="number" disabled='{{able}}' name="company_phone_no" maxlength='11' value="{{clUserInfo.company_phone_no}}" />
       </view>
     </view>
     <view class="profile-info-detail">
@@ -148,7 +148,7 @@
         <text>银行卡号</text>
       </view>
       <view class="profile-info-input">
-        <input type="number" disabled='{{able}}' name="bank_account" value="{{clUserInfo.bank_account}}" />
+        <input type="number" disabled='{{able}}' name="bank_account" maxlength='19' value="{{clUserInfo.bank_account}}" />
       </view>
     </view>
     <view class="profile-info-detail">
@@ -156,7 +156,7 @@
         <text>预留手机号</text>
       </view>
       <view class="profile-info-input">
-        <input type="number" disabled='{{able}}' name="reserve_phone_no" value="{{clUserInfo.reserve_phone_no}}" />
+        <input type="number" disabled='{{able}}' name="reserve_phone_no" maxlength='11' value="{{clUserInfo.reserve_phone_no}}" />
       </view>
     </view>
     <view class="profile-info-detail">
@@ -207,7 +207,7 @@
             <text>联系人{{index+1}}电话</text>
           </view>
           <view class="profile-info-input">
-            <input type="number" disabled='{{able}}' name="contact_phone_{{index}}" value="{{item.contact_phone}}" />
+            <input type="number" disabled='{{able}}' name="contact_phone_{{index}}" maxlength='11' value="{{item.contact_phone}}" />
           </view>
         </view>
         <view class="profile-info-detail">
