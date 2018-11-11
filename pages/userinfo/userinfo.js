@@ -26,7 +26,8 @@ Page({
     relationshipArray: [],
     relationIndexArray: [],
     orderStatus: '',
-    bank_list:[],
+    bank_list: [],
+    bank_list_index: ''
   },
 
   /**
@@ -50,6 +51,7 @@ Page({
     var clientIndex = that.data.clientIndex;
     var bankIndex = that.data.bankIndex;
     var marriageIndex = that.data.marriageIndex;
+    let bank_list_index = that.data.bank_list_index;
     //请求后台获取相关信息
     wx.request({
       url: app.globalData.http_url_head + "user/query",
@@ -67,6 +69,12 @@ Page({
           var clContactInfoList = res.data.dataMap.clContactInfoList; //联系人信息
           var clAttachmentInfoList = res.data.dataMap.clAttachmentInfoList; //附件信息
           let bank_list = res.data.dataMap.bank_list; //银行名称列表
+          let bankName = clUserInfo.bank_name;
+          for (var index in bank_list) {
+            if (bank_list[index] == clUserInfo.bank_name) {
+              bank_list_index = index
+            }
+          }
           for (var index in clAttachmentInfoList) {
             imglist[index] = clAttachmentInfoList[index].fast_dfs_path
           }
@@ -138,6 +146,7 @@ Page({
             relationIndexArray: relationIndexArray,
             orderStatus: orderStatus,
             bank_list: bank_list,
+            bank_list_index: bank_list_index
           })
         }
       },
@@ -201,7 +210,7 @@ Page({
    */
   formSubmit: function(e) {
     var that = this;
-    var fromType =that.data.fromType;
+    var fromType = that.data.fromType;
     let data = e.detail.value
     if (this.data.imglist.length < 2) {
       wx.showToast({
@@ -264,11 +273,11 @@ Page({
       method: "post",
       success: function(res) {
         if (res.data.code == 0 && res.statusCode == 200) {
-          if (fromType == 1){
+          if (fromType == 1) {
             wx.navigateTo({
               url: '../carinfo/carinfo?biz_order_no=' + that.data.clUserInfo.biz_order_no + '&fromType=1',
             })
-          }else{
+          } else {
             wx.showToast({
               title: '修改成功',
               icon: 'success',
@@ -398,11 +407,17 @@ Page({
     })
   },
 
-  binddateChange:function(e){
+  binddateChange: function(e) {
     var clUserInfo = this.data.clUserInfo;
     clUserInfo.certificate_expiry_date = e.detail.value
     this.setData({
       clUserInfo: clUserInfo
+    })
+  },
+
+  bindbankNameChange: function(e) {
+    this.setData({
+      bank_list_index: e.detail.value
     })
   },
 
