@@ -29,7 +29,6 @@ Page({
       },
       method: 'POST',
       success: function(res) {
-        console.log(res);
         if (res.statusCode == 200 && res.data.code == 0) {
           var list = res.data.data;
           var datalist = that.data.list;

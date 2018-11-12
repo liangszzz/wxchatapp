@@ -75,21 +75,18 @@ Page({
     var that = this;
     //获取该用户最近的订单
     wx.request({
-      url: app.globalData.http_url_head + 'user/order',
+      url: app.globalData.http_url_head + 'user/getRecentOrder/'+app.globalData.userInfo.idcard,
       method: 'post',
       header: {
         token: app.globalData.userInfo.token
       },
-      data: {
-        idcard: app.globalData.userInfo.idcard
-      },
       success: function(res) {
         if (res.statusCode == 200 && res.data.code == 0) {
-          var bizOrderNo = res.data.entity.orders[0].bizOrderNo;
-          var loanAmount = res.data.entity.orders[0].loanAmount;
-          var orderStatus = res.data.entity.orders[0].orderStatus;
+          var bizOrderNo = res.data.entity.biz_order_no;
+          var apply_amount = res.data.entity.apply_amount;
+          var orderStatus = res.data.entity.order_status;
           that.setData({
-            loanAmount: loanAmount,
+            loanAmount: apply_amount,
             biz_order_no: bizOrderNo,
             orderStatus: orderStatus
           })
