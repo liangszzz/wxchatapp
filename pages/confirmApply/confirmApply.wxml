@@ -5,7 +5,7 @@
     <view class='apply_view'>
       <view>申请金额</view>
       <view style="display:flex;flex-direction:row;padding:9rpx 20rpx;">
-        <input type="text"  style='color:#03A9F4;font-size:18px;width:170rpx;' value="{{applyAmount}}" bindblur='changApplyAmount'/>
+        <input type="number" style='color:#03A9F4;font-size:18px;width:170rpx;' value="{{applyAmount}}" bindblur='changApplyAmount'/>
         <text style="color:rgba(136, 136, 136, 1);font-size:14px">元</text>
       </view>
     </view>
