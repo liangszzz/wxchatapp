@@ -41,7 +41,6 @@ Page({
       },
       method: "POST",
       success: result => {
-        console.log(result);
         let applyAmount = 0;
         let rate = 0;
         let terms = 0;
@@ -72,8 +71,6 @@ Page({
           oldTerms: terms,
           oldPayIndex: payIndex,
         });
-
-        console.log(this.data);
       },
       fail: result => {
         console.log(result)
@@ -145,7 +142,6 @@ Page({
    */
   termsChange: function(e) {
     let terms = this.data.termRange[e.detail.value];
-    console.log(terms);
     let termsChanged = false;
     if (terms != this.data.oldTerms) {
       termsChanged = true;
@@ -161,7 +157,6 @@ Page({
   bindpayChange: function(e) {
     let payIndex = e.detail.value;
     let methodChanged = false;
-    console.log(payIndex);
     if (payIndex != this.data.oldPayIndex) {
       methodChanged = true;
     }
@@ -259,8 +254,6 @@ Page({
           termsChanged: false,
           methodChanged: false
         });
-
-        console.log(this.data);
       },
       fail: result => {
         console.log(result)

@@ -105,7 +105,6 @@ Page({
     for (let i = 0; i < orders.length; i++) {
       if (orders[i].orderStatus == 19) {
         var bizOrderNo = orders[i].bizOrderNo;
-        console.log(bizOrderNo);
         //判断当前订单是否已经确认
         var wxAppConfirm = orders[i].wxAppConfirm;
         if (wxAppConfirm == 1) {
