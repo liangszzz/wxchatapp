@@ -31,7 +31,7 @@
     <view class='line-view'></view>
     <view class='row-view'>
         <view style='width:100px;'>手机号</view>
-        <text style='color:#888888'>{{reserve_phone_no}}</text>
+        <input style='color:#888888' placeholder='请输入手机号' value='{{reserve_phone_no}}' bindinput="reserve_phone_no_input" type='number' disabled='{{can_update}}' maxlength="11" />
     </view>
 
     <view class='line-view'></view>
