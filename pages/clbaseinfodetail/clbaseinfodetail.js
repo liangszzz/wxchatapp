@@ -41,7 +41,6 @@ Page({
       },
       method: "POST",
       success: result => {
-        console.log(result);
         let applyAmount = 0;
         let serviceAmount = 0;
         if (result.data.entity) {
