@@ -15,10 +15,10 @@
         <view class='examine_information_view'>借款金额
             <text class='examine_information_text' decode="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{apply_amount}}元</text>
         </view>
-        <view class='examine_information_view'>每期应还
+        <view wx:if="{{repayment_method_value == 1}}" class='examine_information_view'>每期应还
             <text class='examine_information_text' decode="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{should_pay_per}}元(共{{repayment_terms}}期)</text>
         </view>
-        <view class='examine_information_view'>末期金额
+        <view wx:if="{{repayment_method_value == 4}}" class='examine_information_view'>末期金额
             <text class='examine_information_text' decode="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{should_pay_last}}元</text>
         </view>
         <view class='examine_information_view'>提交日期

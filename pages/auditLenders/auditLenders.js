@@ -24,8 +24,11 @@ Page({
       should_pay_last_date:"2018-05-01",
       //还款方式
       repayment_method:"等额本息",
+      //还款方式 值
+      repayment_method_value: "1",
       //银行卡信息
       bank_info:"中国银行(尾号0011)"
+      
   },
 
   /**
@@ -33,7 +36,7 @@ Page({
    */
   onLoad: function(options) {
     var that = this;
-      var biz_order_no = options.biz_order_no;
+    var biz_order_no = options.biz_order_no;
     wx.request({
       url: app.globalData.http_url_head + "baseInfo/detail/"+biz_order_no,
       header: {
@@ -53,6 +56,7 @@ Page({
               submit_date: res.data.dataMap.submit_date,
               should_pay_last_date: res.data.dataMap.should_pay_last_date,
               repayment_method: res.data.dataMap.repayment_method,
+              repayment_method_value: res.data.dataMap.repayment_method_value,
               bank_info: res.data.dataMap.bank_info
           })
         }
