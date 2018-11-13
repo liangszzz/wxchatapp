@@ -188,6 +188,11 @@ Page({
                         has_signed: true,
                         can_send: true
                     })
+                    wx.showToast({
+                        title: '验证码发送成功',
+                        icon: 'none',
+                        duration: 2000
+                    })
                     that.btnVerifyDisabled()
                 } else {
                     that.setData({
