@@ -64,7 +64,7 @@
     <checkbox-group bindchange="reading">
       <checkbox value="1" style="transform:scale(.6)" />
       <text  style='color:#a7a7a7;font-size:12px;'> 我已阅读并理解</text>
-      <text style="color:#09abf4;font-size:12px;">《借款合同》、《产品说明》</text>
+      <text bindtap='agreement' style="color:#09abf4;font-size:12px;">《借款合同》、《产品说明》</text>
     </checkbox-group>
   </view>
   <view wx:if="{{!amountChanged && !termsChanged && !methodChanged}}">
