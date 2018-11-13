@@ -263,6 +263,15 @@ Page({
   },
 
   /**
+   * 打开合同页面
+   */
+  agreement: function() {
+    wx.navigateTo({
+      url: '',
+    })
+  },
+
+  /**
    * 跳转到审核中
    */
   formSubmit: function(e) {
