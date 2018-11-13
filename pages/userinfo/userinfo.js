@@ -301,9 +301,6 @@ Page({
       bank_account: {
         required: true,
       },
-      personal_income: {
-        required: true,
-      },
       bank_name: {
         required: true,
       },
@@ -355,9 +352,6 @@ Page({
       },
       wechat: {
         required: "微信号不能为空",
-      },
-      personal_income: {
-        required: "个人年总收入不能为空",
       },
     }
     // 创建实例对象
