@@ -1,1 +1,6 @@
-/* pages/agreement/agreement.wxss */
+@import "/wxParse/wxParse.wxss"; 
+page {
+  
+  font-family: Arial;
+  font-size: 14
+}

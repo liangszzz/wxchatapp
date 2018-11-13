@@ -267,7 +267,7 @@ Page({
    */
   agreement: function() {
     wx.navigateTo({
-      url: '',
+      url: '../agreement/agreement?type=2&biz_order_no=' + this.data.bizOrderNo,
     })
   },
 

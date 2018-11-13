@@ -283,7 +283,7 @@ Page({
      */
     agreement: function() {
         wx.navigateTo({
-            url: '../agreement/agreement?type=3',
+          url: '../agreement/agreement?type=3&biz_order_no=' + this.data.biz_order_no,
         })
     }
 
