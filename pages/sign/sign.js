@@ -20,6 +20,7 @@ Page({
         btnSendSmsMsg: "获取验证码",
         //验证码倒计时
         btnSendSmsTime: 60,
+        can_send:true,
         has_read: false,
 
         //smsId 签约短信ID
@@ -137,7 +138,9 @@ Page({
      */
     getcode: function() {
         let that = this;
-
+        if(!that.data.can_send){
+            return
+        }
         //校验 银行卡号,手机号
         if (that.data.bank_card.length < 16 || that.data.reserve_phone_no.length != 11) {
             wx.showToast({
@@ -147,13 +150,17 @@ Page({
             })
             return
         }
+        that.setData({
+            can_send: false
+        })
         let interval = setInterval(function() {
             that.setData({
                 btnSendSmsMsg: that.data.btnSendSmsTime-- + "s"
             });
             if (that.data.btnSendSmsTime <= 0) {
                 that.setData({
-                    btnSendSmsMsg: "获取验证码"
+                    btnSendSmsMsg: "获取验证码",
+                    can_send: true
                 });
                 clearInterval(interval)
                 that.setData({
@@ -178,7 +185,8 @@ Page({
                 if (e.data.code == 0) {
                     that.setData({
                         smsId: e.data.msg,
-                        has_signed: true
+                        has_signed: true,
+                        can_send: true
                     })
                     that.btnVerifyDisabled()
                 } else {
