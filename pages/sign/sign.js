@@ -49,7 +49,6 @@ Page({
                 token: app.globalData.userInfo.token
             },
             success: function(e) {
-                console.log(e)
                 if (e.data.code == 0) {
                     that.setData({
                         hiddenSmsCode: true,
