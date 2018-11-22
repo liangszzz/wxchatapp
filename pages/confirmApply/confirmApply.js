@@ -285,6 +285,34 @@ Page({
     let that = this;
     var formId = e.detail.formId;
     var openId = app.globalData.userInfo.openId;
+
+    // 保存账单
+    let applyAmount = this.data.applyAmount;
+    let terms = this.data.terms;
+    let bizOrderNo = this.data.bizOrderNo;
+    let method = 1;
+    if (this.data.payIndex == 1) {
+      method = 4
+    }
+    wx.request({
+      url: app.globalData.http_url_head + 'bill/confirmOrderMsg',
+      method: 'post',
+      header: {
+        token: app.globalData.userInfo.token
+      },
+      data: {
+        bizOrderNo: bizOrderNo,
+        applyAmount: applyAmount,
+        terms: terms,
+        method: method
+      },
+      success: function (res) {
+      },
+      fail: function () {
+        console.log("保存失败")
+      }
+    })
+
     //保存formId
     wx.request({
       url: app.globalData.http_url_head + 'baseInfo/updateFormId',
