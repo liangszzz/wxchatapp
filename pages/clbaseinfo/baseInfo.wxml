@@ -5,7 +5,7 @@
     <button bindtap='detail'>提前还款</button>
   </view>
   <view wx:if="{{remainingPrincipal == 0}}">
-    <button bindtap='toPersonal'>我要借款</button>
+    <button bindtap='toBorrow'>我要借款</button>
   </view>
 </view>
 <view class="order-banner">

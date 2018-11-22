@@ -44,7 +44,6 @@ Page({
       },
       method: 'POST',
       success: function(res) {
-        console.log(res)
         if (res.statusCode == 200 && res.data.code == 0) {
           that.setData({
               page_name: res.data.dataMap.page_name,

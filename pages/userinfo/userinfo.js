@@ -180,7 +180,8 @@ Page({
             },
             formData: { //传图片的类型，内单号
               file_type: "1",
-              biz_order_no: that.data.clUserInfo.biz_order_no
+              biz_order_no: that.data.clUserInfo.biz_order_no,
+              formType: 1
             },
             success: function(res) {
               let data = JSON.parse(res.data);

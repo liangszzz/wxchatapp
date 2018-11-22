@@ -160,7 +160,8 @@ Page({
           },
           formData: {
             file_type: file_type,
-            biz_order_no: that.data.clCarInfo.biz_order_no
+            biz_order_no: that.data.clCarInfo.biz_order_no,
+            formType: 1
           },
           success: function(res) {
             let data = JSON.parse(res.data);
