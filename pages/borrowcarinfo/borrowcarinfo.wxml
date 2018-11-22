@@ -1,0 +1,147 @@
+<form bindsubmit="formSubmit" report-submit='true'>
+  <view class="profile-warn">
+    <text><text style="color:red">*</text> 信息有误请及时联系客户经理修改</text>
+    <view hidden="true">
+      <input type="text" disabled='{{able}}' name="biz_order_no" value="{{biz_order_no}}" />
+    </view>
+  </view>
+
+  <view class="profile-info">
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>车牌号码</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="text" disabled='{{able}}' name="car_no" value="{{clCarInfo.car_no}}" placeholder='请输入车牌号码' />
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>车辆品牌</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="text" disabled='{{able}}' name="car_brand" value="{{clCarInfo.car_brand}}" placeholder='请输入车辆品牌' />
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>车辆型号</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="text" disabled='{{able}}' name="car_model" value="{{clCarInfo.car_model}}"  placeholder='请输入车辆型号'/>
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>车辆估值（元）</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="number" disabled='{{able}}' name="car_cost" value="{{clRiskInfo.car_cost}}" placeholder='请输入车辆估值' />
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>车身颜色</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="text" disabled='{{able}}' name="car_color" value="{{clCarInfo.car_color}}" placeholder='请输入车辆颜色' />
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>车架号</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="text" disabled='{{able}}' name="car_frame_no" value="{{clCarInfo.car_frame_no}}" placeholder='请输入车架号'/>
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>发动机号</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="text" disabled='{{able}}' name="car_engine_no" value="{{clCarInfo.car_engine_no}}" placeholder='请输入发动机号' />
+      </view>
+    </view>
+
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>车辆使用年限</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="number" disabled='{{able}}' name="car_service_life" value="{{clCarInfo.car_service_life}}" placeholder='请输入车辆使用年限' />
+      </view>
+    </view>
+
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>行驶里程</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="number" disabled='{{able}}' name="car_driving_mileage" value="{{clCarInfo.car_driving_mileage}}" placeholder='请输入车辆行驶里程' />
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>是否有过重大事故</text>
+      </view>
+      <view class="profile-info-input">
+        <picker bindchange="bindhasChange" name="major_accident" value="{{hasIndex}}" disabled='{{able}}' range="{{hasArray}}">
+          <view class="picker">
+            {{hasArray[hasIndex]}}
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>事故类型</text>
+      </view>
+      <view class="profile-info-input">
+        <picker bindchange="bindaccidentChange" name="accident_type" value="{{accidentIndex}}" disabled='{{able}}' range="{{accidentArray}}">
+          <view class="picker">
+            {{accidentArray[accidentIndex]}}
+          </view>
+        </picker>
+      </view>
+    </view>
+
+
+    <view class="profile-car">
+      <view class="profile-info-tile">
+        <text>车辆照片</text>
+      </view>
+      <scroll-view scroll-x="true">
+        <view class="uploadWrap" scroll-x="true">
+            <image class='profile-car-img' src="{{carlist[0]}}" mode='aspectFill' data-src="{{carlist[0]}}" bindtap="previewImageCar"></image>
+        </view>
+      </scroll-view>
+    </view>
+    <view class="profile-car">
+      <view class="profile-info-tile">
+        <text>机动车登记证书/抵押登记证</text>
+      </view>
+      <scroll-view scroll-x="true">
+        <view class="uploadWrap" scroll-x="true">
+            <image class='profile-car-img' src="{{dengjiList[0]}}" mode='aspectFill' data-src="{{dengjiList[0]}}" bindtap="previewImageDeng"></image>
+        </view>
+      </scroll-view>
+    </view>
+    <view class="profile-car">
+      <view class="profile-info-tile">
+        <text>行驶证</text>
+      </view>
+      <scroll-view scroll-x="true">
+        <view class="uploadWrap" scroll-x="true">
+          <view>
+            <image class='profile-car-img' src="{{xingshiList[0]}}" mode='aspectFill' data-src="{{xingshiList[0]}}" bindtap="previewImageXing"></image>
+            <image class='profile-car-img' src="{{xingshiList[1]}}" mode='aspectFill' data-src="{{xingshiList[1]}}" bindtap="previewImageXing"></image>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+   
+      <button class="next_btn" form-type='submit'>下一步</button>
+  </view>
+  <view style="height:100rpx;background-color:#fff;"></view>
+</form>

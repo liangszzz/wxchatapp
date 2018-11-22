@@ -157,4 +157,13 @@ Page({
     wx.stopPullDownRefresh();
   },
 
+/**
+ * 我要借款
+ */
+  toBorrow:function(){
+    wx.navigateTo({
+      url: '../borrowuserinfo/borrowuserinfo',
+    })
+  }
+
 })

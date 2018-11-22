@@ -1,0 +1,260 @@
+<form bindsubmit="formSubmit" report-submit='true'>
+  <view class="profile-warn">
+    <text><text style="color:red">*</text> 信息有误请及时联系客户经理修改</text>
+    <view hidden="true">
+      <input type="text" disabled='{{able}}' name="biz_order_no" value="{{biz_order_no}}" />
+    </view>
+  </view>
+
+  <view class="profile-info">
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>真实姓名</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="text" disabled='{{able}}'  name="user_name" placeholder='请输入真实姓名' value="{{clUserInfo.user_name}}" />
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>身份证</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="text" disabled='{{able}}' name="idcard" placeholder='请输入身份证号' value="{{clUserInfo.idcard}}" />
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>身份证地址</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="text" disabled='{{able}}' name="idcard_address" placeholder='请输入身份证地址' value="{{clUserInfo.idcard_address}}" />
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>现居地址</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="text" disabled='{{able}}' name="residential_address" placeholder='请输入现居地址' value="{{clUserInfo.residential_address}}" />
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>手机号码</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="text" disabled='{{able}}' name="phone_no" maxlength='11' placeholder='请输入手机号码' value="{{clUserInfo.phone_no}}" />
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>健康状况</text>
+      </view>
+      <view class="profile-info-input">
+        <picker bindchange="bindHelthChange" name="health_status" range-key="{{'label'}}" value="{{helthIndex}}" disabled='{{able}}' range="{{helthArray}}">
+          <view class="picker">
+            {{helthArray[helthIndex].label}}
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>身份类型</text>
+      </view>
+      <view class="profile-info-input">
+        <picker bindchange="bindidChange" name="identity_type" value="{{idIndex}}" range-key="{{'label'}}" disabled='{{able}}' range="{{idArray}}">
+          <view class="picker">
+            {{idArray[idIndex].label}}
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>最高学历</text>
+      </view>
+      <view class="profile-info-input">
+        <picker bindchange="bindeduChange" name="degree" value="{{eduIndex}}" range-key="{{'label'}}" disabled='{{able}}' range="{{eduArray}}">
+          <view class="picker">
+            {{eduArray[eduIndex].label}}
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>公司名称</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="text" disabled='{{able}}' name="company_name" placeholder='请输入公司名称' value="{{clUserInfo.company_name}}" />
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>客户职业信息</text>
+      </view>
+      <view class="profile-info-input">
+        <picker bindchange="bindclientChange" name="customer_professional_info" value="{{clientIndex}}" range-key="{{'label'}}" disabled='{{able}}' range="{{clientArray}}">
+          <view class="picker">
+            {{clientArray[clientIndex].label}}
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>公司电话</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="number" disabled='{{able}}' name="company_phone_no" placeholder='请输入公司电话' maxlength='11' value="{{clUserInfo.company_phone_no}}" />
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>证件到期日</text>
+      </view>
+      <view class="profile-info-input">
+        <picker mode="date" bindchange="binddateChange"  name="certificate_expiry_date"  disabled='{{able}}' start="2015-09-01" end="2099-09-01">
+          <view class="picker">
+            {{certificate_expiry_date}}
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>开户行</text>
+      </view>
+      <view class="profile-info-input">
+      <picker bindchange="bindbankNameChange" name="bank_name"  value="{{bank_list_index}}" disabled='{{able}}' range="{{bank_list}}">
+          <view class="picker">
+            {{bank_list[bank_list_index]}}
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>银行卡类型</text>
+      </view>
+      <view class="profile-info-input">
+        <picker bindchange="bindbankChange" value="{{bankIndex}}" name="bank_card_type" range-key="{{'label'}}" disabled='{{able}}' range="{{bankArray}}">
+          <view class="picker">
+            {{bankArray[bankIndex].label}}
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>银行卡号</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="number" disabled='{{able}}' name="bank_account" placeholder='请输入银行卡号' maxlength='19' value="{{clUserInfo.bank_account}}" />
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>预留手机号</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="number" disabled='{{able}}' name="reserve_phone_no" placeholder='请输入预留手机号' maxlength='11' value="{{clUserInfo.reserve_phone_no}}" />
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>个人总收入(元/月)</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="number" disabled='{{able}}' name="personal_income" placeholder='请输入个人总收入' value="{{clUserInfo.personal_income}}" />
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>微信</text>
+      </view>
+      <view class="profile-info-input">
+        <input type="text" disabled='{{able}}' name="wechat" placeholder='请输入微信号' value="{{clUserInfo.wechat}}" />
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>婚姻状况</text>
+      </view>
+      <view class="profile-info-input">
+        <picker bindchange="bindmarriageChange" name="marital_status" value="{{marriageIndex}}" range-key="{{'label'}}" disabled='{{able}}' range="{{marriageArray}}">
+          <view class="picker">
+            {{marriageArray[marriageIndex].label}}
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class="profile-info-detail">
+      <view class="profile-info-text">
+        <text>贷款用途</text>
+      </view>
+      <view class="profile-info-input">
+        <picker bindchange="bindUseChange" name="borrow_usage" value="{{brrowUserIndex}}"  disabled='{{able}}' range="{{brrowUserArray}}">
+          <view class="picker">
+            {{brrowUserArray[brrowUserIndex]}}
+          </view>
+        </picker>
+      </view>
+    </view>
+
+
+    <view class="profile-info-contact">
+      <view class="profile-info-tile">
+        <text>联系人信息</text>
+      </view>
+      <view class="profile-info-list">
+        <view class="profile-info-detail">
+          <view class="profile-info-text">
+            <text>联系人1姓名</text>
+          </view>
+          <view class="profile-info-input">
+            <input type="text" disabled='{{able}}' name="contact_name" value='{{clContactInfo.contact_name}}' placeholder='请输入联系人姓名'  />
+          </view>
+        </view>
+        <view class="profile-info-detail">
+          <view class="profile-info-text">
+            <text>联系人1电话</text>
+          </view>
+          <view class="profile-info-input">
+            <input type="number" disabled='{{able}}' name="contact_phone" value='{{clContactInfo.contact_phone}}' maxlength='11' placeholder='请输入联系人电话'  />
+          </view>
+        </view>
+        <view class="profile-info-detail">
+          <view class="profile-info-text">
+            <text>联系人1关系</text>
+          </view>
+          <view class="profile-info-input">
+            <picker bindchange="bindshipChange" name="contact_relationship" range-key='label' value="{{relationIndexArray[relationIndexArray]}}" disabled='{{able}}' range="{{relationshipArray}}">
+              <view class="picker">
+                {{relationshipArray[relationIndex].label}}
+              </view>
+            </picker>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!--身份证信息-->
+    <view class="profile-id">
+      <view class="profile-info-tile">
+        <text>身份证正反面</text>
+      </view>
+      <!--身份证要从后台传一个数组上来,就是链接的数组,假如渠道同步过来有身份证那么这里显示身份证否则这里要上传两张图片-->
+      <view>
+        <image src="{{imglist[0]}}" mode='aspectFill' data-src="{{imglist[0]}}" bindtap="previewImage"></image>
+        <image src="{{imglist[1]}}" mode='aspectFill' data-src="{{imglist[1]}}" bindtap="previewImage"></image>
+      </view>
+    </view>
+   
+      <button class="next_btn" form-type='submit'>下一步</button>
+  </view>
+  <view style="height:100rpx;background-color:#fff;"></view>
+</form>
+
