@@ -14,14 +14,15 @@ Page({
     bankName: null,
     bankAccount: null,
     lastRequestDate: null,
+    allOrders: [],
   },
   onLoad: function(e) {
     if (app.globalData.userInfo && app.globalData.userInfo.token) {
-      this.queryOrder(app.globalData.http_url_head + "user/order");
+      this.queryOrder(app.globalData.http_url_head + "user/orders");
     } else {
       // 登录成功回调函数
       app.loginSuccessCallBack = () => {
-        this.queryOrder(app.globalData.http_url_head + "user/order");
+        this.queryOrder(app.globalData.http_url_head + "user/orders");
       }
     }
   },
@@ -43,9 +44,16 @@ Page({
       },
       method: "POST",
       success: result => {
+        var currentPageList = new Array();
+        if (this.data.currentPage == 'single') {
+          currentPageList[0] = result.data.entity.orders[0];
+        } else {
+          currentPageList = result.data.entity.orders;
+        }
         this.setData({
           remainingPrincipal: result.data.entity.remainingPrincipalTotal,
-          orderList: result.data.entity.orders,
+          orderList: currentPageList,
+          allOrders: result.data.entity.orders,
           bankName: bankName,
           bankAccount: bankAccount
         });
@@ -128,10 +136,12 @@ Page({
     if (this.currentPage == 'single') {
       return;
     }
+    var singleOrderList = new Array();
+    singleOrderList[0] = this.data.allOrders[0];
     this.setData({
-      currentPage: 'single'
+      currentPage: 'single',
+      orderList: singleOrderList,
     });
-    this.queryOrder(app.globalData.http_url_head + "user/order");
   },
 
   toAllOrders() {
@@ -139,9 +149,9 @@ Page({
       return;
     }
     this.setData({
-      currentPage: 'all'
+      currentPage: 'all',
+      orderList: this.data.allOrders
     });
-    this.queryOrder(app.globalData.http_url_head + "user/orders");
   },
 
   /**
