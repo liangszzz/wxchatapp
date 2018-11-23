@@ -31,7 +31,9 @@ Page({
         btn_verify_disabled: true,
         //短信验证码
         smsCode: "",
-        biz_order_no: ""
+        biz_order_no: "",
+        //0 以前的  1：借款a
+        page_type:0
     },
 
 
@@ -43,8 +45,13 @@ Page({
         this.setData({
             biz_order_no: options.biz_order_no
         })
+        if (options.page_type !=undefined){
+            that.setData({
+                page_type: options.page_type
+            })
+        }
         wx.request({
-            url: app.globalData.http_url_head + 'sign/toCheckSign/' + options.biz_order_no,
+            url: app.globalData.http_url_head + 'sign/toCheckSign/' + options.biz_order_no + "/" + that.data.page_type,
             header: {
                 token: app.globalData.userInfo.token
             },
@@ -227,7 +234,7 @@ Page({
         if (this.data.hiddenSmsCode) {
             //跳转
             wx.navigateTo({
-                url: '../confirmApply/confirmApply?bizOrderNo=' + this.data.biz_order_no,
+                url: '../confirmApply/confirmApply?bizOrderNo=' + this.data.biz_order_no+"&page_type="+this.data.page_type,
             })
             return
         }
@@ -255,7 +262,7 @@ Page({
                     app.globalData.userInfo = e.data.entity
                     //跳转
                     wx.navigateTo({
-                        url: '../confirmApply/confirmApply?bizOrderNo=' + that.data.biz_order_no,
+                        url: '../confirmApply/confirmApply?bizOrderNo=' + that.data.biz_order_no + "&page_type=" + this.data.page_type,
                     })
                 } else {
                     that.setData({

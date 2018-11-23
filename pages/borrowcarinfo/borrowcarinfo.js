@@ -234,7 +234,7 @@ Page({
       success: function (res) {
         if (res.statusCode == 200 && res.data.code == 0) {
             wx.navigateTo({
-              url: '../sign/sign?biz_order_no=' + that.data.biz_order_no + '&page_type = 1',
+              url: '../sign/sign?biz_order_no=' + that.data.biz_order_no + '&page_type=1',
           })
         }
       },
