@@ -60,11 +60,11 @@ Page({
             for (let index in registerList) {
               dengjiList[index] = registerList[index].file_path
             }
+            hasIndex = clCarInfo.major_accident;
+            accidentIndex = clCarInfo.accident_type;
           }
-          hasIndex = clCarInfo.major_accident;
-          accidentIndex = clCarInfo.accident_type;
+         
           let accidentTypes = res.data.dataMap.accidentTypes;
-          
           for (let index in accidentTypes) {
             accidentArray[index] = accidentTypes[index].label
           }

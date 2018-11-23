@@ -48,7 +48,7 @@ Page({
     let bank_list_index = that.data.bank_list_index;
     let clUserInfo = that.data.clUserInfo;
     let clBaseInfo = that.data.clBaseInfo;
-    let clContactInfo = that.dataclContactInfo;
+    let clContactInfo = that.data.clContactInfo;
     let brrowUserIndex = that.data.brrowUserIndex;
     let relationIndex = that.data.relationIndex;
     //请求后台获取相关信息
@@ -72,6 +72,7 @@ Page({
           let relationshipArray = res.data.dataMap.relationShip; //社会关系
 
           if (biz_order_no == null || biz_order_no == '') { //说明已经存在数据
+          console.log(111);
             clBaseInfo = res.data.dataMap.clBaseInfo;
             brrowUserIndex = clBaseInfo.borrow_usage; //贷款用途
 
