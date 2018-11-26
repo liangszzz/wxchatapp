@@ -73,7 +73,7 @@ Page({
     var url = null;
     for (let i = 0; i < orders.length; i++) {
       if (orders[i].orderStatus == 64 || orders[i].orderStatus == 68 || orders[i].orderStatus == 72) {
-        if(id == null || id == undefined) {
+        if (id == null || id == undefined) {
           id = orders[i].bizOrderNo;
         }
         url = '../clbaseinfodetail/clbaseinfodetail?id=' + id + '&status=' + status;
@@ -110,7 +110,7 @@ Page({
         if (wxAppConfirm == 1) {
           url = '../auditLenders/auditLenders?biz_order_no=' + bizOrderNo
         } else {
-          url = '../userinfo/userinfo?biz_order_no=' + bizOrderNo +"&fromType=1"
+          url = '../userinfo/userinfo?biz_order_no=' + bizOrderNo + "&fromType=1"
         }
 
       }
@@ -157,13 +157,35 @@ Page({
     wx.stopPullDownRefresh();
   },
 
-/**
- * 我要借款
- */
-  toBorrow:function(){
-    wx.navigateTo({
-      url: '../borrowuserinfo/borrowuserinfo',
+  /**
+   * 我要借款
+   */
+  toBorrow: function() {
+    //先查询是否已经确认
+    wx.request({
+      url: app.globalData.http_url_head + "borrow/isToBorrow/" + app.globalData.userInfo.openId,
+      header: {
+        token: app.globalData.userInfo.token
+      },
+      method: 'POST',
+      success: function(res) {
+        if (res.statusCode == 200 && res.data.code == 0) {
+          wx.navigateTo({
+            url: '../borrowuserinfo/borrowuserinfo',
+          })
+        }else{
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none',
+            duration: 2000 //持续的时间
+          })
+        }
+      },
+      fail: function(){
+        console.log("获取后台数据失败")
+      }
     })
+
   }
 
 })
