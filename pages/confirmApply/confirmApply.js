@@ -32,6 +32,9 @@ Page({
 
   getBills: function(bizOrderNo, origin) {
     let token = app.globalData.userInfo.token;
+    let applyAmount = this.data.applyAmount;
+    let terms = this.data.terms;
+    let method = 1;
     wx.request({
       url: app.globalData.http_url_head + 'bill/initBills',
       header: {
@@ -39,6 +42,9 @@ Page({
       },
       data: {
         bizOrderNo: bizOrderNo,
+        origin: origin,
+        terms: terms,
+        method: method,
         origin: origin
       },
       method: "POST",
