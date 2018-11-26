@@ -15,6 +15,7 @@ Page({
     bankAccount: null,
     lastRequestDate: null,
     allOrders: [],
+    biz_order_no: ''
   },
   onLoad: function(e) {
     if (app.globalData.userInfo && app.globalData.userInfo.token) {
@@ -44,6 +45,7 @@ Page({
       },
       method: "POST",
       success: result => {
+        console.log(result);
         var currentPageList = new Array();
         if (this.data.currentPage == 'single') {
           currentPageList[0] = result.data.entity.orders[0];
@@ -55,7 +57,8 @@ Page({
           orderList: currentPageList,
           allOrders: result.data.entity.orders,
           bankName: bankName,
-          bankAccount: bankAccount
+          bankAccount: bankAccount,
+          biz_order_no: result.data.entity.orders[0].bizOrderNo
         });
       },
       fail: result => {
@@ -171,29 +174,31 @@ Page({
    * 我要借款
    */
   toBorrow: function() {
-    //先查询是否已经确认
-    wx.request({
-      url: app.globalData.http_url_head + "borrow/isToBorrow/" + app.globalData.userInfo.openId,
-      header: {
-        token: app.globalData.userInfo.token
-      },
-      method: 'POST',
-      success: function(res) {
-        if (res.statusCode == 200 && res.data.code == 0) {
-          wx.navigateTo({
-            url: '../borrowuserinfo/borrowuserinfo',
-          })
-        }else{
-          wx.navigateTo({
-            url: '../auditLenders/auditLenders?biz_order_no=' + res.data.msg + '&page_type=1',
-          })
-        }
-      },
-      fail: function(){
-        console.log("获取后台数据失败")
-      }
-    })
 
+    console.log(this.data.biz_order_no);
+    //先判断有无订单
+    let allOrders = this.data.allOrders;
+    if (allOrders.length > 0) { //有渠道单子
+      //在判断状态值
+      if (allOrders[0].orderStatus == 19) {
+        var bizOrderNo = allOrders[0].bizOrderNo;
+        //判断当前订单是否已经确认
+        var wxAppConfirm = orders[0].wxAppConfirm;
+        if (wxAppConfirm == 1) {
+          url = '../auditLenders/auditLenders?biz_order_no=' + bizOrderNo + '&page_type=0'
+        } else {
+          url = '../userinfo/userinfo?biz_order_no=' + bizOrderNo + "&fromType=1"
+        }
+      }else{
+        wx.navigateTo({
+          url: '../borrowuserinfo/borrowuserinfo',
+        })
+      }
+    }else{
+      wx.navigateTo({
+        url: '../borrowuserinfo/borrowuserinfo',
+      })
+    }
   }
 
 })
