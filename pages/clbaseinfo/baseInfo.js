@@ -116,7 +116,7 @@ Page({
         //判断当前订单是否已经确认
         var wxAppConfirm = orders[i].wxAppConfirm;
         if (wxAppConfirm == 1) {
-          url = '../auditLenders/auditLenders?biz_order_no=' + bizOrderNo
+          url = '../auditLenders/auditLenders?biz_order_no=' + bizOrderNo + '&page_type=0'
         } else {
           url = '../userinfo/userinfo?biz_order_no=' + bizOrderNo + "&fromType=1"
         }
