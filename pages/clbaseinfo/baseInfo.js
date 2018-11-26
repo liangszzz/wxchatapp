@@ -160,7 +160,7 @@ Page({
   onPullDownRefresh: function() {
     let page = this.data.currentPage;
     if (page == 'single') {
-      this.queryOrder(app.globalData.http_url_head + "user/order");
+      this.queryOrder(app.globalData.http_url_head + "user/orders");
     } else {
       this.queryOrder(app.globalData.http_url_head + "user/orders");
     }
