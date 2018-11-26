@@ -21,7 +21,6 @@ Page({
     check: 0,
     payIndex: 0,
     payArray: ['等额本息', '到期还本付息'],
-    terms: 0,
     termRange: [3, 6, 9, 12],
     /**
      *这里的账单的数据,status以数据库中为准,到时查询的时候页面也要相应的改动
@@ -36,7 +35,7 @@ Page({
     let terms = this.data.terms;
     let method = 1;
     wx.request({
-      url: app.globalData.http_url_head + 'bill/initBills',
+      url: app.globalData.http_url_head + 'bill/afterChangeInitBills',
       header: {
         token: token
       },
@@ -45,7 +44,8 @@ Page({
         origin: origin,
         terms: terms,
         method: method,
-        origin: origin
+        origin: origin,
+        applyAmount: applyAmount
       },
       method: "POST",
       success: result => {
