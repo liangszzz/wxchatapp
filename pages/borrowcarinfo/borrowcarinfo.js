@@ -197,7 +197,6 @@ Page({
     
     let data = e.detail.value
 
-    console.log(data);
     // 传入表单数据，调用验证方法
     if (!this.WxValidate.checkForm(data)) {
       const error = this.WxValidate.errorList[0]
