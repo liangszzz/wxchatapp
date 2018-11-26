@@ -72,7 +72,7 @@ Page({
           let relationshipArray = res.data.dataMap.relationShip; //社会关系
 
           if (biz_order_no == null || biz_order_no == '') { //说明已经存在数据
-          console.log(111);
+          
             clBaseInfo = res.data.dataMap.clBaseInfo;
             brrowUserIndex = clBaseInfo.borrow_usage; //贷款用途
 

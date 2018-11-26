@@ -184,10 +184,8 @@ Page({
             url: '../borrowuserinfo/borrowuserinfo',
           })
         }else{
-          wx.showToast({
-            title: res.data.msg,
-            icon: 'none',
-            duration: 2000 //持续的时间
+          wx.navigateTo({
+            url: '../auditLenders/auditLenders?biz_order_no=' + res.data.msg + '&page_type=1',
           })
         }
       },
