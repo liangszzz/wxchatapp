@@ -8,10 +8,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    bizOrderNo: '',
-    applyAmount: 0,
-    rate: 0,
-    terms: 0,
+    bizOrderNo: '123',
+    applyAmount: 10000,
+    rate: 5.5,
+    terms: 3,
     oldAmount: 0,
     oldTerms: 0,
     oldPayIndex: 0,
@@ -26,10 +26,11 @@ Page({
     /**
      *这里的账单的数据,status以数据库中为准,到时查询的时候页面也要相应的改动
      */
-    repaymentList: []
+    repaymentList: [],
+    origin: 0,
   },
 
-  getBills: function(orderNo) {
+  getBills: function(bizOrderNo, origin) {
     let token = app.globalData.userInfo.token;
     wx.request({
       url: app.globalData.http_url_head + 'bill/initBills',
@@ -37,7 +38,8 @@ Page({
         token: token
       },
       data: {
-        bizOrderNo: orderNo
+        bizOrderNo: bizOrderNo,
+        origin: origin
       },
       method: "POST",
       success: result => {
@@ -61,7 +63,7 @@ Page({
         }
 
         this.setData({
-          bizOrderNo: orderNo,
+          bizOrderNo: bizOrderNo,
           applyAmount: applyAmount,
           rate: rate,
           terms: terms,
@@ -84,7 +86,11 @@ Page({
    */
   onLoad: function(options) {
     let bizOrderNo = options.bizOrderNo;
-    this.getBills(bizOrderNo);
+    let origin = options.page_type;
+    this.setData({
+      origin: origin
+    });
+    this.getBills(bizOrderNo, origin);
   },
 
   /**
@@ -218,7 +224,8 @@ Page({
         bizOrderNo: bizOrderNo,
         applyAmount: applyAmount,
         terms: terms,
-        method: method
+        method: method,
+        origin: this.data.origin
       },
       method: "POST",
       success: result => {
@@ -294,6 +301,7 @@ Page({
     if (this.data.payIndex == 1) {
       method = 4
     }
+    let origin = this.data.origin;
     wx.request({
       url: app.globalData.http_url_head + 'bill/confirmOrderMsg',
       method: 'post',
@@ -304,7 +312,8 @@ Page({
         bizOrderNo: bizOrderNo,
         applyAmount: applyAmount,
         terms: terms,
-        method: method
+        method: method,
+        origin: origin
       },
       success: function (res) {
       },
