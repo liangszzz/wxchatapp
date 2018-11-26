@@ -329,6 +329,7 @@ Page({
     })
 
     //保存formId
+    let page_type = this.data.origin;
     wx.request({
       url: app.globalData.http_url_head + 'baseInfo/updateFormId',
       method: 'post',
@@ -342,7 +343,7 @@ Page({
       success: function(res) {
         if (res.statusCode == 200 && res.data.code == 0) {
           wx.navigateTo({
-            url: '../auditLenders/auditLenders?biz_order_no=' + that.data.bizOrderNo
+            url: '../auditLenders/auditLenders?biz_order_no=' + that.data.bizOrderNo +"&page_type="+page_type
           })
         }
       },
