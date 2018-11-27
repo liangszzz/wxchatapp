@@ -175,7 +175,7 @@ Page({
   toBorrow: function() {
     //先判断有无订单
     let allOrders = this.data.allOrders;
-    if (allOrders.length > 0) {  //有渠道单子
+    if (allOrders.length > 0) { //有渠道单子
       //在判断状态值
       if (allOrders[0].orderStatus == 19) {
         var bizOrderNo = allOrders[0].bizOrderNo;
@@ -183,24 +183,40 @@ Page({
         var wxAppConfirm = allOrders[0].wxAppConfirm;
         if (wxAppConfirm == 1) {
           wx.navigateTo({
-            url : '../auditLenders/auditLenders?biz_order_no=' + bizOrderNo + '&page_type=0'
-          })         
+            url: '../auditLenders/auditLenders?biz_order_no=' + bizOrderNo + '&page_type=0'
+          })
         } else {
           wx.navigateTo({
-            url : '../userinfo/userinfo?biz_order_no=' + bizOrderNo + "&fromType=1"
+            url: '../userinfo/userinfo?biz_order_no=' + bizOrderNo + "&fromType=1"
           })
         }
-      }else{
-        wx.navigateTo({
-          url: '../borrowuserinfo/borrowuserinfo',
-        })
       }
-    }else{
-      wx.navigateTo({
-        url: '../borrowuserinfo/borrowuserinfo',
-      })
     }
-    
-  }
+
+    //查看自主进单是否已经确认
+    wx.request({
+          url: app.globalData.http_url_head + "borrow/isToBorrow/" + app.globalData.userInfo.openId,
+          header: {
+            token: app.globalData.userInfo.token
+          },
+          method: "POST",
+          success: result => {
+            let url = '';
+            if (result.statusCode == 200 && result.data.code == 0) {
+              url = '../borrowuserinfo/borrowuserinfo'
+            } else {
+              url = '../auditLenders/auditLenders?biz_order_no=' + result.data.msg + "&page_type=1"
+            }
+        wx.navigateTo({
+          url: url
+        })
+      },
+      fail: result => {
+        console.log(result)
+      }
+  });
+
+
+}
 
 })
