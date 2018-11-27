@@ -35,17 +35,13 @@ Page({
     let terms = this.data.terms;
     let method = 1;
     wx.request({
-      url: app.globalData.http_url_head + 'bill/afterChangeInitBills',
+      url: app.globalData.http_url_head + 'bill/initBills',
       header: {
         token: token
       },
       data: {
         bizOrderNo: bizOrderNo,
-        origin: origin,
-        terms: terms,
-        method: method,
-        origin: origin,
-        applyAmount: applyAmount
+        origin: origin
       },
       method: "POST",
       success: result => {
