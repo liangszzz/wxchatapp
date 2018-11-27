@@ -146,6 +146,13 @@ Page({
    */
   changApplyAmount: function(e) {
     let amount = e.detail.value;
+    if (amount > 100000 || amount < 10000) {
+      wx.showModal({
+        title: '提示',
+        content: '申请金额范围在10000~100000之间',
+      })
+      return;
+    }
     let amountChanged = false;
     if (amount != this.data.oldAmount) {
       amountChanged = true;
