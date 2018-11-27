@@ -26,7 +26,7 @@ Page({
      *这里的账单的数据,status以数据库中为准,到时查询的时候页面也要相应的改动
      */
     repaymentList: [],
-    origin: 0,
+    origin: 0, // 0：渠道进单  1：自主进单
   },
 
   getBills: function(bizOrderNo, origin) {
@@ -95,54 +95,6 @@ Page({
     this.getBills(bizOrderNo, origin);
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {
-
-  },
 
 
   /**
@@ -275,8 +227,20 @@ Page({
    * 打开合同页面
    */
   agreement: function() {
+    let applyAmount = this.data.applyAmount; //申请金额
+    let method = 1; //还款方式 
+    let terms = this.data.terms; //总期数
+    let bizOrderNo = this.data.bizOrderNo; //单号
+    if (this.data.payIndex == 1) {
+      method = 4
+    }
+    let arr = [];
+    arr.applyAmount = applyAmount;
+    arr.method = method;
+    arr.terms = terms;
+    arr.biz_order_no = bizOrderNo;
     wx.navigateTo({
-      url: '../agreement/agreement?type=2&biz_order_no=' + this.data.bizOrderNo,
+      url: '../agreement/agreement?type=2&biz_order_no=' + this.data.bizOrderNo + '&page_type=' + this.data.origin + '&applyAmount=' + this.data.applyAmount + '&method=' + method + '&terms=' + terms,
     })
   },
 
