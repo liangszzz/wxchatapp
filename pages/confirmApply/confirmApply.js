@@ -251,6 +251,17 @@ Page({
     })
   },
 
+  showLoading: function() {
+    wx.showToast({
+      title: '保存中...',
+      icon: 'loading'
+    });
+  },
+
+  cancelLoading: function() {
+    wx.hideToast();
+  },
+
   /**
    * 跳转到审核中
    */
@@ -262,6 +273,8 @@ Page({
       })
       return false;
     }
+    this.showLoading();
+
     let that = this;
     var formId = e.detail.formId;
     var openId = app.globalData.userInfo.openId;
@@ -288,14 +301,15 @@ Page({
         method: method,
         origin: origin
       },
-      success: function (res) {
+      success: function(res) {
+        that.cancelLoading();
         if (res.statusCode == 200 && res.data.code == 0) {
           wx.navigateTo({
             url: '../auditLenders/auditLenders?biz_order_no=' + that.data.bizOrderNo
           })
         }
       },
-      fail: function () {
+      fail: function() {
         console.log("保存失败")
       }
     })
@@ -313,7 +327,7 @@ Page({
         openId: openId
       },
       success: function(res) {
-        
+
       },
       fail: function() {
         console.log("保存失败")
