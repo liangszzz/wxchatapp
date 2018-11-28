@@ -51,13 +51,19 @@ Page({
         } else {
           currentPageList = result.data.entity.orders;
         }
+        let order;
+        if (result.data.entity.orders.size > 0) {
+          order = result.data.entity.orders[0].bizOrderNo;
+        } else {
+          order = null;
+        }
         this.setData({
           remainingPrincipal: result.data.entity.remainingPrincipalTotal,
           orderList: currentPageList,
           allOrders: result.data.entity.orders,
           bankName: bankName,
           bankAccount: bankAccount,
-          biz_order_no: result.data.entity.orders[0].bizOrderNo
+          biz_order_no: order
         });
       },
       fail: result => {

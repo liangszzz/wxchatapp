@@ -37,10 +37,9 @@ Page({
     onLoad: function(options) {
         const that = this;
         const biz_order_no = options.biz_order_no;
-        const page_type = options.page_type;
 
         wx.request({
-            url: app.globalData.http_url_head + "baseInfo/detail/" + biz_order_no+"/"+page_type,
+            url: app.globalData.http_url_head + "baseInfo/detail/" + biz_order_no,
             header: {
                 token: app.globalData.userInfo.token
             },

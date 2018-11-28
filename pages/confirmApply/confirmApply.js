@@ -310,7 +310,7 @@ Page({
       success: function(res) {
         if (res.statusCode == 200 && res.data.code == 0) {
           wx.navigateTo({
-            url: '../auditLenders/auditLenders?biz_order_no=' + that.data.bizOrderNo +"&page_type="+page_type
+            url: '../auditLenders/auditLenders?biz_order_no=' + that.data.bizOrderNo
           })
         }
       },
