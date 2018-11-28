@@ -197,32 +197,30 @@ Page({
           })
         }
       }
+    } else {
+      //查看自主进单是否已经确认
+      wx.request({
+        url: app.globalData.http_url_head + "borrow/isToBorrow/" + app.globalData.userInfo.openId,
+        header: {
+          token: app.globalData.userInfo.token
+        },
+        method: "POST",
+        success: result => {
+          let url = '';
+          if (result.statusCode == 200 && result.data.code == 0) {
+            url = '../borrowuserinfo/borrowuserinfo'
+          } else {
+            url = '../auditLenders/auditLenders?biz_order_no=' + result.data.msg + "&page_type=1"
+          }
+          wx.navigateTo({
+            url: url
+          })
+        },
+        fail: result => {
+          console.log(result)
+        }
+      });
     }
-
-    //查看自主进单是否已经确认
-    wx.request({
-          url: app.globalData.http_url_head + "borrow/isToBorrow/" + app.globalData.userInfo.openId,
-          header: {
-            token: app.globalData.userInfo.token
-          },
-          method: "POST",
-          success: result => {
-            let url = '';
-            if (result.statusCode == 200 && result.data.code == 0) {
-              url = '../borrowuserinfo/borrowuserinfo'
-            } else {
-              url = '../auditLenders/auditLenders?biz_order_no=' + result.data.msg + "&page_type=1"
-            }
-        wx.navigateTo({
-          url: url
-        })
-      },
-      fail: result => {
-        console.log(result)
-      }
-  });
-
-
-}
+  }
 
 })
