@@ -196,6 +196,10 @@ Page({
             url: '../userinfo/userinfo?biz_order_no=' + bizOrderNo + "&fromType=1"
           })
         }
+      }else{
+        wx.navigateTo({
+          url: '../borrowuserinfo/borrowuserinfo'
+        })
       }
     } else {
       //查看自主进单是否已经确认
