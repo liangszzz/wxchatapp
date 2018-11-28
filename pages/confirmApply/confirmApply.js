@@ -289,6 +289,11 @@ Page({
         origin: origin
       },
       success: function (res) {
+        if (res.statusCode == 200 && res.data.code == 0) {
+          wx.navigateTo({
+            url: '../auditLenders/auditLenders?biz_order_no=' + that.data.bizOrderNo
+          })
+        }
       },
       fail: function () {
         console.log("保存失败")
@@ -308,11 +313,7 @@ Page({
         openId: openId
       },
       success: function(res) {
-        if (res.statusCode == 200 && res.data.code == 0) {
-          wx.navigateTo({
-            url: '../auditLenders/auditLenders?biz_order_no=' + that.data.bizOrderNo
-          })
-        }
+        
       },
       fail: function() {
         console.log("保存失败")
