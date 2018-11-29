@@ -262,7 +262,7 @@ Page({
                     app.globalData.userInfo = e.data.entity
                     //跳转
                     wx.navigateTo({
-                        url: '../confirmApply/confirmApply?bizOrderNo=' + that.data.biz_order_no + "&page_type=" + this.data.page_type,
+                        url: '../confirmApply/confirmApply?bizOrderNo=' + that.data.biz_order_no + "&page_type=" + that.data.page_type,
                     })
                 } else {
                     that.setData({
