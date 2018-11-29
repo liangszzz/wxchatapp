@@ -180,7 +180,7 @@ Page({
    */
   toBorrow: function() {
     let allOrders = this.data.allOrders;
-    let url = '';
+    let url = '../borrowuserinfo/borrowuserinfo';
     if (allOrders.length > 0) {
       //在判断状态值
       if (allOrders[0].orderStatus == 19 || allOrders[0].orderStatus == 20) {
