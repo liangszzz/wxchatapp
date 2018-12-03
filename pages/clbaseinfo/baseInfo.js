@@ -20,6 +20,9 @@ Page({
   },
   onLoad: function(e) {
     if (app.globalData.userInfo && app.globalData.userInfo.token) {
+      if (app.globalData.userInfo.idcard == '' || app.globalData.userInfo.idcard == null) {
+        return false;
+      }
       this.queryOrder(app.globalData.http_url_head + "user/orders");
     } else {
       // 登录成功回调函数
