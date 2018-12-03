@@ -255,7 +255,8 @@ Page({
                 "bankMobile": that.data.reserve_phone_no,
                 "smsId": that.data.smsId,
                 "smsCode": that.data.smsCode,
-                "bankIndex": that.data.index
+                "bankIndex": that.data.index,
+                "openId":app.globalData.userInfo.openId
             },
             success: function(e) {
                 if (e.data.code == 0) {

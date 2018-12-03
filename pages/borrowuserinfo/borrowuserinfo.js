@@ -136,7 +136,7 @@ Page({
           }
 
           let able = that.data.able;
-          if(app.globalData.userInfo.idcard != null){
+          if (app.globalData.userInfo.idcard != null && app.globalData.userInfo.idcard != ''){
             clUserInfo.idcard = app.globalData.userInfo.idcard
             able = true
           }
