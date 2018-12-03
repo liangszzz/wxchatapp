@@ -1,6 +1,7 @@
 //index.js
 //获取应用实例
 const app = getApp();
+var util = require('../../utils/util.js');
 
 Page({
   data: {
@@ -23,6 +24,9 @@ Page({
     } else {
       // 登录成功回调函数
       app.loginSuccessCallBack = () => {
+        if (app.globalData.userInfo.idcard == '' || app.globalData.userInfo.idcard == null){
+          return false;
+        }
         this.queryOrder(app.globalData.http_url_head + "user/orders");
       }
     }
@@ -179,6 +183,17 @@ Page({
    * 我要借款
    */
   toBorrow: function() {
+    let currentTime = util.formatTime(new Date());
+    let startTime = "00:00:00";
+    let endTime = "06:00:00";
+    if ((startTime < currentTime) && (currentTime < endTime)) {
+      wx.showToast({
+        title: "今日额度已用完",
+        icon: 'none',
+        duration: 2000 //持续的时间
+      })
+      return false;
+    }
     let allOrders = this.data.allOrders;
     let url = '../borrowuserinfo/borrowuserinfo';
     if (allOrders.length > 0) {
@@ -188,16 +203,16 @@ Page({
         //判断当前订单是否已经确认
         var wxAppConfirm = allOrders[0].wxAppConfirm;
         if (wxAppConfirm == 1) {
-            url= '../auditLenders/auditLenders?biz_order_no=' + bizOrderNo + '&page_type=0'
+          url = '../auditLenders/auditLenders?biz_order_no=' + bizOrderNo + '&page_type=0'
         } else {
-            url= '../userinfo/userinfo?biz_order_no=' + bizOrderNo + "&fromType=1" 
+          url = '../userinfo/userinfo?biz_order_no=' + bizOrderNo + "&fromType=1"
         }
-      } else if (allOrders[0].orderStatus == 60 || allOrders[0].orderStatus == 62 || allOrders[0].orderStatus == 64){
+      } else if (allOrders[0].orderStatus == 60 || allOrders[0].orderStatus == 62 || allOrders[0].orderStatus == 64) {
         return false;
-      }else{
-        url = '../borrowuserinfo/borrowuserinfo'
+      } else {
+        url = url
       }
-    } 
+    }
     wx.navigateTo({
       url: url
     })

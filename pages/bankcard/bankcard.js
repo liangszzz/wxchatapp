@@ -6,15 +6,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    list:[],
-    ishide:true,
-    userInfo:{}
+    list: [],
+    userInfo: {}
   },
 
-/**
- * 请求后台数据
- */
-  getList: function () {
+  /**
+   * 请求后台数据
+   */
+  getList: function() {
     var that = this;
     var idCard = that.data.userInfo.idcard;
     wx.request({
@@ -23,14 +22,16 @@ Page({
         token: app.globalData.userInfo.token
       },
       method: 'POST',
-      success: function (res) {
-        if (res.statusCode == 200) {
+      success: function(res) {
+        if (res.statusCode == 200 && res.data.code == 0) {
           var list = res.data.data;
-          if (list.length < 1){
-            that.setData({
-              ishide: false
+          if (list.length < 1) {
+            wx.showToast({
+              title: '暂无银行卡信息，请完成签约代扣后再试',
+              icon: 'none',
+              duration: 2000 //持续的时间
             })
-          }else{
+          } else {
             that.setData({
               list: list
             })
@@ -43,7 +44,7 @@ Page({
           })
         }
       },
-      fail: function (e) {
+      fail: function(e) {
         console.log("请求后台异常！")
       }
     })
@@ -53,60 +54,20 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     var that = this;
     that.setData({
-      userInfo: app.globalData.userInfo 
+      userInfo: app.globalData.userInfo
     });
+    if (app.globalData.userInfo.idcard == null || app.globalData.userInfo.idcard == '') {
+      wx.showToast({
+        title: '暂无银行卡信息，请完成签约代扣后再试',
+        icon: 'none',
+        duration: 2000 //持续的时间
+      })
+      return false;
+    }
     that.getList();
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

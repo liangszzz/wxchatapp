@@ -10,7 +10,7 @@ Page({
     userInfo: {},
     orderStatus: '',
     biz_order_no: '',
-    loanAmount: ''
+    loanAmount: 0
   },
 
   /**
@@ -53,8 +53,26 @@ Page({
    * 我的基本资料
    */
   toUserInfo: function() {
+    if (this.data.biz_order_no == '') {
+      this.toBorrow();
+      return false;
+    }
     wx.navigateTo({
-      url: '../userinfo/userinfo?biz_order_no=' + this.data.biz_order_no + '&fromType=2&orderStatus=' + this.data.orderStatus,
+      url: '../userinfo/userinfo?biz_order_no=' + this.data.biz_order_no + '&fromType=2&orderStatus=' + this.data.orderStatus
+    })
+  },
+
+  toBorrow: function() {
+    wx.showModal({
+      title: '提示',
+      content: '您暂无借款订单，无法查看相关资料，是否跳转借款页面',
+      success(res) {
+        if (res.confirm) {
+          wx.navigateTo({
+            url: '../borrowuserinfo/borrowuserinfo'
+          })
+        }
+      }
     })
   },
 
@@ -62,6 +80,10 @@ Page({
    * 我的车辆信息
    */
   toCarInfo: function() {
+    if (this.data.biz_order_no == '') {
+      this.toBorrow();
+      return false;
+    }
     wx.navigateTo({
       url: '../carinfo/carinfo?biz_order_no=' + this.data.biz_order_no + '&fromType=2&orderStatus=' + this.data.orderStatus,
     })
@@ -72,15 +94,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    
     this.findUserInfo();
     this.setData({
       userInfo: app.globalData.userInfo
     })
   },
 
-  findUserInfo: function(){
-    var that = this;
+  findUserInfo: function() {
+    let that = this;
+    if (app.globalData.userInfo.idcard == '') {
+      return false;
+    }
     //获取该用户最近的订单
     wx.request({
       url: app.globalData.http_url_head + 'user/getRecentOrder/' + app.globalData.userInfo.idcard,
@@ -88,11 +112,14 @@ Page({
       header: {
         token: app.globalData.userInfo.token
       },
-      success: function (res) {
+      success: function(res) {
         if (res.statusCode == 200 && res.data.code == 0) {
-          var bizOrderNo = res.data.entity.biz_order_no;
-          var apply_amount = res.data.entity.apply_amount;
-          var orderStatus = res.data.entity.order_status;
+          if (res.data.entity == null) {
+            return false;
+          }
+          let bizOrderNo = res.data.entity.biz_order_no;
+          let apply_amount = res.data.entity.apply_amount;
+          let orderStatus = res.data.entity.order_status;
           that.setData({
             loanAmount: apply_amount,
             biz_order_no: bizOrderNo,
@@ -106,7 +133,7 @@ Page({
           })
         }
       },
-      fail: function () {
+      fail: function() {
         console.log("获取后台数据失败")
       }
     })
@@ -122,7 +149,5 @@ Page({
     wx.hideNavigationBarLoading();
 
   }
-
-
 
 })

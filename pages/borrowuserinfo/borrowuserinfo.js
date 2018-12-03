@@ -29,7 +29,8 @@ Page({
     brrowUserIndex: 1,
     clUserInfo: {},
     clBaseInfo: {},
-    clContactInfo: {}
+    clContactInfo: {},
+    able:false
   },
 
   /**
@@ -134,6 +135,12 @@ Page({
 
           }
 
+          let able = that.data.able;
+          if(app.globalData.userInfo.idcard != null){
+            clUserInfo.idcard = app.globalData.userInfo.idcard
+            able = true
+          }
+
           that.setData({
             biz_order_no: biz_order_no,
             imglist: imglist,
@@ -157,7 +164,9 @@ Page({
             bankIndex: bankIndex,
             idIndex: idIndex,
             eduIndex: eduIndex,
-            marriageIndex: marriageIndex
+            marriageIndex: marriageIndex,
+
+            able: able
           })
         }
       },
