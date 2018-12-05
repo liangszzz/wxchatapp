@@ -89,15 +89,19 @@ Page({
                 }
             },
             fail: function(e) {
-                wx.showModal({
-                    title: '发送失败',
-                    content: "发送验证码失败!",
-                    showCancel: false,
-                    confirmText: "确定"
-                })
-                that.setData({
-                    btnSendSms: true
-                })
+                let btnSendSmsMsg = 60;
+                let interval = setInterval(function () {
+                    that.setData({
+                        btnSendSmsMsg: btnSendSmsMsg-- + "s"
+                    });
+                    if (btnSendSmsMsg <= 0) {
+                        that.setData({
+                            btnSendSmsMsg: "获取验证码",
+                            btnSendSms: false
+                        });
+                        clearInterval(interval)
+                    }
+                }, 1000)
             }
         })
 
