@@ -136,7 +136,7 @@ Page({
         //判断当前订单是否已经确认
         let wxAppConfirm = orders[i].wxAppConfirm;
         if (wxAppConfirm == 1) {
-          url = '../auditLenders/auditLenders?biz_order_no=' + bizOrderNo + '&page_type=0'
+          url = '../auditLenders/auditLenders?biz_order_no=' + bizOrderNo + '&channel_type=0'
         } else {
           url = '../userinfo/userinfo?biz_order_no=' + bizOrderNo + "&fromType=1&channel_type="+channelType
         }
@@ -211,7 +211,7 @@ Page({
         //判断当前订单是否已经确认
         var wxAppConfirm = allOrders[0].wxAppConfirm;
         if (wxAppConfirm == 1) {
-          url = '../auditLenders/auditLenders?biz_order_no=' + bizOrderNo + '&page_type=0'
+          url = '../auditLenders/auditLenders?biz_order_no=' + bizOrderNo + '&channel_type=0'
         } else {
           url = '../userinfo/userinfo?biz_order_no=' + bizOrderNo + "&fromType=1&channel_type=" + this.data.channel
         }

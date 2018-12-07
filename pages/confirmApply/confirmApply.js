@@ -26,11 +26,10 @@ Page({
      *这里的账单的数据,status以数据库中为准,到时查询的时候页面也要相应的改动
      */
     repaymentList: [],
-    origin: 0, // 0：渠道进单  1：自主进单
     channelType: null,
   },
 
-  getBills: function(bizOrderNo, origin) {
+  getBills: function(bizOrderNo) {
     let token = app.globalData.userInfo.token;
     let applyAmount = this.data.applyAmount;
     let terms = this.data.terms;
@@ -90,14 +89,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    console.log(options.page_type)
     let bizOrderNo = options.bizOrderNo;
-    let origin = options.page_type;
     let channelType = options.channel_type;
     this.setData({
-      origin: origin,
-      channelType : channelType,
+      channelType: channelType,
     });
-    this.getBills(bizOrderNo, origin);
+    this.getBills(bizOrderNo);
   },
 
 
@@ -192,7 +190,6 @@ Page({
         applyAmount: applyAmount,
         terms: terms,
         method: method,
-        origin: this.data.origin,
         channelType: channelType,
       },
       method: "POST",
@@ -254,7 +251,7 @@ Page({
     arr.terms = terms;
     arr.biz_order_no = bizOrderNo;
     wx.navigateTo({
-      url: '../agreement/agreement?type=2&biz_order_no=' + this.data.bizOrderNo + '&page_type=' + this.data.origin + '&applyAmount=' + this.data.applyAmount + '&method=' + method + '&terms=' + terms,
+      url: '../agreement/agreement?type=2&biz_order_no=' + this.data.bizOrderNo + '&channel_type=' + this.data.channelType + '&applyAmount=' + this.data.applyAmount + '&method=' + method + '&terms=' + terms,
     })
   },
 
@@ -294,7 +291,6 @@ Page({
     if (this.data.payIndex == 1) {
       method = 4
     }
-    let origin = this.data.origin;
     let channelType = this.data.channelType;
     wx.request({
       url: app.globalData.http_url_head + 'bill/confirmOrderMsg',
@@ -307,15 +303,22 @@ Page({
         applyAmount: applyAmount,
         terms: terms,
         method: method,
-        origin: origin,
         channelType: channelType,
       },
       success: function(res) {
+        console.log(res)
         that.cancelLoading();
         if (res.statusCode == 200 && res.data.code == 0) {
-          wx.navigateTo({
-            url: '../auditLenders/auditLenders?biz_order_no=' + that.data.bizOrderNo
-          })
+          if(res.data.msg == 1){
+            wx.navigateTo({
+              url: '../auditLenders/auditLenders?biz_order_no=' + that.data.bizOrderNo + "&channel_type=2"
+            })
+          }else{
+            wx.navigateTo({
+              url: '../auditLenders/auditLenders?biz_order_no=' + that.data.bizOrderNo + "&channel_type=" + that.data.channelType
+            })
+          }
+         
         }
       },
       fail: function() {
@@ -324,7 +327,6 @@ Page({
     })
 
     //保存formId
-    let page_type = this.data.origin;
     wx.request({
       url: app.globalData.http_url_head + 'baseInfo/updateFormId',
       method: 'post',

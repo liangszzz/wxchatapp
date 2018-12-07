@@ -32,8 +32,6 @@ Page({
         //短信验证码
         smsCode: "",
         biz_order_no: "",
-        //0 以前的  1：借款a
-        page_type:0,
         channel_type:1
     },
 
@@ -47,14 +45,9 @@ Page({
             biz_order_no: options.biz_order_no,
             channel_type: options.channel_type
         })
-        if (options.page_type !=undefined){
-            that.setData({
-                page_type: options.page_type
-            })
-        }
         wx.request({
             url: app.globalData.http_url_head + 'sign/toCheckSign/' + 
-                options.biz_order_no + "/" + that.data.page_type + "/" + that.data.channel_type,
+                options.biz_order_no + "/" + that.data.channel_type,
             header: {
                 token: app.globalData.userInfo.token
             },
@@ -237,8 +230,8 @@ Page({
         if (this.data.hiddenSmsCode) {
             //跳转
             wx.navigateTo({
-                url: '../confirmApply/confirmApply?bizOrderNo=' + this.data.biz_order_no + 
-                "&page_type=" + this.data.page_type +"&channel_type="+this.data.channel_type,
+                url: '../confirmApply/confirmApply?bizOrderNo=' + this.data.biz_order_no
+                 +"&channel_type="+this.data.channel_type,
             })
             return
         }
@@ -268,7 +261,7 @@ Page({
                     //跳转
                     wx.navigateTo({
                         url: '../confirmApply/confirmApply?bizOrderNo=' + that.data.biz_order_no + 
-                            "&page_type=" + that.data.page_type + "&channel_type=" + that.data.channel_type,
+                             "&channel_type=" + that.data.channel_type,
                     })
                 } else {
                     that.setData({
@@ -294,8 +287,9 @@ Page({
      * 打开协议页面
      */
     agreement: function() {
+      console.log(this.data.channel_type)
         wx.navigateTo({
-          url: '../agreement/agreement?type=3&biz_order_no=' + this.data.biz_order_no + '&page_type=' + this.data.page_type,
+          url: '../agreement/agreement?biz_order_no=' + this.data.biz_order_no + '&channel_type=' + this.data.channel_type,
         })
     }
 
