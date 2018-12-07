@@ -81,7 +81,8 @@ Page({
             accidentIndex: accidentIndex,
             hasIndex: hasIndex,
             orderStatus: orderStatus,
-            fromType: options.fromType
+            fromType: options.fromType,
+            channel_type: channel_type
           })
         }
       },
@@ -234,7 +235,7 @@ Page({
         if (res.statusCode == 200 && res.data.code == 0) {
           if (fromType == 1){
             wx.navigateTo({
-              url: '../sign/sign?biz_order_no=' + that.data.clCarInfo.biz_order_no,
+              url: '../sign/sign?biz_order_no=' + that.data.clCarInfo.biz_order_no + '&channel_type=' + channel_type,
             })
           }else{
             wx.showToast({
