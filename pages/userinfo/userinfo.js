@@ -27,30 +27,31 @@ Page({
     relationIndexArray: [],
     orderStatus: '',
     bank_list: [],
-    bank_list_index: ''
+    bank_list_index: '',
+    channel_type:2
   },
 
   /**
    * 生命周期函数--监听页面加载
+   * fromType 1：从列表页进入详情页 2：从我的页面个人资料页进入
    */
   onLoad: function(options) {
-    var that = this;
-    var idcard = '';
-    var biz_order_no = '';
-    var orderStatus = '';
-    var fromType = options.fromType;
-    biz_order_no = options.biz_order_no;
+    let that = this;
+    let orderStatus = '';
+    let channel_type = options.channel_type;
+    let fromType = options.fromType;
+    let biz_order_no = options.biz_order_no;
     if (fromType == 2) {
-      orderStatus = options.orderStatus;
+      orderStatus = options.orderStatus; //使用订单状态区分页面显示 修改按钮和返回按钮
     }
     that.initValidate()
-    var imglist = that.data.imglist;
-    var helthIndex = that.data.helthIndex;
-    var idIndex = that.data.idIndex;
-    var eduIndex = that.data.eduIndex;
-    var clientIndex = that.data.clientIndex;
-    var bankIndex = that.data.bankIndex;
-    var marriageIndex = that.data.marriageIndex;
+    let imglist = that.data.imglist;
+    let helthIndex = that.data.helthIndex;
+    let idIndex = that.data.idIndex;
+    let eduIndex = that.data.eduIndex;
+    let clientIndex = that.data.clientIndex;
+    let bankIndex = that.data.bankIndex;
+    let marriageIndex = that.data.marriageIndex;
     let bank_list_index = that.data.bank_list_index;
     //请求后台获取相关信息
     wx.request({
@@ -61,64 +62,64 @@ Page({
       method: 'POST',
       data: {
         biz_order_no: biz_order_no,
-        idcard: idcard
+        channel_type: channel_type
       },
       success: function(res) {
         if (res.statusCode == 200 && res.data.code == 0) {
-          var clUserInfo = res.data.dataMap.clUserInfo; //用户基本信息
-          var clContactInfoList = res.data.dataMap.clContactInfoList; //联系人信息
-          var clAttachmentInfoList = res.data.dataMap.clAttachmentInfoList; //附件信息
+          let clUserInfo = res.data.dataMap.clUserInfo; //用户基本信息
+          let clContactInfoList = res.data.dataMap.clContactInfoList; //联系人信息
+          let clAttachmentInfoList = res.data.dataMap.clAttachmentInfoList; //附件信息
           let bank_list = res.data.dataMap.bank_list; //银行名称列表
           let bankName = clUserInfo.bank_name;
-          for (var index in bank_list) {
+          for (let index in bank_list) {
             if (bank_list[index] == clUserInfo.bank_name) {
               bank_list_index = index
             }
           }
-          for (var index in clAttachmentInfoList) {
+          for (let index in clAttachmentInfoList) {
             imglist[index] = clAttachmentInfoList[index].fast_dfs_path
           }
-          var helthArray = res.data.dataMap.health; //身体状况
-          for (var index in helthArray) {
+          let helthArray = res.data.dataMap.health; //身体状况
+          for (let index in helthArray) {
             if (helthArray[index].value == clUserInfo.health_status) {
               helthIndex = index;
             }
           }
-          var idArray = res.data.dataMap.identity_type; //身份类型
-          for (var index in idArray) {
+          let idArray = res.data.dataMap.identity_type; //身份类型
+          for (let index in idArray) {
             if (idArray[index].value == clUserInfo.identity_type) {
               idIndex = index;
             }
           }
-          var eduArray = res.data.dataMap.degreeS; //最高学历
-          for (var index in eduArray) {
+          let eduArray = res.data.dataMap.degree; //最高学历
+          for (let index in eduArray) {
             if (eduArray[index].value == clUserInfo.degree) {
               eduIndex = index;
             }
           }
-          var clientArray = res.data.dataMap.customerInfo; //客户职业信息
-          for (var index in clientArray) {
+          let clientArray = res.data.dataMap.customerInfo; //客户职业信息
+          for (let index in clientArray) {
             if (clientArray[index].value == clUserInfo.customer_professional_info) {
               clientIndex = index;
             }
           }
-          var bankArray = res.data.dataMap.bankCards; //银行卡类型
-          for (var index in bankArray) {
+          let bankArray = res.data.dataMap.bankCards; //银行卡类型
+          for (let index in bankArray) {
             if (bankArray[index].value == clUserInfo.bank_card_type) {
               bankIndex = index;
             }
           }
-          var marriageArray = res.data.dataMap.marital_status; //婚姻状况
-          for (var index in idArray) {
+          let marriageArray = res.data.dataMap.marital_status; //婚姻状况
+          for (let index in idArray) {
             if (marriageArray[index].value == clUserInfo.marital_status) {
               marriageIndex = index;
             }
           }
-          var relationIndexArray = that.data.relationIndexArray;
-          var relationshipArray = res.data.dataMap.relationShip; //社会关系
-          for (var i in clContactInfoList) {
-            var relation = clContactInfoList[i].contact_relationship;
-            for (var index in relationshipArray) {
+          let relationIndexArray = that.data.relationIndexArray;
+          let relationshipArray = res.data.dataMap.relationShip; //社会关系
+          for (let i in clContactInfoList) {
+            let relation = clContactInfoList[i].contact_relationship;
+            for (let index in relationshipArray) {
               if (relation == relationshipArray[index].value) {
                 relationIndexArray[i] = index
               }
@@ -146,7 +147,8 @@ Page({
             relationIndexArray: relationIndexArray,
             orderStatus: orderStatus,
             bank_list: bank_list,
-            bank_list_index: bank_list_index
+            bank_list_index: bank_list_index,
+            channel_type: channel_type
           })
         }
       },
@@ -159,16 +161,16 @@ Page({
    * 预览身份证
    */
   previewImage: function(e) {
-    var that = this;
-    var imglist = that.data.imglist;
-    var currentUrl = e.target.dataset.src;
+    let that = this;
+    let imglist = that.data.imglist;
+    let currentUrl = e.target.dataset.src;
     if (currentUrl == '' || currentUrl == null) { //缺少图片
       wx.chooseImage({
         count: 1, //一次只允许一张
         sizeType: ['original', 'compressed'], //可选择原图或缩略图
         sourceType: ['album', 'camera'], //访问相册、相机
         success: function(res) {
-          var tempFilePaths = res.tempFilePaths;
+          let tempFilePaths = res.tempFilePaths;
           //图片上传
           wx.uploadFile({
             url: app.globalData.http_url_head + 'attachmentInfo/uploadFile',
@@ -210,8 +212,8 @@ Page({
    * 提交
    */
   formSubmit: function(e) {
-    var that = this;
-    var fromType = that.data.fromType;
+    let that = this;
+    let fromType = that.data.fromType;
     let data = e.detail.value
     if (this.data.imglist.length < 2) {
       wx.showToast({
@@ -232,12 +234,12 @@ Page({
       return false
     }
 
-    var health_status = this.data.helthArray[data.health_status].value;
-    var identity_type = this.data.idArray[data.identity_type].value;
-    var degree = this.data.eduArray[data.degree].value;
-    var customer_professional_info = this.data.clientArray[data.customer_professional_info].value;
-    var bank_card_type = this.data.bankArray[data.bank_card_type].value;
-    var marital_status = this.data.marriageArray[data.marital_status].value;
+    let health_status = this.data.helthArray[data.health_status].value;
+    let identity_type = this.data.idArray[data.identity_type].value;
+    let degree = this.data.eduArray[data.degree].value;
+    let customer_professional_info = this.data.clientArray[data.customer_professional_info].value;
+    let bank_card_type = this.data.bankArray[data.bank_card_type].value;
+    let marital_status = this.data.marriageArray[data.marital_status].value;
 
     data.health_status = health_status;
     data.identity_type = identity_type;
@@ -246,22 +248,24 @@ Page({
     data.bank_card_type = bank_card_type;
     data.marital_status = marital_status;
 
-    var clContactInfoList = this.data.clContactInfoList;
-    var contactArray = [];
-    for (var index in clContactInfoList) {
-      var item = new Object();
-      var name = 'contact_name_' + index;
-      var phone = 'contact_phone_' + index;
-      var relationShip = 'contact_relationship_' + index;
-      var contact_name = data[name];
-      var contact_phone = data[phone];
-      var contact_relationship = this.data.relationshipArray[data[relationShip]].value;
+    let clContactInfoList = this.data.clContactInfoList;
+    let contactArray = [];
+    for (let index in clContactInfoList) {
+      let item = new Object();
+      let name = 'contact_name_' + index;
+      let phone = 'contact_phone_' + index;
+      let relationShip = 'contact_relationship_' + index;
+      let contact_name = data[name];
+      let contact_phone = data[phone];
+      let contact_relationship = this.data.relationshipArray[data[relationShip]].value;
       item.contact_name = contact_name;
       item.contact_phone = contact_phone;
       item.contact_relationship = contact_relationship;
       contactArray[index] = item;
     }
     data.contactArray = contactArray;
+
+    data.channel_type = this.data.channel_type;
     //后台保存数据
     wx.request({
       url: app.globalData.http_url_head + 'user/save',
@@ -276,7 +280,7 @@ Page({
         if (res.data.code == 0 && res.statusCode == 200) {
           if (fromType == 1) {
             wx.navigateTo({
-              url: '../carinfo/carinfo?biz_order_no=' + that.data.clUserInfo.biz_order_no + '&fromType=1',
+              url: '../carinfo/carinfo?biz_order_no=' + that.data.clUserInfo.biz_order_no + '&fromType=1&channel_type=' + that.data.channel_type,
             })
           } else {
             wx.showToast({
@@ -395,7 +399,7 @@ Page({
   },
 
   bindshipChange: function(e) {
-    var relationIndexArray = this.data.relationIndexArray;
+    let relationIndexArray = this.data.relationIndexArray;
     relationIndexArray[e.target.dataset.id] = e.detail.value;
     this.setData({
       relationIndexArray: relationIndexArray
@@ -403,7 +407,7 @@ Page({
   },
 
   binddateChange: function(e) {
-    var clUserInfo = this.data.clUserInfo;
+    let clUserInfo = this.data.clUserInfo;
     clUserInfo.certificate_expiry_date = e.detail.value
     this.setData({
       clUserInfo: clUserInfo

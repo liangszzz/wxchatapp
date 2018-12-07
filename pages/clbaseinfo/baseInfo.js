@@ -131,13 +131,14 @@ Page({
     let url = null;
     for (let i = 0; i < orders.length; i++) {
       if (orders[i].orderStatus == 19) {
-        var bizOrderNo = orders[i].bizOrderNo;
+        let bizOrderNo = orders[i].bizOrderNo;
+        let channelType = orders[i].channelType;
         //判断当前订单是否已经确认
-        var wxAppConfirm = orders[i].wxAppConfirm;
+        let wxAppConfirm = orders[i].wxAppConfirm;
         if (wxAppConfirm == 1) {
           url = '../auditLenders/auditLenders?biz_order_no=' + bizOrderNo + '&page_type=0'
         } else {
-          url = '../userinfo/userinfo?biz_order_no=' + bizOrderNo + "&fromType=1"
+          url = '../userinfo/userinfo?biz_order_no=' + bizOrderNo + "&fromType=1&channel_type="+channelType
         }
 
       }
@@ -212,7 +213,7 @@ Page({
         if (wxAppConfirm == 1) {
           url = '../auditLenders/auditLenders?biz_order_no=' + bizOrderNo + '&page_type=0'
         } else {
-          url = '../userinfo/userinfo?biz_order_no=' + bizOrderNo + "&fromType=1"
+          url = '../userinfo/userinfo?biz_order_no=' + bizOrderNo + "&fromType=1&channel_type=" + this.data.channel
         }
       } else if (allOrders[0].orderStatus == 60 || allOrders[0].orderStatus == 62 || allOrders[0].orderStatus == 64) {
         return false;

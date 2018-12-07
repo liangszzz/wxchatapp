@@ -58,7 +58,7 @@ Page({
       return false;
     }
     wx.navigateTo({
-      url: '../userinfo/userinfo?biz_order_no=' + this.data.biz_order_no + '&fromType=2&orderStatus=' + this.data.orderStatus
+      url: '../userinfo/userinfo?biz_order_no=' + this.data.biz_order_no + '&fromType=2&channel_type=2&orderStatus=' + this.data.orderStatus
     })
   },
 
@@ -85,7 +85,7 @@ Page({
       return false;
     }
     wx.navigateTo({
-      url: '../carinfo/carinfo?biz_order_no=' + this.data.biz_order_no + '&fromType=2&orderStatus=' + this.data.orderStatus,
+      url: '../carinfo/carinfo?biz_order_no=' + this.data.biz_order_no + '&fromType=2&channel_type=2&orderStatus=' + this.data.orderStatus,
     })
   },
 
@@ -148,6 +148,35 @@ Page({
     wx.stopPullDownRefresh();
     wx.hideNavigationBarLoading();
 
+  },
+
+  /**
+   * 修改手机号
+   */
+  toUpdatePhone: function() {
+  
+    let newPhone = '13770207216'
+    let title = '修改手机号码失败'
+    wx.request({
+      url: app.globalData.http_url_head + 'wxPhone/update/' + app.globalData.userInfo.phone + '/' + newPhone,
+      header: {
+        token: app.globalData.userInfo.token
+      },
+      method: 'post',
+      success: function(res) {
+        if (res.statusCode == 200 && res.data.code == 0) {
+         title = '修改手机号码成功'
+        }
+        wx.showToast({
+          title: title,
+          icon: 'none',
+          duration: 2000 //持续的时间
+        })
+      },
+      fail: function() {
+        console.log("修改手机号失败");
+      }
+    })
   }
 
 })

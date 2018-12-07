@@ -17,25 +17,26 @@ Page({
     hasIndex: 0,
     hasArray: ['否', '是'],
     fromType: '',
-    orderStatus: ''
+    orderStatus: '',
+    channel_type:2
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    var that = this;
-    var idcard = '';
-    var biz_order_no = options.biz_order_no;
-    var fromType = options.fromType;
-    var orderStatus = '';
+    let that = this;
+    let biz_order_no = options.biz_order_no;
+    let fromType = options.fromType;
+    let orderStatus = '';
+    let channel_type = options.channel_type;
     if (fromType == 2) {
       orderStatus = options.orderStatus;
     }
-    var carlist = that.data.carlist;
-    var dengjiList = that.data.dengjiList;
-    var xingshiList = that.data.xingshiList;
-    var accidentArray = that.data.accidentArray;
+    let carlist = that.data.carlist;
+    let dengjiList = that.data.dengjiList;
+    let xingshiList = that.data.xingshiList;
+    let accidentArray = that.data.accidentArray;
     that.initValidate();
     //请求后台获取相关信息
     wx.request({
@@ -45,31 +46,31 @@ Page({
       },
       data: {
         biz_order_no: biz_order_no,
-        idcard: idcard
+        channel_type: channel_type
       },
       method: 'POST',
       success: function(res) {
         if (res.statusCode == 200 && res.data.code == 0) {
-          var clRiskInfo = res.data.dataMap.clRiskInfo; //风控信息，用于获取车辆估值
-          var clCarInfo = res.data.dataMap.clCarInfo; //车辆基本信息
-          var carList = res.data.dataMap.carList; //车辆照片
-          for (var index in carList) {
+          let clRiskInfo = res.data.dataMap.clRiskInfo; //风控信息，用于获取车辆估值
+          let clCarInfo = res.data.dataMap.clCarInfo; //车辆基本信息
+          let carList = res.data.dataMap.carList; //车辆照片
+          for (let index in carList) {
             carlist[index] = carList[index].fast_dfs_path
           }
-          var cardriveListList = res.data.dataMap.cardriveListList; //行驶证
-          for (var index in cardriveListList) {
+          let cardriveListList = res.data.dataMap.cardriveListList; //行驶证
+          for (let index in cardriveListList) {
             xingshiList[index] = cardriveListList[index].fast_dfs_path
           }
-          var registerList = res.data.dataMap.registerList //机动车登记证书
-          for (var index in registerList) {
+          let registerList = res.data.dataMap.registerList //机动车登记证书
+          for (let index in registerList) {
             dengjiList[index] = registerList[index].fast_dfs_path
           }
-          var accidentTypes = res.data.dataMap.accidentTypes;
-          for (var index in accidentTypes) {
+          let accidentTypes = res.data.dataMap.accidentTypes;
+          for (let index in accidentTypes) {
             accidentArray[index] = accidentTypes[index].label
           }
-          var accidentIndex = clCarInfo.accident_type;
-          var hasIndex = clCarInfo.major_accident;
+          let accidentIndex = clCarInfo.accident_type;
+          let hasIndex = clCarInfo.major_accident;
           that.setData({
             clRiskInfo: clRiskInfo,
             clCarInfo: clCarInfo,
@@ -94,7 +95,7 @@ Page({
    * 车辆照片预览
    */
   previewImageCar: function(e) {
-    var currentUrl = e.target.dataset.src;
+    let currentUrl = e.target.dataset.src;
     if (currentUrl == '' || currentUrl == null) { //缺少图片
       this.chooseImg(7, );
     } else {
@@ -109,7 +110,7 @@ Page({
    * 抵押登记证预览
    */
   previewImageDeng: function(e) {
-    var currentUrl = e.target.dataset.src;
+    let currentUrl = e.target.dataset.src;
     if (currentUrl == '' || currentUrl == null) { //缺少图片
       this.chooseImg(4);
     } else {
@@ -124,7 +125,7 @@ Page({
    * 行驶证预览
    */
   previewImageXing: function(e) {
-    var currentUrl = e.target.dataset.src;
+    let currentUrl = e.target.dataset.src;
     if (currentUrl == '' || currentUrl == null) { //缺少图片
       this.chooseImg(14);
     } else {
@@ -139,16 +140,16 @@ Page({
    * 缺少图片上传图片公用方法
    */
   chooseImg: function(file_type) {
-    var that = this;
-    var carlist = that.data.carlist;
-    var dengjiList = that.data.dengjiList;
-    var xingshiList = that.data.xingshiList;
+    let that = this;
+    let carlist = that.data.carlist;
+    let dengjiList = that.data.dengjiList;
+    let xingshiList = that.data.xingshiList;
     wx.chooseImage({
       count: 1, //一次只允许一张
       sizeType: ['original', 'compressed'], //可选择原图或缩略图
       sourceType: ['album', 'camera'], //访问相册、相机
       success: function(res) {
-        var tempFilePaths = res.tempFilePaths;
+        let tempFilePaths = res.tempFilePaths;
         //图片上传
         wx.uploadFile({
           url: app.globalData.http_url_head + 'attachmentInfo/uploadFile',
@@ -196,7 +197,7 @@ Page({
    * 下一步
    */
   formSubmit: function(e) {
-    var fromType = this.data.fromType;
+    let fromType = this.data.fromType;
     //先检查图片是否存在
     if (this.data.carlist.length < 1 || this.data.dengjiList.length < 1 || this.data.xingshiList.length < 2) {
       wx.showToast({
@@ -206,7 +207,8 @@ Page({
       })
       return false
     }
-    let data = e.detail.value
+    let data = e.detail.value;
+    data.channel_type = this.data.channel_type
     // 传入表单数据，调用验证方法
     if (!this.WxValidate.checkForm(data)) {
       const error = this.WxValidate.errorList[0]
@@ -217,7 +219,7 @@ Page({
       })
       return false
     }
-    var that = this;
+    let that = this;
     //后台保存数据
     wx.request({
       url: app.globalData.http_url_head + 'car/save',
