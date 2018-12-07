@@ -25,7 +25,7 @@ Page({
     marriageArray: [],
     relationshipArray: [],
     relationIndexArray: [],
-    orderStatus: '',
+    wx_app_confirm: '',
     bank_list: [],
     bank_list_index: '',
     channel_type:2
@@ -37,12 +37,12 @@ Page({
    */
   onLoad: function(options) {
     let that = this;
-    let orderStatus = '';
+    let wx_app_confirm = '';
     let channel_type = options.channel_type;
     let fromType = options.fromType;
     let biz_order_no = options.biz_order_no;
     if (fromType == 2) {
-      orderStatus = options.orderStatus; //使用订单状态区分页面显示 修改按钮和返回按钮
+      wx_app_confirm = options.wx_app_confirm; //使用订单状态区分页面显示 修改按钮和返回按钮
     }
     that.initValidate()
     let imglist = that.data.imglist;
@@ -145,7 +145,7 @@ Page({
             marriageIndex: marriageIndex,
             relationshipArray: relationshipArray,
             relationIndexArray: relationIndexArray,
-            orderStatus: orderStatus,
+            wx_app_confirm: wx_app_confirm,
             bank_list: bank_list,
             bank_list_index: bank_list_index,
             channel_type: channel_type

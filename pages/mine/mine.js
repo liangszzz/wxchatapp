@@ -8,9 +8,10 @@ Page({
    */
   data: {
     userInfo: {},
-    orderStatus: '',
+    wx_app_confirm: '',
     biz_order_no: '',
-    loanAmount: 0
+    loanAmount: 0,
+    channel_type:1
   },
 
   /**
@@ -58,7 +59,7 @@ Page({
       return false;
     }
     wx.navigateTo({
-      url: '../userinfo/userinfo?biz_order_no=' + this.data.biz_order_no + '&fromType=2&channel_type=2&orderStatus=' + this.data.orderStatus
+      url: '../userinfo/userinfo?biz_order_no=' + this.data.biz_order_no + '&fromType=' + this.data.channel_type + '&channel_type=2&wx_app_confirm=' + this.data.wx_app_confirm
     })
   },
 
@@ -85,7 +86,7 @@ Page({
       return false;
     }
     wx.navigateTo({
-      url: '../carinfo/carinfo?biz_order_no=' + this.data.biz_order_no + '&fromType=2&channel_type=2&orderStatus=' + this.data.orderStatus,
+      url: '../carinfo/carinfo?biz_order_no=' + this.data.biz_order_no + '&fromType=2&channel_type=' + this.data.channel_type + '&wx_app_confirm=' + this.data.wx_app_confirm,
     })
   },
 
@@ -119,11 +120,12 @@ Page({
           }
           let bizOrderNo = res.data.entity.biz_order_no;
           let apply_amount = res.data.entity.apply_amount;
-          let orderStatus = res.data.entity.order_status;
+          let wx_app_confirm = res.data.entity.wx_app_confirm;
           that.setData({
             loanAmount: apply_amount,
             biz_order_no: bizOrderNo,
-            orderStatus: orderStatus
+            wx_app_confirm: wx_app_confirm,
+            channel_type:res.data.entity.channel_type
           })
         } else {
           wx.showToast({

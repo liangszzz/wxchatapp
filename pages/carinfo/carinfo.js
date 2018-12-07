@@ -17,7 +17,7 @@ Page({
     hasIndex: 0,
     hasArray: ['否', '是'],
     fromType: '',
-    orderStatus: '',
+    wx_app_confirm: '',
     channel_type:2
   },
 
@@ -28,10 +28,10 @@ Page({
     let that = this;
     let biz_order_no = options.biz_order_no;
     let fromType = options.fromType;
-    let orderStatus = '';
+    let wx_app_confirm = '';
     let channel_type = options.channel_type;
     if (fromType == 2) {
-      orderStatus = options.orderStatus;
+      wx_app_confirm = options.wx_app_confirm;
     }
     let carlist = that.data.carlist;
     let dengjiList = that.data.dengjiList;
@@ -80,7 +80,7 @@ Page({
             accidentArray: accidentArray,
             accidentIndex: accidentIndex,
             hasIndex: hasIndex,
-            orderStatus: orderStatus,
+            wx_app_confirm: wx_app_confirm,
             fromType: options.fromType,
             channel_type: channel_type
           })
