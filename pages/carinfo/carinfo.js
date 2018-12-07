@@ -235,7 +235,7 @@ Page({
         if (res.statusCode == 200 && res.data.code == 0) {
           if (fromType == 1){
             wx.navigateTo({
-              url: '../sign/sign?biz_order_no=' + that.data.clCarInfo.biz_order_no + '&channel_type=' + channel_type,
+              url: '../sign/sign?biz_order_no=' + that.data.clCarInfo.biz_order_no + '&channel_type=' + that.data.channel_type,
             })
           }else{
             wx.showToast({
