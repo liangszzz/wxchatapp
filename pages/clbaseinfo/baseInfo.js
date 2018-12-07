@@ -16,7 +16,8 @@ Page({
     bankAccount: null,
     lastRequestDate: null,
     allOrders: [],
-    biz_order_no: ''
+    biz_order_no: '',
+    channel: null // 1-wx_cl_base_info, 2-cl_base_info
   },
   onLoad: function(e) {
     if (app.globalData.userInfo && app.globalData.userInfo.token) {
@@ -59,8 +60,10 @@ Page({
           currentPageList = result.data.entity.orders;
         }
         let order;
-        if (result.data.entity.orders.size > 0) {
+        let channelType;
+        if (result.data.entity.orders.length > 0) {
           order = result.data.entity.orders[0].bizOrderNo;
+          channelType = result.data.entity.orders[0].channelType;
         } else {
           order = null;
         }
@@ -70,7 +73,8 @@ Page({
           allOrders: result.data.entity.orders,
           bankName: bankName,
           bankAccount: bankAccount,
-          biz_order_no: order
+          biz_order_no: order,
+          channel: channelType
         });
       },
       fail: result => {
