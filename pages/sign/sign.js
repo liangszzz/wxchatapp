@@ -53,7 +53,8 @@ Page({
             })
         }
         wx.request({
-            url: app.globalData.http_url_head + 'sign/toCheckSign/' + options.biz_order_no + "/" + that.data.page_type,
+            url: app.globalData.http_url_head + 'sign/toCheckSign/' + 
+                options.biz_order_no + "/" + that.data.page_type + "/" + that.data.channel_type,
             header: {
                 token: app.globalData.userInfo.token
             },
