@@ -33,7 +33,8 @@ Page({
         smsCode: "",
         biz_order_no: "",
         //0 以前的  1：借款a
-        page_type:0
+        page_type:0,
+        channel_type:1
     },
 
 
@@ -43,7 +44,8 @@ Page({
     onLoad: function(options) {
         let that = this;
         this.setData({
-            biz_order_no: options.biz_order_no
+            biz_order_no: options.biz_order_no,
+            channel_type: options.channel_type
         })
         if (options.page_type !=undefined){
             that.setData({
@@ -234,7 +236,8 @@ Page({
         if (this.data.hiddenSmsCode) {
             //跳转
             wx.navigateTo({
-                url: '../confirmApply/confirmApply?bizOrderNo=' + this.data.biz_order_no+"&page_type="+this.data.page_type,
+                url: '../confirmApply/confirmApply?bizOrderNo=' + this.data.biz_order_no + 
+                "&page_type=" + this.data.page_type +"&channel_type="+this.data.channel_type,
             })
             return
         }
@@ -263,7 +266,8 @@ Page({
                     app.globalData.userInfo = e.data.entity
                     //跳转
                     wx.navigateTo({
-                        url: '../confirmApply/confirmApply?bizOrderNo=' + that.data.biz_order_no + "&page_type=" + that.data.page_type,
+                        url: '../confirmApply/confirmApply?bizOrderNo=' + that.data.biz_order_no + 
+                            "&page_type=" + that.data.page_type + "&channel_type=" + that.data.channel_type,
                     })
                 } else {
                     that.setData({
