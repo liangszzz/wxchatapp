@@ -181,6 +181,7 @@ Page({
     }
 
     let token = app.globalData.userInfo.token;
+    let channelType = this.data.channelType;
     wx.request({
       url: app.globalData.http_url_head + 'bill/afterChangeInitBills',
       header: {
@@ -191,7 +192,8 @@ Page({
         applyAmount: applyAmount,
         terms: terms,
         method: method,
-        origin: this.data.origin
+        origin: this.data.origin,
+        channelType: channelType,
       },
       method: "POST",
       success: result => {
