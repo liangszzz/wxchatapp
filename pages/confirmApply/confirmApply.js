@@ -27,6 +27,7 @@ Page({
      */
     repaymentList: [],
     origin: 0, // 0：渠道进单  1：自主进单
+    channelType: null,
   },
 
   getBills: function(bizOrderNo, origin) {
@@ -34,6 +35,7 @@ Page({
     let applyAmount = this.data.applyAmount;
     let terms = this.data.terms;
     let method = 1;
+    let channelType = this.data.channelType;
     wx.request({
       url: app.globalData.http_url_head + 'bill/initBills',
       header: {
@@ -41,7 +43,7 @@ Page({
       },
       data: {
         bizOrderNo: bizOrderNo,
-        origin: origin
+        channelType: channelType,
       },
       method: "POST",
       success: result => {
@@ -51,6 +53,7 @@ Page({
         let method = 0;
         let repaymentList = [];
         let payIndex = 0;
+        console.log(result);
         if (result.data.entity) {
           applyAmount = result.data.entity.applyAmount;
           rate = result.data.entity.rate * 100;
@@ -89,8 +92,10 @@ Page({
   onLoad: function(options) {
     let bizOrderNo = options.bizOrderNo;
     let origin = options.page_type;
+    let channelType = options.channel_type;
     this.setData({
-      origin: origin
+      origin: origin,
+      channelType : channelType,
     });
     this.getBills(bizOrderNo, origin);
   },
@@ -288,6 +293,7 @@ Page({
       method = 4
     }
     let origin = this.data.origin;
+    let channelType = this.data.channelType;
     wx.request({
       url: app.globalData.http_url_head + 'bill/confirmOrderMsg',
       method: 'post',
@@ -299,7 +305,8 @@ Page({
         applyAmount: applyAmount,
         terms: terms,
         method: method,
-        origin: origin
+        origin: origin,
+        channelType: channelType,
       },
       success: function(res) {
         that.cancelLoading();
