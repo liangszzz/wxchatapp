@@ -52,7 +52,6 @@ Page({
         let method = 0;
         let repaymentList = [];
         let payIndex = 0;
-        console.log(result);
         if (result.data.entity) {
           applyAmount = result.data.entity.applyAmount;
           rate = result.data.entity.rate * 100;
@@ -89,7 +88,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log(options.page_type)
     let bizOrderNo = options.bizOrderNo;
     let channelType = options.channel_type;
     this.setData({
@@ -306,7 +304,6 @@ Page({
         channelType: channelType,
       },
       success: function(res) {
-        console.log(res)
         that.cancelLoading();
         if (res.statusCode == 200 && res.data.code == 0) {
           if(res.data.msg == 1){
