@@ -8,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    bizOrderNo: '123',
+    bizOrderNo: '',
     applyAmount: 10000,
     rate: 5.5,
     terms: 3,
