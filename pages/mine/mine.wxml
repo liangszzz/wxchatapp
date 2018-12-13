@@ -33,12 +33,6 @@
     <image src='/assets/images/arrow.png' mode='aspectFill'></image>
   </view>
 
-  <view class="mine-item-col" bindtap='toUpdatePhone'>
-    <image src='/assets/images/update.png' mode='aspectFill'></image>
-    <text>修改手机号</text>
-    <image src='/assets/images/arrow.png' mode='aspectFill'></image>
-  </view>
-
   <view class="mine-item-col" bindtap='toUpdatelog'>
     <image src='/assets/images/update.png' mode='aspectFill'></image>
     <text>更新日志</text>
