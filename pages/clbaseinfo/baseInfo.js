@@ -78,7 +78,12 @@ Page({
         });
       },
       fail: result => {
-        console.log(result)
+        console.error(result);
+        wx.showToast({
+          title: "查询失败",
+          icon: 'none',
+          duration: 2000 // 持续的时间
+        })
       }
     });
   },
