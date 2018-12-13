@@ -66,6 +66,7 @@ Page({
           channelType = result.data.entity.orders[0].channelType;
         } else {
           order = null;
+          channelType = null;
         }
         this.setData({
           remainingPrincipal: result.data.entity.remainingPrincipalTotal,
