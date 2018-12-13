@@ -319,7 +319,7 @@ Page({
         }
       },
       fail: function() {
-        console.error(result);
+        console.error(res);
         wx.showToast({
           title: "保存失败",
           icon: 'none',
