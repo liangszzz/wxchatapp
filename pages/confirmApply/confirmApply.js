@@ -306,19 +306,16 @@ Page({
       success: function(res) {
         that.cancelLoading();
         if (res.statusCode == 200 && res.data.code == 0) {
-          if(res.data.msg == 1){
             wx.redirectTo({
               url: '../auditLenders/auditLenders?biz_order_no=' + that.data.bizOrderNo + "&channel_type=2"
             })
           }else{
             wx.showToast({
-              title: "保存失败，服务器异常",
+              title: res.data.msg,
               icon: 'none',
               duration: 2000 // 持续的时间
             })
           }
-         
-        }
       },
       fail: function(res) {
         console.error(res);
