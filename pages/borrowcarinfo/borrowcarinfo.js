@@ -15,13 +15,13 @@ Page({
     accidentArray: [],
     hasIndex: 0,
     hasArray: ['否', '是'],
-    biz_order_no:''
+    biz_order_no: '',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     let that = this;
     let biz_order_no = options.biz_order_no;
     let carlist = that.data.carlist;
@@ -35,15 +35,16 @@ Page({
     that.initValidate();
     //请求后台获取相关信息
     wx.request({
-      url: app.globalData.http_url_head + "borrow/toCarBorrow/"+biz_order_no,
+      url: app.globalData.http_url_head + "borrow/toCarBorrow/" + biz_order_no,
       header: {
         token: app.globalData.userInfo.token
       },
       method: 'POST',
-      success: function (res) {
+      success: function(res) {
+        console.log(res)
         if (res.statusCode == 200 && res.data.code == 0) {
           biz_order_no = res.data.dataMap.biz_order_no; //车辆基本信息
-          if (biz_order_no != '' && biz_order_no != null){
+          if (biz_order_no != '' && biz_order_no != null) {
             clRiskInfo = res.data.dataMap.clRiskInfo; //风控信息，用于获取车辆估值
             let carList = res.data.dataMap.carList; //车辆照片
             let cardriveList = res.data.dataMap.driveList; //行驶证
@@ -63,12 +64,12 @@ Page({
             hasIndex = clCarInfo.major_accident;
             accidentIndex = clCarInfo.accident_type;
           }
-         
+
           let accidentTypes = res.data.dataMap.accidentTypes;
           for (let index in accidentTypes) {
             accidentArray[index] = accidentTypes[index].label
           }
-         
+
           that.setData({
             clRiskInfo: clRiskInfo,
             clCarInfo: clCarInfo,
@@ -78,11 +79,11 @@ Page({
             accidentArray: accidentArray,
             accidentIndex: accidentIndex,
             biz_order_no: options.biz_order_no,
-            hasIndex: hasIndex
+            hasIndex: hasIndex,
           })
         }
       },
-      fail: function () {
+      fail: function() {
         console.log("获取后台失败！");
       }
     })
@@ -91,7 +92,7 @@ Page({
   /**
    * 车辆照片预览
    */
-  previewImageCar: function (e) {
+  previewImageCar: function(e) {
     let currentUrl = e.target.dataset.src;
     if (currentUrl == '' || currentUrl == null) { //缺少图片
       this.chooseImg(7, );
@@ -106,7 +107,7 @@ Page({
   /**
    * 抵押登记证预览
    */
-  previewImageDeng: function (e) {
+  previewImageDeng: function(e) {
     let currentUrl = e.target.dataset.src;
     if (currentUrl == '' || currentUrl == null) { //缺少图片
       this.chooseImg(4);
@@ -121,7 +122,7 @@ Page({
   /**
    * 行驶证预览
    */
-  previewImageXing: function (e) {
+  previewImageXing: function(e) {
     let currentUrl = e.target.dataset.src;
     if (currentUrl == '' || currentUrl == null) { //缺少图片
       this.chooseImg(14);
@@ -136,7 +137,7 @@ Page({
   /**
    * 缺少图片上传图片公用方法
    */
-  chooseImg: function (file_type) {
+  chooseImg: function(file_type) {
     let that = this;
     let carlist = that.data.carlist;
     let dengjiList = that.data.dengjiList;
@@ -145,7 +146,7 @@ Page({
       count: 1, //一次只允许一张
       sizeType: ['original', 'compressed'], //可选择原图或缩略图
       sourceType: ['album', 'camera'], //访问相册、相机
-      success: function (res) {
+      success: function(res) {
         let tempFilePaths = res.tempFilePaths;
         //图片上传
         wx.uploadFile({
@@ -161,7 +162,7 @@ Page({
             biz_order_no: that.data.biz_order_no,
             formType: 0
           },
-          success: function (res) {
+          success: function(res) {
             let data = JSON.parse(res.data);
             if (res.statusCode == 200 && data.code == 0) {
               if (file_type == 7) { //车辆照片
@@ -182,7 +183,7 @@ Page({
               }
             }
           },
-          fail: function () {
+          fail: function() {
             console.log("身份证照上传失败！");
           }
         })
@@ -193,8 +194,8 @@ Page({
   /**
    * 下一步
    */
-  formSubmit: function (e) {
-    
+  formSubmit: function(e) {
+
     let data = e.detail.value
 
     // 传入表单数据，调用验证方法
@@ -217,9 +218,10 @@ Page({
       })
       return false
     }
-    
-    
+
+
     let that = this;
+    let nextUrl = ''
     //后台保存数据
     wx.request({
       url: app.globalData.http_url_head + 'borrow/saveCarInfo',
@@ -230,14 +232,19 @@ Page({
         data: data
       },
       method: "post",
-      success: function (res) {
+      success: function(res) {
         if (res.statusCode == 200 && res.data.code == 0) {
-            wx.navigateTo({
-              url: '../sign/sign?biz_order_no=' + that.data.biz_order_no + '&page_type=1&channel_type=1',
+          if (res.data.msg == 0) {
+            nextUrl = '../faceValidate/faceValidate?biz_order_no=' + that.data.biz_order_no
+          } else {
+            nextUrl = '../sign/sign?biz_order_no=' + that.data.biz_order_no + '&page_type=1&channel_type=1'
+          }
+          wx.navigateTo({
+            url: nextUrl
           })
         }
       },
-      fail: function () {
+      fail: function() {
         console.log("数据保存失败")
       }
     })
@@ -312,12 +319,12 @@ Page({
   /**
    * 选择监听
    */
-  bindhasChange: function (e) {
+  bindhasChange: function(e) {
     this.setData({
       hasIndex: e.detail.value
     })
   },
-  bindaccidentChange: function (e) {
+  bindaccidentChange: function(e) {
     this.setData({
       accidentIndex: e.detail.value
     })
