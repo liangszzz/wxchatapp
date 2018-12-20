@@ -41,7 +41,6 @@ Page({
       },
       method: 'POST',
       success: function(res) {
-        console.log(res)
         if (res.statusCode == 200 && res.data.code == 0) {
           biz_order_no = res.data.dataMap.biz_order_no; //车辆基本信息
           if (biz_order_no != '' && biz_order_no != null) {
