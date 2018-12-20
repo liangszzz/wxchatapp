@@ -1,0 +1,19 @@
+
+  <view class="profile-info">
+
+    <view class="profile-id">
+
+      <view class="profile-info-tile">
+        <text>请上传本人脸部清晰照片用于人脸识别</text>
+      </view>
+
+      <view>
+        <image src="{{imageData}}" mode='aspectFill' data-src="{{imglist[0]}}" bindtap="previewImage"></image>
+      </view>
+    </view>
+   
+      <button class="next_btn" form-type='submit'>下一步</button>
+  </view>
+  
+
+
