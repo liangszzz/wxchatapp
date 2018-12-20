@@ -12,7 +12,7 @@
       </view>
     </view>
    
-      <button class="next_btn" bindtap='toNext'>下一步</button>
+      <button class="next_btn" bindtap='toNext' disabled='{{able}}'>下一步</button>
   </view>
   
 
