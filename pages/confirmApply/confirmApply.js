@@ -78,7 +78,7 @@ Page({
         });
       },
       fail: result => {
-        console.log(result)
+        console.log(result);
       }
 
     })
@@ -307,19 +307,26 @@ Page({
         that.cancelLoading();
         if (res.statusCode == 200 && res.data.code == 0) {
           if(res.data.msg == 1){
-            wx.navigateTo({
+            wx.redirectTo({
               url: '../auditLenders/auditLenders?biz_order_no=' + that.data.bizOrderNo + "&channel_type=2"
             })
           }else{
-            wx.navigateTo({
-              url: '../auditLenders/auditLenders?biz_order_no=' + that.data.bizOrderNo + "&channel_type=" + that.data.channelType
+            wx.showToast({
+              title: "保存失败，服务器异常",
+              icon: 'none',
+              duration: 2000 // 持续的时间
             })
           }
          
         }
       },
-      fail: function() {
-        console.log("保存失败")
+      fail: function(res) {
+        console.error(res);
+        wx.showToast({
+          title: "保存失败，服务器异常",
+          icon: 'none',
+          duration: 2000 // 持续的时间
+        })
       }
     })
 

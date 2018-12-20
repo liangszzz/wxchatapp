@@ -66,6 +66,7 @@ Page({
           channelType = result.data.entity.orders[0].channelType;
         } else {
           order = null;
+          channelType = null;
         }
         this.setData({
           remainingPrincipal: result.data.entity.remainingPrincipalTotal,
@@ -78,7 +79,12 @@ Page({
         });
       },
       fail: result => {
-        console.log(result)
+        console.error(result);
+        wx.showToast({
+          title: "查询失败",
+          icon: 'none',
+          duration: 2000 // 持续的时间
+        })
       }
     });
   },
